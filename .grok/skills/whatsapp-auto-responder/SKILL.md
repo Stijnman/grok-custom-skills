@@ -1,0 +1,2 @@
+name: whatsapp-auto-responder
+description: Auto-reply to WhatsApp with memory and tools. Triggers: 'auto reply WhatsApp', 'enable WhatsApp assistant'. Per-contact toggle, rater first, then decide auto/HITL/defer. Ethical guardrails, rate limits. Integrates cron for proactive.

@@ -1,0 +1,2 @@
+name: cron-scheduler
+description: Timer and scheduled task orchestrator. Triggers: 'schedule this', 'run daily', 'cron job', 'set timer for skill'. Parses schedule: from SKILL.md or cron-jobs.md. Uses APScheduler + GitHub Actions fallback. Logs via insight-synthesizer. Enables autonomous daily tasks.

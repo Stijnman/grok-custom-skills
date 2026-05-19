@@ -1,0 +1,2 @@
+name: goal-verifier
+description: Post-task success verifier. Triggers: 'verify goal', 'confirm success', 'did I achieve this'. Runs self-refine + metrics before marking complete. Prevents false positives.

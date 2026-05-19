@@ -1,0 +1,2 @@
+name: hitl-approver
+description: Human-in-the-loop approver for high-risk actions. Triggers: 'approve this', 'hitl check', 'human review needed'. Pauses for WhatsApp sends, deploys, money actions. Structured briefing, checklist, rollback plan. Async mode with timeout.

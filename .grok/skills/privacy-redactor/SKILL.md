@@ -1,0 +1,2 @@
+name: privacy-redactor
+description: Zero-trust PII redactor for all inputs/outputs. Triggers: 'redact PII', 'privacy check', 'sanitize this'. Scans emails, phones, names, locations. Redacts or routes to hitl-approver before external actions. Critical for WhatsApp.

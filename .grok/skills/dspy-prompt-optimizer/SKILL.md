@@ -1,0 +1,2 @@
+name: dspy-prompt-optimizer
+description: DSPy-style automatic prompt optimizer. Triggers: 'optimize this prompt', 'dspy tune', 'improve prompt with reflection'. Uses reflection scores + success metrics for iterative tuning. Integrates self-refine-loop.

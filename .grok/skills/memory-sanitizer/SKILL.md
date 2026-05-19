@@ -1,0 +1,2 @@
+name: memory-sanitizer
+description: Defends against memory poisoning. Triggers: 'sanitize memory', 'trust score retrieval', 'clean knowledge graph'. Sanitizes + trust scoring on all retrievals from semantic-memory-manager.

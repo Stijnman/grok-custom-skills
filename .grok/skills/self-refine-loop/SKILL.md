@@ -1,0 +1,2 @@
+name: self-refine-loop
+description: Self-refine and Reflexion loop for iterative improvement. Triggers: 'self refine this', 'reflexion loop', 'critique and revise', 'improve output with self-critique'. Use generator-critique-reviser cycle with semantic memory for lessons learned. Max 5 iterations or confidence 8/10. Integrates with multi-agent-orchestrator as skeptic agent.

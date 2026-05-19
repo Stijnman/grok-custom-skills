@@ -1,0 +1,2 @@
+name: agentic-uncertainty-quantifier
+description: Dual-process uncertainty scoring for memory and reflection depth. Triggers: 'quantify uncertainty', 'fast slow think', 'uncertainty score'. Controls memory retrieval and iteration count based on confidence.

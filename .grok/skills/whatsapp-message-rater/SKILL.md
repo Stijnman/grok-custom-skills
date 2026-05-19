@@ -1,0 +1,2 @@
+name: whatsapp-message-rater
+description: Rate WhatsApp messages for sentiment, urgency, spam. Triggers: 'rate this WhatsApp', 'analyze chat sentiment', 'score message urgency'. Hybrid VADER + LLM on semantic memory. JSON output + summary. Stores per-contact profiles.

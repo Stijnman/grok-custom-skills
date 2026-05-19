@@ -1,0 +1,2 @@
+name: self-healing-error-recovery
+description: GENIUS-style self-healing for errors. Triggers: 'heal this error', 'self recover', 'fix failure automatically'. Diagnose with knowledge-graph, repair loop, sandbox retries. 76%+ recovery. Stores lessons in semantic memory.
