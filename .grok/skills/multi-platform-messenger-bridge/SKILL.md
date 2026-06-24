@@ -1,22 +1,58 @@
 ---
 name: multi-platform-messenger-bridge
-description: "Unified messenger across WhatsApp, Telegram, future channels"
-version: 1.0.0
+description: >
+  Unifies WhatsApp, Telegram, and future channels with shared memory and ratin
+  g.Use when user says bridge messengers or unified chat memory. One rater, on
+  e auto-responder policy across platforms. Triggers: bridge messengers, unifi
+  ed chat memory, cross-platform reply.
+version: 1.1.0
 author: Stijnman
 license: MIT
 metadata:
-  hermes:
-    tags: []
-    related_skills: []
+  grok:
+    tags: [bridge messengers, unified chat memory, cross-platform reply]
+    related_skills: [whatsapp-auto-responder, whatsapp-message-rater, semantic-memory-manager, hitl-approver]
+compatibility: Grok agent; optional MCP and shell access
 ---
 
 # Multi Platform Messenger Bridge
 
-## Overview
-Unified messenger across WhatsApp, Telegram, future channels. Triggers: 'bridge messengers', 'unified chat memory'. Shared semantic memory, one rater, one auto-responder. Consistent across platforms.
-
 ## When to Use
-- bridge messengers, unified chat memory
 
-## Common Pitfalls
-- No action specified yet.
+- User says **bridge messengers** or task matches this capability
+- User says **unified chat memory** or task matches this capability
+- User says **cross-platform reply** or task matches this capability
+
+## Workflow
+
+1. Normalize message format across platforms (sender, channel, body, meta).
+2. Route through whatsapp-message-rater (or platform equivalent).
+3. Apply shared contact profile from semantic-memory-manager.
+4. Dispatch reply via platform adapter; same HITL rules everywhere.
+
+## References
+
+Read `references/messenger-setup.md` when setup, backends, or rubric details are needed.
+
+## Integrations
+
+- `whatsapp-auto-responder`
+- `whatsapp-message-rater`
+- `semantic-memory-manager`
+- `hitl-approver`
+
+## Error Handling
+
+| Failure | Response |
+|---------|----------|
+| Platform not configured | Read references/messenger-setup.md; guide setup. |
+| Channel policy mismatch | Apply strictest policy across channels. |
+
+## Gotchas
+
+- Read references/messenger-setup.md before first use.
+
+## Example
+
+**Input:** User request matching triggers above.
+**Output:** Structured result per workflow with integrations invoked as needed.
