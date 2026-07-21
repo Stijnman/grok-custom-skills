@@ -2,7 +2,7 @@
 
 **Owner:** Stijnman  
 **Created:** May 18, 2026  
-**Updated:** June 24, 2026  
+**Updated:** July 21, 2026  
 **Total Skills:** 73 production-ready skills
 
 Defensive agent skills for the xAI Grok ecosystem — workflow automation, multi-agent orchestration, messaging, memory, MCP security, and skill evolution. All skills follow the [Agent Skills specification](https://agentskills.io/specification) and pass publication safety audits.
