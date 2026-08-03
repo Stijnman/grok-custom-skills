@@ -1,0 +1,604 @@
+name: Supreme SEO & GEO Stack - CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, feature/* ]
+    tags: [ v* ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run security scans daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  # Global environment variables
+  DOCKER_REGISTRY: registry.supreme-seo.com
+  KUBE_NAMESPACE: supreme-seo
+  HELM_RELEASE: supreme-seo-geo-stack
+  PYTHON_VERSION: "3.11"
+  NODE_VERSION: "20"
+  
+  # Image tags
+  SEO_ANALYSIS_IMAGE: seo-analysis
+  GEO_INTELLIGENCE_IMAGE: geo-intelligence
+  CONTENT_PROCESSING_IMAGE: content-processing
+  THREAT_INTELLIGENCE_IMAGE: threat-intelligence
+  USER_MANAGEMENT_IMAGE: user-management
+  API_GATEWAY_IMAGE: api-gateway
+  WEB_DASHBOARD_IMAGE: web-dashboard
+
+jobs:
+  # ============================================
+  # CODE QUALITY & SECURITY SCANNING
+  # ============================================
+  
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+        cache-dependency-path: '**/requirements*.txt'
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: '**/package.json'
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: Install Node.js dependencies
+      run: |
+        cd web
+        npm ci
+    
+    - name: Run Python linting
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+    - name: Run Python formatting check
+      run: |
+        black --check .
+        isort --check .
+    
+    - name: Run Python type checking
+      run: |
+        mypy . --ignore-missing-imports
+    
+    - name: Run JavaScript linting
+      run: |
+        cd web
+        npm run lint
+    
+    - name: Run JavaScript formatting check
+      run: |
+        cd web
+        npm run format:check
+    
+    - name: Run security scan (Python)
+      run: |
+        pip install safety
+        safety check --full-report --json | tee safety-report.json
+        if [ $(jq '.vulnerabilities | length' safety-report.json) -gt 0 ]; then
+          echo "Security vulnerabilities found!"
+          exit 1
+        fi
+    
+    - name: Run security scan (Node.js)
+      run: |
+        cd web
+        npm audit --audit-level=high
+    
+    - name: Run dependency vulnerability scan
+      run: |
+        pip install pip-audit
+        pip-audit --strict
+    
+    - name: Upload code quality artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: code-quality-reports
+        path: |
+          safety-report.json
+          .flake8
+          .mypy
+        retention-days: 30
+
+  # ============================================
+  # UNIT & INTEGRATION TESTING
+  # ============================================
+  
+  test:
+    name: Run Tests
+    needs: code-quality
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+        node-version: ["18", "20"]
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: supreme_seo
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: supreme_seo_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+      
+      rabbitmq:
+        image: rabbitmq:3.12
+        ports:
+          - 5672:5672
+        options: --health-cmd "rabbitmq-diagnostics status" --health-interval 10s --health-timeout 5s --health-retries 5
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: Install Node.js dependencies
+      run: |
+        cd web
+        npm ci
+    
+    - name: Run Python unit tests
+      env:
+        DATABASE_URL: postgresql://supreme_seo:test_password@localhost:5432/supreme_seo_test
+        REDIS_URL: redis://localhost:6379/0
+        RABBITMQ_URL: amqp://guest:guest@localhost:5672/
+      run: |
+        pytest tests/unit --cov=src --cov-report=xml --cov-report=html -v
+    
+    - name: Run Python integration tests
+      env:
+        DATABASE_URL: postgresql://supreme_seo:test_password@localhost:5432/supreme_seo_test
+        REDIS_URL: redis://localhost:6379/0
+        RABBITMQ_URL: amqp://guest:guest@localhost:5672/
+      run: |
+        pytest tests/integration --cov=src --cov-report=xml -v
+    
+    - name: Run JavaScript tests
+      run: |
+        cd web
+        npm test
+    
+    - name: Upload test coverage
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage.xml,./web/coverage/lcov.info
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+    
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-reports
+        path: |
+          coverage.xml
+          coverage/
+          web/coverage/
+          test-results/
+        retention-days: 30
+
+  # ============================================
+  # DOCKER IMAGE BUILDING
+  # ============================================
+  
+  build:
+    name: Build Docker Images
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Login to Docker Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.DOCKER_REGISTRY }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Build and push SEO Analysis service
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./services/seo-analysis/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.SEO_ANALYSIS_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.SEO_ANALYSIS_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.SEO_ANALYSIS_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          PYTHON_VERSION=${{ env.PYTHON_VERSION }}
+    
+    - name: Build and push GEO Intelligence service
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./services/geo-intelligence/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.GEO_INTELLIGENCE_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.GEO_INTELLIGENCE_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.GEO_INTELLIGENCE_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Build and push Content Processing service
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./services/content-processing/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.CONTENT_PROCESSING_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.CONTENT_PROCESSING_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.CONTENT_PROCESSING_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Build and push Threat Intelligence service
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./services/threat-intelligence/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.THREAT_INTELLIGENCE_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.THREAT_INTELLIGENCE_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.THREAT_INTELLIGENCE_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Build and push User Management service
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./services/user-management/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.USER_MANAGEMENT_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.USER_MANAGEMENT_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.USER_MANAGEMENT_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Build and push API Gateway
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./api-gateway/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.API_GATEWAY_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.API_GATEWAY_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.API_GATEWAY_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Build and push Web Dashboard
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./web/Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCKER_REGISTRY }}/${{ env.WEB_DASHBOARD_IMAGE }}:${{ github.sha }}
+          ${{ env.DOCKER_REGISTRY }}/${{ env.WEB_DASHBOARD_IMAGE }}:v2.0.0
+          ${{ env.DOCKER_REGISTRY }}/${{ env.WEB_DASHBOARD_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  # ============================================
+  # STAGING DEPLOYMENT
+  # ============================================
+  
+  deploy-staging:
+    name: Deploy to Staging
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://staging.supreme-seo.com
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.14.0
+    
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: latest
+    
+    - name: Configure Kubernetes
+      run: |
+        echo "${{ secrets.KUBE_CONFIG_STAGING }}" | base64 -d > kubeconfig.yaml
+        export KUBECONFIG=kubeconfig.yaml
+    
+    - name: Install dependencies
+      run: |
+        helm repo add bitnami https://charts.bitnami.com/bitnami
+        helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+        helm repo add grafana https://grafana.github.io/helm-charts
+        helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
+        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+        helm repo add jetstack https://charts.jetstack.io
+        helm repo update
+    
+    - name: Deploy to Staging
+      run: |
+        helm upgrade --install ${{ env.HELM_RELEASE }} ./infrastructure/helm \
+          --namespace ${{ env.KUBE_NAMESPACE }}-staging \
+          --create-namespace \
+          --values ./infrastructure/helm/values-staging.yaml \
+          --set image.tag=${{ github.sha }} \
+          --set global.environment=staging \
+          --atomic --wait --timeout 15m
+    
+    - name: Run smoke tests
+      run: |
+        ./scripts/smoke-test.sh https://staging.supreme-seo.com
+    
+    - name: Verify deployment
+      run: |
+        ./scripts/verify-deployment.sh https://staging.supreme-seo.com
+    
+    - name: Notify staging deployment
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: good
+        SLACK_TITLE: "Staging Deployment Successful"
+        SLACK_MESSAGE: "Supreme SEO & GEO Stack v2.0.0 deployed to staging"
+        SLACK_FOOTER: "Commit: ${{ github.sha }}"
+
+  # ============================================
+  # PRODUCTION DEPLOYMENT
+  # ============================================
+  
+  deploy-production:
+    name: Deploy to Production
+    needs: deploy-staging
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://api.supreme-seo.com
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.14.0
+    
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: latest
+    
+    - name: Configure Kubernetes
+      run: |
+        echo "${{ secrets.KUBE_CONFIG_PRODUCTION }}" | base64 -d > kubeconfig.yaml
+        export KUBECONFIG=kubeconfig.yaml
+    
+    - name: Deploy to Production
+      run: |
+        helm upgrade --install ${{ env.HELM_RELEASE }} ./infrastructure/helm \
+          --namespace ${{ env.KUBE_NAMESPACE }} \
+          --create-namespace \
+          --values ./infrastructure/helm/values-production.yaml \
+          --set image.tag=${{ github.sha }} \
+          --set global.environment=production \
+          --atomic --wait --timeout 30m
+    
+    - name: Run comprehensive verification
+      run: |
+        ./scripts/verify-deployment.sh https://api.supreme-seo.com
+    
+    - name: Run production smoke tests
+      run: |
+        ./scripts/smoke-test.sh https://api.supreme-seo.com
+    
+    - name: Notify production deployment
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: good
+        SLACK_TITLE: "Production Deployment Successful"
+        SLACK_MESSAGE: "Supreme SEO & GEO Stack v2.0.0 deployed to production"
+        SLACK_FOOTER: "Commit: ${{ github.sha }}"
+    
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          .grok/enhanced/**/*
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ============================================
+  # SECURITY SCANNING (SCHEDULED)
+  # ============================================
+  
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Run Trivy vulnerability scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        severity: 'CRITICAL,HIGH'
+    
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+    
+    - name: Run Snyk vulnerability scan
+      uses: snyk/actions/python@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=high
+    
+    - name: Run OWASP Dependency Check
+      uses: dependency-check/Dependency-Check_Action@main
+      with:
+        project: 'supreme-seo-geo-stack'
+        path: '.'
+        format: 'SARIF'
+        output: 'dependency-check-results.sarif'
+        args: >-
+          --scan ./services/seo-analysis/requirements.txt
+          --scan ./services/geo-intelligence/requirements.txt
+          --scan ./services/content-processing/requirements.txt
+          --scan ./services/threat-intelligence/requirements.txt
+          --scan ./services/user-management/requirements.txt
+    
+    - name: Upload Dependency Check results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'dependency-check-results.sarif'
+
+  # ============================================
+  # PERFORMANCE TESTING
+  # ============================================
+  
+  performance-test:
+    name: Performance Testing
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install dependencies
+      run: |
+        pip install locust
+    
+    - name: Run load test
+      run: |
+        locust -f tests/performance/load_test.py \
+          --host=https://staging.supreme-seo.com \
+          --users=100 \
+          --spawn-rate=10 \
+          --run-time=5m \
+          --headless \
+          --html=load-test-report.html
+    
+    - name: Upload performance test report
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-test-report
+        path: load-test-report.html
+        retention-days: 30
+
+  # ============================================
+  # CLEANUP (OPTIONAL)
+  # ============================================
+  
+  cleanup:
+    name: Cleanup Old Images
+    needs: deploy-production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Login to Docker Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.DOCKER_REGISTRY }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Cleanup old images
+      run: |
+        # Keep last 10 images of each type
+        for image in ${{ env.SEO_ANALYSIS_IMAGE }} ${{ env.GEO_INTELLIGENCE_IMAGE }} ${{ env.CONTENT_PROCESSING_IMAGE }} ${{ env.THREAT_INTELLIGENCE_IMAGE }} ${{ env.USER_MANAGEMENT_IMAGE }} ${{ env.API_GATEWAY_IMAGE }} ${{ env.WEB_DASHBOARD_IMAGE }}; do
+          echo "Cleaning up old images for $image"
+          docker image ls ${{ env.DOCKER_REGISTRY }}/${image} --format "{{.ID}}\t{{.Tag}}" | \
+          awk 'NR>10' | \
+          while read -r id tag; do
+            echo "Removing old image: $id ($tag)"
+            docker rmi -f "$id" || true
+          done
+        done

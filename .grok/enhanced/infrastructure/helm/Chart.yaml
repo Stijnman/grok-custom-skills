@@ -1,0 +1,59 @@
+apiVersion: v2
+name: supreme-seo-geo-stack
+description: World-class SEO & GEO Intelligence Stack - Complete enterprise solution
+version: 2.0.0
+appVersion: 2.0.0
+home: https://supreme-seo.com
+sources:
+  - https://github.com/Stijnman/grok-custom-skills
+maintainers:
+  - name: Stijnman
+    email: support@supreme-seo.com
+    url: https://supreme-seo.com
+engine: gotpl
+type: application
+keywords:
+  - seo
+  - geo
+  - intelligence
+  - analysis
+  - ai
+  - machine-learning
+  - cybersecurity
+  - threat-intelligence
+  - geofencing
+  - microservices
+  - kubernetes
+dependencies:
+  - name: redis
+    version: 17.11.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+  - name: postgresql
+    version: 12.1.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: rabbitmq
+    version: 11.10.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: rabbitmq.enabled
+  - name: prometheus
+    version: 15.0.0
+    repository: https://prometheus-community.github.io/helm-charts
+    condition: monitoring.prometheus.enabled
+  - name: grafana
+    version: 6.58.0
+    repository: https://grafana.github.io/helm-charts
+    condition: monitoring.grafana.enabled
+  - name: jaeger
+    version: 0.61.0
+    repository: https://jaegertracing.github.io/helm-charts
+    condition: tracing.jaeger.enabled
+  - name: nginx-ingress-controller
+    version: 9.7.0
+    repository: https://kubernetes.github.io/ingress-nginx
+    condition: ingress.nginx.enabled
+  - name: cert-manager
+    version: v1.13.0
+    repository: https://charts.jetstack.io
+    condition: cert-manager.enabled

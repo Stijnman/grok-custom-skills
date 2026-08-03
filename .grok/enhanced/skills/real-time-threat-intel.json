@@ -1,0 +1,367 @@
+{
+  "name": "Real-time Threat Intelligence",
+  "id": "real-time-threat-intel",
+  "description": "Live IP threat intelligence with real-time malicious activity detection and risk scoring",
+  "version": "2.0.0",
+  "author": "Stijnman",
+  "category": "GEO Intelligence",
+  "tags": ["threat-intelligence", "ip", "security", "malicious", "risk-scoring", "real-time", "cybersecurity", "fraud-prevention", "ddos", "bot-detection"],
+  "capabilities": [
+    "real_time_ip_analysis",
+    "malicious_activity_detection",
+    "risk_scoring",
+    "threat_feed_integration",
+    "bot_detection",
+    "proxy_vpn_tor_detection",
+    "ddos_detection",
+    "fraud_prevention",
+    "threat_actor_attribution",
+    "indicator_of_compromise_ioc",
+    "threat_hunting",
+    "automated_blocking",
+    "threat_intelligence_feeds",
+    "geographic_threat_analysis",
+    "behavioral_analysis"
+  ],
+  "tools": [
+    {
+      "name": "analyze_ip_threat",
+      "description": "Perform comprehensive threat analysis on an IP address",
+      "parameters": {
+        "ip_address": "string",
+        "include_historical_data": "boolean",
+        "include_geolocation": "boolean",
+        "include_network_data": "boolean",
+        "include_reputation": "boolean",
+        "threat_feeds": "array",
+        "confidence_threshold": "number"
+      }
+    },
+    {
+      "name": "detect_malicious_activity",
+      "description": "Detect malicious activity patterns in real-time",
+      "parameters": {
+        "ip_addresses": "array",
+        "time_window": "string",
+        "activity_types": "array",
+        "thresholds": "object",
+        "include_geolocation": "boolean",
+        "include_behavioral_analysis": "boolean"
+      }
+    },
+    {
+      "name": "calculate_risk_score",
+      "description": "Calculate comprehensive risk score for IP addresses",
+      "parameters": {
+        "ip_address": "string",
+        "risk_factors": "array",
+        "weighting": "object",
+        "include_context": "boolean",
+        "time_sensitivity": "string"
+      }
+    },
+    {
+      "name": "integrate_threat_feeds",
+      "description": "Integrate with external threat intelligence feeds",
+      "parameters": {
+        "feeds": "array",
+        "update_frequency": "string",
+        "auto_update": "boolean",
+        "deduplication": "boolean",
+        "normalization": "boolean"
+      }
+    },
+    {
+      "name": "detect_bots",
+      "description": "Detect bots, scrapers, and automated tools",
+      "parameters": {
+        "ip_address": "string",
+        "user_agent": "string",
+        "behavior_patterns": "array",
+        "request_patterns": "object",
+        "confidence_threshold": "number",
+        "include_ai_detection": "boolean"
+      }
+    },
+    {
+      "name": "detect_proxy_vpn_tor",
+      "description": "Detect proxy, VPN, and Tor usage with high accuracy",
+      "parameters": {
+        "ip_address": "string",
+        "detection_methods": "array",
+        "confidence_threshold": "number",
+        "include_network_analysis": "boolean",
+        "include_behavioral_analysis": "boolean"
+      }
+    },
+    {
+      "name": "detect_ddos_attacks",
+      "description": "Detect and mitigate DDoS attacks in real-time",
+      "parameters": {
+        "traffic_patterns": "object",
+        "thresholds": "object",
+        "detection_window": "string",
+        "mitigation_strategy": "string",
+        "include_geolocation": "boolean",
+        "auto_mitigate": "boolean"
+      }
+    },
+    {
+      "name": "prevent_fraud",
+      "description": "Prevent fraudulent activities using threat intelligence",
+      "parameters": {
+        "user_data": "object",
+        "transaction_data": "object",
+        "device_data": "object",
+        "behavioral_data": "object",
+        "risk_threshold": "number",
+        "auto_block": "boolean"
+      }
+    },
+    {
+      "name": "attribute_threat_actors",
+      "description": "Attribute threats to known threat actors and groups",
+      "parameters": {
+        "ip_address": "string",
+        "threat_indicators": "array",
+        "attribution_methods": "array",
+        "confidence_threshold": "number",
+        "include_historical_data": "boolean"
+      }
+    },
+    {
+      "name": "hunt_threats",
+      "description": "Proactively hunt for threats in network traffic",
+      "parameters": {
+        "network_data": "object",
+        "threat_indicators": "array",
+        "hunting_rules": "array",
+        "time_range": "object",
+        "include_geolocation": "boolean",
+        "auto_alert": "boolean"
+      }
+    }
+  ],
+  "dependencies": [
+    "threat_intelligence_feeds",
+    "ip_database",
+    "network_analysis",
+    "ai_ml_models",
+    "geolocation_service",
+    "fetch_engine",
+    "cache_service",
+    "message_queue"
+  ],
+  "configuration": {
+    "threat_intelligence_feeds": {
+      "abuseipdb": {
+        "enabled": true,
+        "api_key": "${ABUSEIPDB_API_KEY}",
+        "base_url": "https://api.abuseipdb.com/api/v2",
+        "rate_limit": 1000,
+        "confidence_threshold": 90
+      },
+      "shodan": {
+        "enabled": true,
+        "api_key": "${SHODAN_API_KEY}",
+        "base_url": "https://api.shodan.io",
+        "rate_limit": 100,
+        "scan_depth": "full"
+      },
+      "virus_total": {
+        "enabled": true,
+        "api_key": "${VIRUSTOTAL_API_KEY}",
+        "base_url": "https://www.virustotal.com/api/v3",
+        "rate_limit": 4,
+        "include_historical": true
+      },
+      "ipqualityscore": {
+        "enabled": true,
+        "api_key": "${IPQUALITYSCORE_API_KEY}",
+        "base_url": "https://www.ipqualityscore.com/api/json",
+        "rate_limit": 1000,
+        "strictness": 3
+      },
+      "ip2location": {
+        "enabled": true,
+        "api_key": "${IP2LOCATION_API_KEY}",
+        "base_url": "https://api.ip2location.com",
+        "include_threat_data": true
+      },
+      "grey_noise": {
+        "enabled": true,
+        "api_key": "${GREYNOISE_API_KEY}",
+        "base_url": "https://api.greynoise.io/v3",
+        "classification": "malicious"
+      },
+      "custom_feeds": {
+        "enabled": true,
+        "feeds": []
+      }
+    },
+    "threat_detection": {
+      "bot_detection": {
+        "enabled": true,
+        "user_agent_analysis": true,
+        "behavioral_analysis": true,
+        "request_pattern_analysis": true,
+        "ai_detection": true,
+        "confidence_threshold": 85
+      },
+      "proxy_vpn_tor_detection": {
+        "enabled": true,
+        "ip_reputation": true,
+        "network_analysis": true,
+        "behavioral_analysis": true,
+        "confidence_threshold": 90
+      },
+      "ddos_detection": {
+        "enabled": true,
+        "traffic_analysis": true,
+        "rate_limiting": true,
+        "geographic_analysis": true,
+        "auto_mitigation": false,
+        "mitigation_strategy": "rate_limiting"
+      },
+      "fraud_prevention": {
+        "enabled": true,
+        "device_fingerprinting": true,
+        "behavioral_analysis": true,
+        "geolocation_analysis": true,
+        "risk_scoring": true,
+        "auto_block": false,
+        "risk_threshold": 75
+      }
+    },
+    "risk_scoring": {
+      "factors": {
+        "ip_reputation": {
+          "weight": 0.3,
+          "sources": ["abuseipdb", "shodan", "virustotal"]
+        },
+        "geolocation": {
+          "weight": 0.2,
+          "high_risk_countries": ["RU", "CN", "IR", "KP", "SY"],
+          "medium_risk_countries": ["IN", "PK", "NG", "BR", "ID"]
+        },
+        "behavioral": {
+          "weight": 0.25,
+          "suspicious_patterns": [
+            "rapid_requests",
+            "unusual_hours",
+            "multiple_accounts",
+            "failed_logins"
+          ]
+        },
+        "network": {
+          "weight": 0.15,
+          "asn_reputation": true,
+          "hosting_provider": true,
+          "cloud_provider": true
+        },
+        "device": {
+          "weight": 0.1,
+          "device_fingerprint": true,
+          "browser_fingerprint": true
+        }
+      },
+      "thresholds": {
+        "low_risk": {
+          "min": 0,
+          "max": 30,
+          "action": "allow"
+        },
+        "medium_risk": {
+          "min": 31,
+          "max": 70,
+          "action": "monitor"
+        },
+        "high_risk": {
+          "min": 71,
+          "max": 90,
+          "action": "challenge"
+        },
+        "critical_risk": {
+          "min": 91,
+          "max": 100,
+          "action": "block"
+        }
+      }
+    },
+    "automation": {
+      "auto_blocking": {
+        "enabled": false,
+        "min_confidence": 95,
+        "min_risk_score": 90,
+        "block_duration": "24h",
+        "notification": true
+      },
+      "auto_alerting": {
+        "enabled": true,
+        "min_confidence": 80,
+        "min_risk_score": 70,
+        "alert_channels": ["email", "slack", "webhook"],
+        "alert_frequency": "real_time"
+      },
+      "threat_feed_updates": {
+        "enabled": true,
+        "update_frequency": "hourly",
+        "auto_deduplication": true,
+        "normalization": true
+      }
+    }
+  },
+  "performance": {
+    "max_concurrent_analyses": 100,
+    "rate_limit": 500,
+    "timeout": 30,
+    "retry_attempts": 2,
+    "batch_size": 1000,
+    "real_time_processing": true,
+    "streaming_enabled": true
+  },
+  "monitoring": {
+    "metrics": [
+      "ip_analyses_total",
+      "threats_detected",
+      "risk_scores_calculated",
+      "bots_detected",
+      "proxies_detected",
+      "ddos_attacks_detected",
+      "fraud_attempts_prevented",
+      "threat_feeds_updated",
+      "auto_blocking_actions",
+      "alerts_sent"
+    ],
+    "tracing": true,
+    "logging": {
+      "level": "info",
+      "include_ip_data": false,
+      "include_threat_data": true
+    },
+    "alerting": {
+      "enabled": true,
+      "channels": ["email", "slack", "pagerduty"],
+      "severities": ["critical", "high", "medium", "low"]
+    }
+  },
+  "security": {
+    "api_key_encryption": true,
+    "data_encryption": true,
+    "rate_limiting": {
+      "per_user": 1000,
+      "per_minute": 500,
+      "burst_limit": 100
+    },
+    "access_control": {
+      "require_authentication": true,
+      "require_authorization": true,
+      "ip_whitelisting": true
+    },
+    "compliance": {
+      "gdpR": true,
+      "ccpa": true,
+      "data_retention_days": 90
+    }
+  }
+}

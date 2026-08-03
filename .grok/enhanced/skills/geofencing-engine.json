@@ -1,0 +1,372 @@
+{
+  "name": "Geofencing Engine",
+  "id": "geofencing-engine",
+  "description": "Advanced geofencing system with location-based access control and security policies",
+  "version": "2.0.0",
+  "author": "Stijnman",
+  "category": "GEO Intelligence",
+  "tags": ["geofencing", "location-based", "access-control", "security", "ip-filtering", "regional-restrictions", "compliance", "gps", "boundaries", "policies"],
+  "capabilities": [
+    "ip_based_geofencing",
+    "gps_based_geofencing",
+    "location_based_access_control",
+    "regional_restrictions",
+    "country_blocking",
+    "city_level_geofencing",
+    "custom_boundary_geofencing",
+    "dynamic_geofencing",
+    "time_based_geofencing",
+    "user_group_geofencing",
+    "device_based_geofencing",
+    "behavioral_geofencing",
+    "compliance_geofencing",
+    "multi_factor_geofencing",
+    "geofencing_analytics"
+  ],
+  "tools": [
+    {
+      "name": "create_geofence",
+      "description": "Create a new geofence with custom boundaries and rules",
+      "parameters": {
+        "name": "string",
+        "description": "string",
+        "geofence_type": "string",
+        "boundaries": "object",
+        "rules": "object",
+        "schedule": "object",
+        "priority": "number",
+        "enabled": "boolean",
+        "logging": "object"
+      }
+    },
+    {
+      "name": "check_location_access",
+      "description": "Check if a location has access based on geofencing rules",
+      "parameters": {
+        "ip_address": "string",
+        "gps_coordinates": "object",
+        "user_id": "string",
+        "device_id": "string",
+        "access_type": "string",
+        "geofence_ids": "array",
+        "include_reason": "boolean"
+      }
+    },
+    {
+      "name": "enforce_geofencing",
+      "description": "Enforce geofencing rules and return access decision",
+      "parameters": {
+        "request_data": "object",
+        "geofence_ids": "array",
+        "strict_mode": "boolean",
+        "fallback_action": "string",
+        "include_audit_log": "boolean"
+      }
+    },
+    {
+      "name": "manage_geofence_policies",
+      "description": "Manage geofencing policies and rules",
+      "parameters": {
+        "policy_id": "string",
+        "action": "string",
+        "rules": "object",
+        "conditions": "object",
+        "exceptions": "array",
+        "effective_date": "string",
+        "expiry_date": "string"
+      }
+    },
+    {
+      "name": "analyze_geofencing_violations",
+      "description": "Analyze geofencing violations and access attempts",
+      "parameters": {
+        "time_range": "object",
+        "geofence_ids": "array",
+        "violation_types": "array",
+        "include_location_data": "boolean",
+        "include_user_data": "boolean",
+        "group_by": "array"
+      }
+    },
+    {
+      "name": "optimize_geofencing_rules",
+      "description": "Optimize geofencing rules based on usage patterns and security requirements",
+      "parameters": {
+        "geofence_ids": "array",
+        "usage_data": "object",
+        "security_requirements": "object",
+        "compliance_requirements": "object",
+        "optimization_goals": "array",
+        "auto_apply": "boolean"
+      }
+    },
+    {
+      "name": "test_geofencing_rules",
+      "description": "Test geofencing rules with sample scenarios",
+      "parameters": {
+        "geofence_id": "string",
+        "test_cases": "array",
+        "expected_results": "array",
+        "validation_mode": "string",
+        "generate_report": "boolean"
+      }
+    },
+    {
+      "name": "export_geofencing_data",
+      "description": "Export geofencing data and reports",
+      "parameters": {
+        "format": "string",
+        "geofence_ids": "array",
+        "time_range": "object",
+        "include_violations": "boolean",
+        "include_access_logs": "boolean",
+        "compression": "boolean"
+      }
+    }
+  ],
+  "dependencies": [
+    "geolocation_service",
+    "ip_database",
+    "boundary_service",
+    "policy_engine",
+    "logging_service",
+    "cache_service",
+    "message_queue"
+  ],
+  "configuration": {
+    "geofencing_types": {
+      "ip_based": {
+        "enabled": true,
+        "accuracy": "country",
+        "fallback": "allow",
+        "performance": "high"
+      },
+      "gps_based": {
+        "enabled": true,
+        "accuracy": "high",
+        "fallback": "ip_based",
+        "performance": "medium"
+      },
+      "hybrid": {
+        "enabled": true,
+        "ip_weight": 0.7,
+        "gps_weight": 0.3,
+        "fallback": "allow",
+        "performance": "balanced"
+      }
+    },
+    "boundary_types": {
+      "country": {
+        "enabled": true,
+        "data_source": "maxmind",
+        "update_frequency": "daily",
+        "accuracy": "high"
+      },
+      "region": {
+        "enabled": true,
+        "data_source": "maxmind",
+        "update_frequency": "daily",
+        "accuracy": "high"
+      },
+      "city": {
+        "enabled": true,
+        "data_source": "maxmind",
+        "update_frequency": "daily",
+        "accuracy": "medium"
+      },
+      "postal_code": {
+        "enabled": true,
+        "data_source": "geolite2",
+        "update_frequency": "weekly",
+        "accuracy": "medium"
+      },
+      "custom_polygon": {
+        "enabled": true,
+        "data_source": "user_defined",
+        "format": "geojson",
+        "max_vertices": 1000
+      },
+      "radius": {
+        "enabled": true,
+        "max_radius_km": 100,
+        "min_radius_km": 0.1,
+        "accuracy": "configurable"
+      }
+    },
+    "access_control": {
+      "default_action": "allow",
+      "strict_mode": false,
+      "logging": {
+        "enabled": true,
+        "log_level": "info",
+        "retention_days": 90
+      },
+      "audit_trail": {
+        "enabled": true,
+        "retention_days": 365,
+        "include_details": true
+      }
+    },
+    "policies": {
+      "default_policy": {
+        "name": "Default Access Policy",
+        "description": "Default geofencing policy for all users",
+        "rules": [
+          {
+            "action": "allow",
+            "conditions": {
+              "countries": ["US", "CA", "UK", "DE", "FR", "JP"],
+              "regions": [],
+              "cities": []
+            },
+            "exceptions": []
+          },
+          {
+            "action": "block",
+            "conditions": {
+              "countries": ["RU", "CN", "IR", "KP", "SY"],
+              "regions": [],
+              "cities": []
+            },
+            "exceptions": [
+              {
+                "user_groups": ["admin", "trusted"],
+                "action": "allow"
+              }
+            ]
+          }
+        ],
+        "schedule": {
+          "enabled": false,
+          "time_zones": [],
+          "recurring": []
+        }
+      },
+      "security_policy": {
+        "name": "Security Policy",
+        "description": "Strict geofencing for sensitive operations",
+        "rules": [
+          {
+            "action": "challenge",
+            "conditions": {
+              "countries": ["IN", "PK", "NG", "BR", "ID"],
+              "risk_score_min": 50
+            },
+            "challenge_type": "captcha"
+          },
+          {
+            "action": "block",
+            "conditions": {
+              "countries": ["RU", "CN", "IR"],
+              "risk_score_min": 70
+            }
+          }
+        ]
+      }
+    },
+    "compliance": {
+      "gdpR": {
+        "enabled": true,
+        "eu_countries": ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"],
+        "data_protection": true,
+        "right_to_be_forgotten": true
+      },
+      "ccpa": {
+        "enabled": true,
+        "california_residents": true,
+        "opt_out_mechanism": true
+      },
+      "industry_specific": {
+        "healthcare": {
+          "enabled": false,
+          "hipaa_compliance": false
+        },
+        "financial": {
+          "enabled": false,
+          "glba_compliance": false
+        },
+        "government": {
+          "enabled": false,
+          "fedramp_compliance": false
+        }
+      }
+    },
+    "performance": {
+      "caching": {
+        "enabled": true,
+        "cache_ttl": 300,
+        "cache_size": 10000,
+        "cache_type": "redis"
+      },
+      "prefetching": {
+        "enabled": true,
+        "prefetch_distance_km": 50,
+        "prefetch_frequency": 300
+      },
+      "batch_processing": {
+        "enabled": true,
+        "batch_size": 100,
+        "parallel_processing": true
+      }
+    }
+  },
+  "performance": {
+    "max_concurrent_checks": 1000,
+    "rate_limit": 10000,
+    "timeout": 10,
+    "retry_attempts": 2,
+    "batch_size": 1000,
+    "geolocation": {
+      "max_concurrent_lookups": 500,
+      "cache_enabled": true,
+      "fallback_enabled": true
+    }
+  },
+  "monitoring": {
+    "metrics": [
+      "geofence_checks_total",
+      "geofence_violations",
+      "access_granted",
+      "access_denied",
+      "access_challenged",
+      "policy_evaluations",
+      "boundary_lookups",
+      "cache_hits",
+      "cache_misses",
+      "processing_time"
+    ],
+    "tracing": true,
+    "logging": {
+      "level": "info",
+      "include_location_data": true,
+      "include_user_data": false
+    },
+    "alerting": {
+      "enabled": true,
+      "violation_alerts": true,
+      "policy_change_alerts": true,
+      "performance_alerts": true,
+      "channels": ["email", "slack", "pagerduty"]
+    }
+  },
+  "security": {
+    "api_key_encryption": true,
+    "data_encryption": true,
+    "rate_limiting": {
+      "per_user": 10000,
+      "per_minute": 1000,
+      "burst_limit": 100
+    },
+    "access_control": {
+      "require_authentication": true,
+      "require_authorization": true,
+      "ip_whitelisting": true,
+      "certificate_pinning": true
+    },
+    "compliance": {
+      "gdpR": true,
+      "ccpa": true,
+      "data_retention_days": 30
+    }
+  }
+}

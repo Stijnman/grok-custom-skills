@@ -1,0 +1,225 @@
+{
+  "name": "Voice Search Optimizer",
+  "id": "voice-search-optimizer",
+  "description": "Optimize content for voice search, conversational queries, and AI assistants",
+  "version": "2.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["voice-search", "conversational", "ai-assistant", "google-assistant", "alexa", "siri", "featured-snippets", "answer-boxes"],
+  "capabilities": [
+    "voice_query_analysis",
+    "conversational_content_optimization",
+    "question_answer_optimization",
+    "featured_snippet_optimization",
+    "answer_box_optimization",
+    "natural_language_processing",
+    "voice_search_ranking_tracking",
+    "local_voice_search_optimization",
+    "multi_language_voice_optimization",
+    "voice_search_analytics"
+  ],
+  "tools": [
+    {
+      "name": "analyze_voice_queries",
+      "description": "Analyze voice search queries and patterns",
+      "parameters": {
+        "keywords": "array",
+        "locations": "array",
+        "languages": "array",
+        "devices": "array",
+        "time_range": "object",
+        "include_competitors": "boolean"
+      }
+    },
+    {
+      "name": "optimize_for_conversational_search",
+      "description": "Optimize content for conversational and natural language queries",
+      "parameters": {
+        "content": "string",
+        "target_questions": "array",
+        "conversational_style": "string",
+        "include_faq": "boolean",
+        "optimize_structure": "boolean",
+        "target_word_count": "number"
+      }
+    },
+    {
+      "name": "create_featured_snippet_content",
+      "description": "Create content optimized for featured snippets and answer boxes",
+      "parameters": {
+        "topic": "string",
+        "target_keywords": "array",
+        "question_patterns": "array",
+        "content_length": "string",
+        "include_lists": "boolean",
+        "include_tables": "boolean",
+        "include_definitions": "boolean"
+      }
+    },
+    {
+      "name": "optimize_for_ai_assistants",
+      "description": "Optimize content for AI assistants like Google Assistant, Alexa, Siri",
+      "parameters": {
+        "content": "string",
+        "target_platforms": "array",
+        "intent": "string",
+        "include_actions": "boolean",
+        "include_entities": "boolean",
+        "optimize_for_knowledge_graph": "boolean"
+      }
+    },
+    {
+      "name": "track_voice_search_rankings",
+      "description": "Track voice search rankings and performance",
+      "parameters": {
+        "keywords": "array",
+        "locations": "array",
+        "languages": "array",
+        "devices": "array",
+        "frequency": "string",
+        "include_competitors": "boolean"
+      }
+    },
+    {
+      "name": "analyze_voice_search_competitors",
+      "description": "Analyze competitor performance in voice search",
+      "parameters": {
+        "competitors": "array",
+        "keywords": "array",
+        "locations": "array",
+        "depth": "string",
+        "include_content_analysis": "boolean"
+      }
+    }
+  ],
+  "dependencies": [
+    "nlp_engine",
+    "voice_search_api",
+    "ai_service",
+    "fetch_engine",
+    "cache_service"
+  ],
+  "configuration": {
+    "voice_search_providers": {
+      "google_assistant": {
+        "enabled": true,
+        "api_key": "${GOOGLE_ASSISTANT_API_KEY}",
+        "regions": ["us", "uk", "de", "fr", "jp"],
+        "languages": ["en", "es", "fr", "de", "ja"]
+      },
+      "alexa": {
+        "enabled": true,
+        "api_key": "${ALEXA_API_KEY}",
+        "regions": ["us", "uk", "de", "in", "jp"],
+        "languages": ["en", "es", "fr", "de", "hi", "ja"]
+      },
+      "siri": {
+        "enabled": true,
+        "regions": ["us", "uk", "au", "ca", "de"],
+        "languages": ["en", "es", "fr", "de", "zh"]
+      },
+      "bing_voice": {
+        "enabled": true,
+        "api_key": "${BING_VOICE_API_KEY}",
+        "regions": ["us", "uk", "de", "fr"],
+        "languages": ["en", "es", "fr", "de"]
+      }
+    },
+    "voice_search_settings": {
+      "question_patterns": [
+        "what is",
+        "how to",
+        "why does",
+        "where can I",
+        "when was",
+        "who is",
+        "which is the best",
+        "how much does",
+        "how many",
+        "what are the"
+      ],
+      "conversational_indicators": [
+        "near me",
+        "close to",
+        "nearby",
+        "in [location]",
+        "for [purpose]",
+        "that can",
+        "who can",
+        "where can I find"
+      ],
+      "featured_snippet_types": [
+        "paragraph",
+        "list",
+        "table",
+        "definition",
+        "steps",
+        "comparison"
+      ],
+      "answer_box_types": [
+        "direct_answer",
+        "calculator",
+        "converter",
+        "dictionary",
+        "translation",
+        "weather",
+        "sports_scores"
+      ]
+    },
+    "optimization_settings": {
+      "content_structure": {
+        "use_headings": true,
+        "use_bullet_points": true,
+        "use_numbered_lists": true,
+        "use_tables": true,
+        "use_short_paragraphs": true,
+        "use_question_headings": true
+      },
+      "readability": {
+        "target_grade_level": 8,
+        "max_sentence_length": 20,
+        "max_paragraph_length": 3,
+        "use_active_voice": true
+      },
+      "keyword_density": {
+        "primary_keywords": {
+          "min": 0.5,
+          "max": 2.5
+        },
+        "secondary_keywords": {
+          "min": 0.3,
+          "max": 1.5
+        }
+      }
+    }
+  },
+  "performance": {
+    "max_concurrent_analyses": 20,
+    "rate_limit": 100,
+    "timeout": 60,
+    "retry_attempts": 3,
+    "batch_size": 50
+  },
+  "monitoring": {
+    "metrics": [
+      "voice_queries_analyzed",
+      "conversational_optimizations",
+      "featured_snippets_created",
+      "voice_rankings_tracked",
+      "competitor_voice_analysis"
+    ],
+    "tracing": true,
+    "logging": {
+      "level": "info",
+      "include_queries": false
+    }
+  },
+  "security": {
+    "api_key_encryption": true,
+    "rate_limiting": {
+      "per_user": 200,
+      "per_minute": 100,
+      "burst_limit": 20
+    }
+  }
+}

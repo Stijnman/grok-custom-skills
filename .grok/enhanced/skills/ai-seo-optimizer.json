@@ -1,0 +1,189 @@
+{
+  "name": "AI SEO Optimizer",
+  "id": "ai-seo-optimizer",
+  "description": "LLM-powered SEO optimization with Google BERT/NLP integration for AI search visibility",
+  "version": "2.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["ai", "seo", "llm", "bert", "nlp", "google", "ranking", "content-optimization"],
+  "capabilities": [
+    "ai_content_scoring",
+    "search_intent_analysis",
+    "ai_search_optimization",
+    "nlp_entity_extraction",
+    "semantic_analysis",
+    "content_gap_ai_analysis",
+    "ai_keyword_research",
+    "predictive_ranking",
+    "competitive_ai_analysis",
+    "voice_search_optimization"
+  ],
+  "tools": [
+    {
+      "name": "analyze_with_ai",
+      "description": "Perform AI-powered SEO analysis using LLM models",
+      "parameters": {
+        "content": "string",
+        "target_keywords": "array",
+        "model": "string",
+        "temperature": "number",
+        "max_tokens": "number",
+        "include_explanation": "boolean"
+      },
+      "ai_models": ["gpt-4", "gpt-3.5-turbo", "claude-3", "gemini-1.5", "llama-3"],
+      "response_format": "json"
+    },
+    {
+      "name": "generate_ai_optimized_content",
+      "description": "Generate SEO-optimized content using AI models",
+      "parameters": {
+        "topic": "string",
+        "target_keywords": "array",
+        "content_type": "string",
+        "tone": "string",
+        "length": "number",
+        "include_structure": "boolean",
+        "optimize_for_ai_search": "boolean"
+      }
+    },
+    {
+      "name": "analyze_search_intent",
+      "description": "Analyze search intent using AI models",
+      "parameters": {
+        "keywords": "array",
+        "search_volume_data": "object",
+        "competitor_data": "object",
+        "model": "string"
+      }
+    },
+    {
+      "name": "optimize_for_voice_search",
+      "description": "Optimize content for voice search and conversational queries",
+      "parameters": {
+        "content": "string",
+        "target_questions": "array",
+        "conversational_style": "string",
+        "include_faq": "boolean"
+      }
+    },
+    {
+      "name": "predict_ranking_potential",
+      "description": "Predict ranking potential using AI models",
+      "parameters": {
+        "content": "string",
+        "target_keywords": "array",
+        "competitor_urls": "array",
+        "historical_data": "object",
+        "model": "string"
+      }
+    }
+  ],
+  "dependencies": [
+    "llm_service",
+    "nlp_engine",
+    "ai_cache",
+    "vector_database",
+    "fetch_engine"
+  ],
+  "configuration": {
+    "ai_providers": {
+      "openai": {
+        "api_key": "${OPENAI_API_KEY}",
+        "base_url": "https://api.openai.com/v1",
+        "models": ["gpt-4", "gpt-3.5-turbo", "gpt-3.5-turbo-16k"],
+        "timeout": 120,
+        "max_retries": 3
+      },
+      "anthropic": {
+        "api_key": "${ANTHROPIC_API_KEY}",
+        "base_url": "https://api.anthropic.com/v1",
+        "models": ["claude-3-sonnet", "claude-3-haiku", "claude-3-opus"],
+        "timeout": 120,
+        "max_retries": 3
+      },
+      "google": {
+        "api_key": "${GOOGLE_AI_API_KEY}",
+        "base_url": "https://generativelanguage.googleapis.com/v1beta",
+        "models": ["gemini-1.5-pro", "gemini-1.5-flash"],
+        "timeout": 120,
+        "max_retries": 3
+      },
+      "local": {
+        "enabled": false,
+        "models": ["llama-3-70b", "mistral-7b"],
+        "gpu_memory": "24GB",
+        "quantization": "4bit"
+      }
+    },
+    "ai_settings": {
+      "default_model": "gpt-4",
+      "fallback_model": "gpt-3.5-turbo",
+      "temperature": 0.7,
+      "max_tokens": 4096,
+      "top_p": 0.9,
+      "frequency_penalty": 0.1,
+      "presence_penalty": 0.1,
+      "cache_enabled": true,
+      "cache_ttl": 86400
+    },
+    "seo_ai_settings": {
+      "content_scoring": {
+        "min_score": 70,
+        "target_score": 90,
+        "weighting": {
+          "relevance": 0.4,
+          "readability": 0.2,
+          "keyword_optimization": 0.2,
+          "structure": 0.1,
+          "originality": 0.1
+        }
+      },
+      "intent_analysis": {
+        "confidence_threshold": 0.85,
+        "categories": ["informational", "navigational", "commercial", "transactional"]
+      },
+      "voice_search": {
+        "optimize_for_questions": true,
+        "conversational_tone": true,
+        "featured_snippets": true,
+        "answer_boxes": true
+      }
+    }
+  },
+  "performance": {
+    "max_concurrent_requests": 10,
+    "rate_limit": 60,
+    "timeout": 120,
+    "retry_attempts": 3,
+    "circuit_breaker": {
+      "enabled": true,
+      "failure_threshold": 5,
+      "recovery_timeout": 300
+    }
+  },
+  "monitoring": {
+    "metrics": [
+      "ai_requests_total",
+      "ai_requests_duration",
+      "ai_tokens_used",
+      "ai_cache_hits",
+      "ai_errors_total"
+    ],
+    "tracing": true,
+    "logging": {
+      "level": "info",
+      "include_prompts": false,
+      "include_responses": false
+    }
+  },
+  "security": {
+    "api_key_encryption": true,
+    "prompt_injection_protection": true,
+    "content_filtering": true,
+    "rate_limiting": {
+      "per_user": 100,
+      "per_minute": 60,
+      "burst_limit": 10
+    }
+  }
+}

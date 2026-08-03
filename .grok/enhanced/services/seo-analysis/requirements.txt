@@ -1,0 +1,90 @@
+# SEO Analysis Microservice - Production Requirements
+
+# Core dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Async support
+aiohttp==3.8.6
+aiofiles==23.2.1
+httpx==0.26.0
+anyio==4.1.0
+
+# Database
+asyncpg==0.29.0
+sqlalchemy==2.0.25
+alembic==1.13.1
+psycopg2-binary==2.9.9
+
+# Cache
+redis==5.0.1
+aioredis==2.0.1
+
+# Message queue
+aio-pika==9.4.0
+
+# Monitoring and tracing
+prometheus-client==0.19.0
+opentelemetry-api==1.22.0
+opentelemetry-sdk==1.22.0
+opentelemetry-exporter-jaeger==1.22.0
+opentelemetry-instrumentation-fastapi==0.43b0
+opentelemetry-instrumentation-requests==0.43b0
+opentelemetry-instrumentation-aiohttp==0.43b0
+
+# Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==41.0.4
+
+# Validation
+pydantic==2.5.3
+email-validator==2.1.0
+
+# HTTP client
+requests==2.31.0
+httpx==0.26.0
+
+# JSON handling
+orjson==3.9.10
+ujson==5.9.0
+
+# Logging
+structlog==23.2.0
+python-json-logger==2.0.7
+
+# Utilities
+python-dateutil==2.8.2
+pytz==2023.3.post1
+
+# AI/ML integration
+openai==1.10.0
+anthropic==0.3.11
+google-generativeai==0.3.0
+
+# SEO specific
+beautifulsoup4==4.12.2
+lxml==4.9.4
+html5lib==1.1
+
+# Data processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Type hints
+types-aiofiles==23.2.0.20240311
+types-beautifulsoup4==4.12.0.20240311
+types-requests==2.31.0.20240311
+types-PyYAML==6.0.12.20240311
+
+# Development dependencies (not installed in production)
+# pytest==7.4.3
+# pytest-asyncio==0.23.3
+# pytest-cov==4.1.0
+# black==24.1.1
+# flake8==6.1.0
+# isort==5.13.2
+# mypy==1.8.0

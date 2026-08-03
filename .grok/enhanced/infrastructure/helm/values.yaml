@@ -1,0 +1,662 @@
+# Supreme SEO & GEO Intelligence Stack - Default Values
+
+# Global settings
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  storageClass: ""
+  
+# Environment settings
+environment:
+  name: "production"
+  debug: false
+  logLevel: "info"
+  timeZone: "UTC"
+
+# Service settings
+services:
+  seo-analysis:
+    enabled: true
+    replicaCount: 5
+    image:
+      repository: registry.supreme-seo.com/seo-analysis
+      tag: v2.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+        ephemeral-storage: 1Gi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+        ephemeral-storage: 2Gi
+    autoscaling:
+      enabled: true
+      minReplicas: 3
+      maxReplicas: 20
+      targetCPUUtilizationPercentage: 70
+      targetMemoryUtilizationPercentage: 80
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 2
+      maxUnavailable: 1
+    
+  geo-intelligence:
+    enabled: true
+    replicaCount: 5
+    image:
+      repository: registry.supreme-seo.com/geo-intelligence
+      tag: v2.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+        ephemeral-storage: 1Gi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+        ephemeral-storage: 2Gi
+    autoscaling:
+      enabled: true
+      minReplicas: 3
+      maxReplicas: 20
+      targetCPUUtilizationPercentage: 70
+      targetMemoryUtilizationPercentage: 80
+    
+  content-processing:
+    enabled: true
+    replicaCount: 3
+    image:
+      repository: registry.supreme-seo.com/content-processing
+      tag: v2.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+        ephemeral-storage: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+        ephemeral-storage: 1Gi
+    
+  threat-intelligence:
+    enabled: true
+    replicaCount: 3
+    image:
+      repository: registry.supreme-seo.com/threat-intelligence
+      tag: v2.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+        ephemeral-storage: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+        ephemeral-storage: 1Gi
+    
+  user-management:
+    enabled: true
+    replicaCount: 2
+    image:
+      repository: registry.supreme-seo.com/user-management
+      tag: v2.0.0
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 125m
+        memory: 128Mi
+        ephemeral-storage: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+        ephemeral-storage: 512Mi
+
+# API Gateway settings
+apiGateway:
+  enabled: true
+  replicaCount: 3
+  image:
+    repository: registry.supreme-seo.com/api-gateway
+    tag: v2.0.0
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 60
+    targetMemoryUtilizationPercentage: 70
+
+# Web Dashboard settings
+web:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: registry.supreme-seo.com/web-dashboard
+    tag: v2.0.0
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 125m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 60
+
+# Database settings
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: ""
+    username: "supreme_seo"
+    database: "supreme_seo"
+    existingSecret: "postgresql-secrets"
+    secretKeys:
+      adminPasswordKey: "postgres-password"
+      userPasswordKey: "password"
+  primary:
+    persistence:
+      enabled: true
+      size: 100Gi
+      storageClass: ""
+      accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 2Gi
+      limits:
+        cpu: 4000m
+        memory: 8Gi
+  readReplicas:
+    replicaCount: 2
+    persistence:
+      enabled: true
+      size: 100Gi
+      storageClass: ""
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 2000m
+        memory: 4Gi
+
+# Cache settings
+redis:
+  enabled: true
+  architecture: replication
+  auth:
+    enabled: true
+    existingSecret: "redis-secrets"
+    secretKeys:
+      - password
+  master:
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    persistence:
+      enabled: true
+      size: 10Gi
+  replica:
+    replicaCount: 3
+    resources:
+      requests:
+        cpu: 125m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+# Message Queue settings
+rabbitmq:
+  enabled: true
+  auth:
+    username: "supreme_seo"
+    password: ""
+    existingSecret: "rabbitmq-secrets"
+    secretKeys:
+      usernameKey: "username"
+      passwordKey: "password"
+  persistence:
+    enabled: true
+    size: 20Gi
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+
+# Monitoring settings
+monitoring:
+  enabled: true
+  prometheus:
+    enabled: true
+    server:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 512Mi
+        limits:
+          cpu: 1000m
+          memory: 1Gi
+      persistence:
+        enabled: true
+        size: 50Gi
+      retention: "30d"
+    alertmanager:
+      enabled: true
+      resources:
+        requests:
+          cpu: 125m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+  grafana:
+    enabled: true
+    adminPassword: ""
+    existingSecret: "grafana-secrets"
+    secretKeys:
+      adminPasswordKey: "admin-password"
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    persistence:
+      enabled: true
+      size: 10Gi
+    dashboards:
+      enabled: true
+      default: "supreme-seo-dashboard"
+  
+  # Custom metrics
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    scrapeTimeout: 10s
+
+# Distributed Tracing settings
+tracing:
+  enabled: true
+  jaeger:
+    enabled: true
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    persistence:
+      enabled: true
+      size: 20Gi
+    retention: "7d"
+
+# Ingress settings
+ingress:
+  enabled: true
+  nginx:
+    enabled: true
+    controller:
+      replicaCount: 3
+      resources:
+        requests:
+          cpu: 250m
+          memory: 256Mi
+        limits:
+          cpu: 1000m
+          memory: 1Gi
+      service:
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+    defaultBackend:
+      enabled: true
+      replicaCount: 2
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+
+# Certificate Manager settings
+cert-manager:
+  enabled: true
+  installCRDs: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: api.supreme-seo.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service:
+            name: api-gateway
+            port: 80
+    - host: dashboard.supreme-seo.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service:
+            name: web-dashboard
+            port: 80
+  tls:
+    - secretName: supreme-seo-tls
+      hosts:
+        - api.supreme-seo.com
+        - dashboard.supreme-seo.com
+
+# Network policies
+networkPolicy:
+  enabled: true
+  ingress:
+    enabled: true
+    rules:
+      - name: allow-api-access
+        from:
+          - podSelector:
+              matchLabels:
+                app: api-gateway
+        ports:
+          - port: 8000
+            protocol: TCP
+
+# Resource quotas
+resourceQuota:
+  enabled: true
+  hard:
+    requests.cpu: "20"
+    requests.memory: "64Gi"
+    requests.storage: "500Gi"
+    limits.cpu: "40"
+    limits.memory: "128Gi"
+    limits.storage: "1Ti"
+    pods: "100"
+    services: "50"
+    secrets: "100"
+    configmaps: "100"
+
+# Limit ranges
+limitRange:
+  enabled: true
+  default:
+    cpu:
+      min: "100m"
+      max: "4000m"
+      default: "500m"
+      defaultRequest: "250m"
+    memory:
+      min: "64Mi"
+      max: "8Gi"
+      default: "256Mi"
+      defaultRequest: "128Mi"
+    storage:
+      min: "100Mi"
+      max: "100Gi"
+      default: "1Gi"
+      defaultRequest: "500Mi"
+
+# Horizontal Pod Autoscaler settings
+hpa:
+  enabled: true
+  default:
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+
+# Pod Disruption Budget settings
+pdb:
+  enabled: true
+  default:
+    minAvailable: 1
+    maxUnavailable: 1
+
+# Security settings
+security:
+  enabled: true
+  podSecurityPolicy:
+    enabled: true
+    policies:
+      - name: restricted
+        spec:
+          privileged: false
+          allowPrivilegeEscalation: false
+          requiredDropCapabilities:
+            - ALL
+          volumes:
+            - 'configMap'
+            - 'emptyDir'
+            - 'secret'
+          hostNetwork: false
+          hostIPC: false
+          hostPID: false
+          runAsUser:
+            rule: 'MustRunAsNonRoot'
+          seLinux:
+            rule: 'RunAsAny'
+          supplementalGroups:
+            rule: 'MustRunAs'
+            ranges:
+              - min: 1
+                max: 65535
+          fsGroup:
+            rule: 'MustRunAs'
+            ranges:
+              - min: 1
+                max: 65535
+  networkPolicies:
+    enabled: true
+    defaultDenyIngress: true
+    defaultDenyEgress: false
+  
+# Backup settings
+backup:
+  enabled: true
+  schedule: "0 2 * * *"
+  retention: 30
+  storage:
+    size: 100Gi
+    storageClass: ""
+
+# Monitoring and Alerting
+alerts:
+  enabled: true
+  rules:
+    - name: HighErrorRate
+      condition: "rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.1"
+      severity: critical
+      for: 5m
+      labels:
+        team: backend
+      annotations:
+        summary: "High error rate on {{ $labels.service }}"
+        description: "Error rate is {{ $value }} for service {{ $labels.service }}"
+    
+    - name: HighLatency
+      condition: "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, service)) > 2"
+      severity: warning
+      for: 10m
+      labels:
+        team: backend
+      annotations:
+        summary: "High latency on {{ $labels.service }}"
+        description: "95th percentile latency is {{ $value }}s for service {{ $labels.service }}"
+    
+    - name: HighMemoryUsage
+      condition: "container_memory_usage_bytes{container!="POD",container!=""} / container_memory_limit_bytes{container!="POD",container!=""} * 100 > 90"
+      severity: warning
+      for: 15m
+      labels:
+        team: infrastructure
+      annotations:
+        summary: "High memory usage on {{ $labels.pod }}"
+        description: "Memory usage is {{ $value }}% for pod {{ $labels.pod }}"
+    
+    - name: HighCPUUsage
+      condition: "container_cpu_usage_seconds_total{container!="POD",container!=""} / container_cpu_limit_seconds_total{container!="POD",container!=""} * 100 > 90"
+      severity: warning
+      for: 15m
+      labels:
+        team: infrastructure
+      annotations:
+        summary: "High CPU usage on {{ $labels.pod }}"
+        description: "CPU usage is {{ $value }}% for pod {{ $labels.pod }}"
+
+# Feature flags
+features:
+  ai_analysis: true
+  real_time_processing: true
+  batch_processing: true
+  caching: true
+  rate_limiting: true
+  circuit_breaking: true
+  distributed_tracing: true
+  metrics: true
+  audit_logging: true
+  multi_tenant: true
+  white_label: false
+
+# API Configuration
+api:
+  rateLimit: 100
+  rateLimitPerUser: 1000
+  maxBatchSize: 50
+  requestTimeout: 30
+  maxRetries: 3
+  circuitBreaker:
+    enabled: true
+    failureThreshold: 5
+    recoveryTimeout: 300
+
+# External API Configuration
+externalApis:
+  openai:
+    enabled: true
+    apiKey: ""
+    baseUrl: "https://api.openai.com/v1"
+    timeout: 120
+    maxRetries: 3
+  anthropic:
+    enabled: true
+    apiKey: ""
+    baseUrl: "https://api.anthropic.com/v1"
+    timeout: 120
+    maxRetries: 3
+  google:
+    ai:
+      enabled: true
+      apiKey: ""
+      baseUrl: "https://generativelanguage.googleapis.com/v1beta"
+      timeout: 120
+      maxRetries: 3
+    search:
+      enabled: true
+      apiKey: ""
+      cx: ""
+      timeout: 30
+      maxRetries: 3
+    maps:
+      enabled: true
+      apiKey: ""
+      timeout: 30
+      maxRetries: 3
+  youtube:
+    enabled: true
+    apiKey: ""
+    timeout: 30
+    maxRetries: 3
+  seoTools:
+    ahrefs:
+      enabled: true
+      apiKey: ""
+      timeout: 60
+      maxRetries: 3
+    moz:
+      enabled: true
+      apiKey: ""
+      timeout: 60
+      maxRetries: 3
+    semrush:
+      enabled: true
+      apiKey: ""
+      timeout: 60
+      maxRetries: 3
+    majestic:
+      enabled: true
+      apiKey: ""
+      timeout: 60
+      maxRetries: 3
+  geoIntelligence:
+    ipinfo:
+      enabled: true
+      apiKey: ""
+      timeout: 30
+      maxRetries: 3
+    ip2location:
+      enabled: true
+      apiKey: ""
+      timeout: 30
+      maxRetries: 3
+    maxmind:
+      enabled: true
+      accountId: ""
+      licenseKey: ""
+      timeout: 30
+      maxRetries: 3
+    abuseipdb:
+      enabled: true
+      apiKey: ""
+      timeout: 30
+      maxRetries: 3
+    shodan:
+      enabled: true
+      apiKey: ""
+      timeout: 30
+      maxRetries: 3
+    virustotal:
+      enabled: true
+      apiKey: ""
+      timeout: 30
+      maxRetries: 3

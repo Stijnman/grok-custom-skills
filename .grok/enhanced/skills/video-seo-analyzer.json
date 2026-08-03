@@ -1,0 +1,261 @@
+{
+  "name": "Video SEO Analyzer",
+  "id": "video-seo-analyzer",
+  "description": "Comprehensive video SEO analysis for YouTube, Vimeo, and other video platforms",
+  "version": "2.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["video", "seo", "youtube", "vimeo", "wistia", "metadata", "transcripts", "engagement", "ranking", "thumbnails"],
+  "capabilities": [
+    "video_metadata_analysis",
+    "transcript_optimization",
+    "thumbnail_analysis",
+    "engagement_analysis",
+    "ranking_tracking",
+    "competitor_video_analysis",
+    "video_schema_markup",
+    "closed_caption_optimization",
+    "video_structure_analysis",
+    "platform_specific_optimization",
+    "video_performance_analytics",
+    "trend_analysis"
+  ],
+  "tools": [
+    {
+      "name": "analyze_video_metadata",
+      "description": "Analyze video metadata for SEO optimization",
+      "parameters": {
+        "video_url": "string",
+        "platform": "string",
+        "include_competitors": "boolean",
+        "competitor_count": "number",
+        "analysis_depth": "string"
+      }
+    },
+    {
+      "name": "optimize_video_transcript",
+      "description": "Optimize video transcripts for SEO and accessibility",
+      "parameters": {
+        "transcript": "string",
+        "target_keywords": "array",
+        "language": "string",
+        "include_timestamps": "boolean",
+        "optimize_for_search": "boolean",
+        "add_chapters": "boolean"
+      }
+    },
+    {
+      "name": "analyze_video_thumbnail",
+      "description": "Analyze and optimize video thumbnails for CTR",
+      "parameters": {
+        "thumbnail_url": "string",
+        "video_title": "string",
+        "platform": "string",
+        "include_competitors": "boolean",
+        "a_b_testing": "boolean"
+      }
+    },
+    {
+      "name": "track_video_rankings",
+      "description": "Track video rankings across platforms and keywords",
+      "parameters": {
+        "video_urls": "array",
+        "keywords": "array",
+        "platforms": "array",
+        "locations": "array",
+        "frequency": "string",
+        "include_competitors": "boolean"
+      }
+    },
+    {
+      "name": "analyze_video_engagement",
+      "description": "Analyze video engagement metrics and patterns",
+      "parameters": {
+        "video_url": "string",
+        "platform": "string",
+        "time_range": "object",
+        "metrics": "array",
+        "include_competitors": "boolean"
+      }
+    },
+    {
+      "name": "generate_video_schema",
+      "description": "Generate VideoObject schema markup for SEO",
+      "parameters": {
+        "video_url": "string",
+        "title": "string",
+        "description": "string",
+        "upload_date": "string",
+        "duration": "string",
+        "thumbnail_url": "string",
+        "transcript": "string",
+        "platform": "string"
+      }
+    },
+    {
+      "name": "optimize_closed_captions",
+      "description": "Optimize closed captions for SEO and accessibility",
+      "parameters": {
+        "captions": "array",
+        "language": "string",
+        "target_keywords": "array",
+        "sync_with_audio": "boolean",
+        "include_descriptions": "boolean"
+      }
+    },
+    {
+      "name": "analyze_video_structure",
+      "description": "Analyze video structure for optimal engagement",
+      "parameters": {
+        "video_url": "string",
+        "platform": "string",
+        "include_competitors": "boolean",
+        "best_practices": "object"
+      }
+    }
+  ],
+  "dependencies": [
+    "youtube_api",
+    "vimeo_api",
+    "wistia_api",
+    "video_processing",
+    "nlp_engine",
+    "image_analysis",
+    "fetch_engine",
+    "cache_service"
+  ],
+  "configuration": {
+    "video_platforms": {
+      "youtube": {
+        "enabled": true,
+        "api_key": "${YOUTUBE_API_KEY}",
+        "scopes": ["https://www.googleapis.com/auth/youtube.readonly"],
+        "quota_limit": 10000,
+        "rate_limit": 100
+      },
+      "vimeo": {
+        "enabled": true,
+        "api_key": "${VIMEO_API_KEY}",
+        "api_secret": "${VIMEO_API_SECRET}",
+        "rate_limit": 500
+      },
+      "wistia": {
+        "enabled": true,
+        "api_password": "${WISTIA_API_PASSWORD}",
+        "rate_limit": 100
+      },
+      "dailymotion": {
+        "enabled": false,
+        "api_key": "${DAILYMOTION_API_KEY}"
+      },
+      "custom": {
+        "enabled": true,
+        "custom_platforms": []
+      }
+    },
+    "analysis_settings": {
+      "metadata_analysis": {
+        "title_optimization": true,
+        "description_optimization": true,
+        "tags_optimization": true,
+        "category_optimization": true,
+        "hashtag_analysis": true
+      },
+      "transcript_analysis": {
+        "keyword_density": true,
+        "readability": true,
+        "sentiment_analysis": true,
+        "entity_extraction": true,
+        "topic_clustering": true
+      },
+      "thumbnail_analysis": {
+        "color_analysis": true,
+        "text_analysis": true,
+        "face_detection": true,
+        "ctr_prediction": true,
+        "a_b_testing": true
+      },
+      "engagement_analysis": {
+        "view_count_trends": true,
+        "like_dislike_ratio": true,
+        "comment_analysis": true,
+        "shares_analysis": true,
+        "watch_time_analysis": true,
+        "audience_retention": true,
+        "click_through_rate": true
+      }
+    },
+    "optimization_settings": {
+      "title": {
+        "max_length": 100,
+        "include_keywords": true,
+        "emotional_appeal": true,
+        "curiosity_gap": true
+      },
+      "description": {
+        "max_length": 5000,
+        "include_keywords": true,
+        "include_cta": true,
+        "include_timestamps": true
+      },
+      "tags": {
+        "max_count": 500,
+        "include_branded": true,
+        "include_generic": true,
+        "include_hashtags": true
+      },
+      "transcript": {
+        "keyword_density_min": 0.5,
+        "keyword_density_max": 2.5,
+        "readability_score_min": 70,
+        "include_chapters": true,
+        "chapter_interval": 300
+      }
+    },
+    "ranking_settings": {
+      "search_engines": ["google", "bing", "yahoo"],
+      "video_platforms": ["youtube", "vimeo", "dailymotion"],
+      "locations": ["us", "uk", "ca", "au", "de", "fr", "jp"],
+      "devices": ["desktop", "mobile", "tablet"],
+      "frequency": "daily",
+      "track_competitors": true,
+      "competitor_limit": 10
+    }
+  },
+  "performance": {
+    "max_concurrent_analyses": 10,
+    "rate_limit": 60,
+    "timeout": 120,
+    "retry_attempts": 3,
+    "batch_size": 20,
+    "video_processing": {
+      "max_duration_minutes": 120,
+      "max_file_size_mb": 500,
+      "supported_formats": ["mp4", "webm", "mov", "avi", "flv"]
+    }
+  },
+  "monitoring": {
+    "metrics": [
+      "videos_analyzed",
+      "transcripts_optimized",
+      "thumbnails_analyzed",
+      "rankings_tracked",
+      "engagement_analysis",
+      "schema_generated"
+    ],
+    "tracing": true,
+    "logging": {
+      "level": "info",
+      "include_video_data": false
+    }
+  },
+  "security": {
+    "api_key_encryption": true,
+    "rate_limiting": {
+      "per_user": 100,
+      "per_minute": 60,
+      "burst_limit": 10
+    },
+    "content_filtering": true
+  }
+}

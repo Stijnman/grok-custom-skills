@@ -1,0 +1,383 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seo-analysis-service
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    tier: backend
+    version: v2.0.0
+    component: seo
+    environment: production
+  annotations:
+    description: "SEO Analysis Microservice - World-class SEO analysis with AI integration"
+    maintainer: "Stijnman"
+    version: "2.0.0"
+spec:
+  replicas: 5
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: seo-analysis
+      version: v2.0.0
+  template:
+    metadata:
+      labels:
+        app: seo-analysis
+        version: v2.0.0
+        tier: backend
+        component: seo
+        environment: production
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+        checksum/config: {{ include (print .Files.Get "configmaps/seo-analysis-config.yaml") | sha256sum }}
+    spec:
+      serviceAccountName: seo-analysis-service-account
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: seo-analysis
+        image: registry.supreme-seo.com/seo-analysis:v2.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        - name: metrics
+          containerPort: 8000
+          protocol: TCP
+        - name: prometheus
+          containerPort: 8000
+          protocol: TCP
+        env:
+        - name: APP_NAME
+          value: "seo-analysis"
+        - name: APP_VERSION
+          value: "2.0.0"
+        - name: APP_ENVIRONMENT
+          value: "production"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: WORKERS
+          value: "4"
+        - name: MAX_CONCURRENT_REQUESTS
+          value: "100"
+        - name: RATE_LIMIT
+          value: "100"
+        - name: CACHE_TTL
+          value: "3600"
+        - name: REQUEST_TIMEOUT
+          value: "30"
+        - name: MAX_RETRIES
+          value: "3"
+        envFrom:
+        - configMapRef:
+            name: seo-analysis-config
+        - secretRef:
+            name: seo-analysis-secrets
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+            ephemeral-storage: "1Gi"
+          limits:
+            cpu: "2000m"
+            memory: "2Gi"
+            ephemeral-storage: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 10
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: logs
+          mountPath: /var/log/app
+        - name: config
+          mountPath: /app/config
+          readOnly: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_BIND_SERVICE
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: logs
+        emptyDir: {}
+      - name: config
+        configMap:
+          name: seo-analysis-config
+          items:
+          - key: config.yaml
+            path: config.yaml
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - seo-analysis
+              topologyKey: "kubernetes.io/hostname"
+      nodeSelector:
+        node-group: backend
+      tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "backend"
+        effect: "NoSchedule"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seo-analysis-service
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    tier: backend
+    version: v2.0.0
+    component: seo
+    environment: production
+spec:
+  selector:
+    app: seo-analysis
+    version: v2.0.0
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  - name: metrics
+    port: 8000
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP
+  sessionAffinity: None
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: seo-analysis-hpa
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    version: v2.0.0
+    component: seo
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: seo-analysis-service
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: External
+    external:
+      metric:
+        name: seo_analysis_queue_size
+        selector:
+          matchLabels:
+            app: seo-analysis
+      target:
+        type: AverageValue
+        averageValue: 100
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 20
+        periodSeconds: 60
+      - type: Pods
+        value: 5
+        periodSeconds: 60
+      selectPolicy: Max
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: seo-analysis-pdb
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    version: v2.0.0
+    component: seo
+    environment: production
+spec:
+  minAvailable: 2
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: seo-analysis
+      version: v2.0.0
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: seo-analysis-ingress
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    version: v2.0.0
+    component: seo
+    environment: production
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "*"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Request-ID $request_id;
+      add_header X-Service seo-analysis;
+      add_header X-Version v2.0.0;
+      add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload";
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self';";
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: api.supreme-seo.com
+    http:
+      paths:
+      - path: /api/v2/seo
+        pathType: Prefix
+        backend:
+          service:
+            name: seo-analysis-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - api.supreme-seo.com
+    secretName: supreme-seo-tls
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: seo-analysis-service-account
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    version: v2.0.0
+    component: seo
+    environment: production
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: seo-analysis-role
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    version: v2.0.0
+    component: seo
+    environment: production
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["autoscaling"]
+  resources: ["horizontalpodautoscalers"]
+  verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: seo-analysis-role-binding
+  namespace: supreme-seo
+  labels:
+    app: seo-analysis
+    version: v2.0.0
+    component: seo
+    environment: production
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: seo-analysis-role
+subjects:
+- kind: ServiceAccount
+  name: seo-analysis-service-account
+  namespace: supreme-seo

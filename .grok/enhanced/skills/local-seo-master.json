@@ -1,0 +1,308 @@
+{
+  "name": "Local SEO Master",
+  "id": "local-seo-master",
+  "description": "Complete Google My Business and local search optimization solution",
+  "version": "2.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["local-seo", "google-my-business", "gmb", "citations", "reviews", "local-rankings", "nap", "local-listings", "maps", "near-me"],
+  "capabilities": [
+    "google_my_business_optimization",
+    "citation_building",
+    "citation_audit",
+    "review_management",
+    "review_analysis",
+    "local_ranking_tracking",
+    "nap_consistency_check",
+    "local_keyword_research",
+    "competitor_local_analysis",
+    "local_schema_markup",
+    "maps_optimization",
+    "local_voice_search",
+    "multi_location_management",
+    "reputation_management",
+    "local_content_optimization"
+  ],
+  "tools": [
+    {
+      "name": "optimize_google_my_business",
+      "description": "Optimize Google My Business listing for maximum visibility",
+      "parameters": {
+        "business_id": "string",
+        "location_id": "string",
+        "optimization_type": "string",
+        "include_photos": "boolean",
+        "include_posts": "boolean",
+        "include_q_and_a": "boolean",
+        "include_reviews": "boolean"
+      }
+    },
+    {
+      "name": "audit_citations",
+      "description": "Audit business citations across directories for consistency",
+      "parameters": {
+        "business_name": "string",
+        "address": "object",
+        "phone": "string",
+        "website": "string",
+        "directories": "array",
+        "include_competitors": "boolean"
+      }
+    },
+    {
+      "name": "build_citations",
+      "description": "Build new citations on high-authority directories",
+      "parameters": {
+        "business_data": "object",
+        "target_directories": "array",
+        "priority": "string",
+        "auto_submit": "boolean",
+        "verify_listings": "boolean"
+      }
+    },
+    {
+      "name": "manage_reviews",
+      "description": "Manage and respond to customer reviews",
+      "parameters": {
+        "platform": "string",
+        "business_id": "string",
+        "review_filter": "object",
+        "response_template": "string",
+        "auto_respond": "boolean",
+        "sentiment_analysis": "boolean"
+      }
+    },
+    {
+      "name": "analyze_review_sentiment",
+      "description": "Analyze review sentiment and extract insights",
+      "parameters": {
+        "reviews": "array",
+        "platform": "string",
+        "time_range": "object",
+        "sentiment_analysis": "boolean",
+        "keyword_extraction": "boolean",
+        "trend_analysis": "boolean"
+      }
+    },
+    {
+      "name": "track_local_rankings",
+      "description": "Track local search rankings for target keywords",
+      "parameters": {
+        "business_name": "string",
+        "keywords": "array",
+        "locations": "array",
+        "search_engines": "array",
+        "devices": "array",
+        "frequency": "string",
+        "include_competitors": "boolean"
+      }
+    },
+    {
+      "name": "check_nap_consistency",
+      "description": "Check Name, Address, Phone consistency across platforms",
+      "parameters": {
+        "business_name": "string",
+        "address": "object",
+        "phone": "string",
+        "platforms": "array",
+        "include_variations": "boolean",
+        "generate_report": "boolean"
+      }
+    },
+    {
+      "name": "research_local_keywords",
+      "description": "Research local keywords with intent and competition analysis",
+      "parameters": {
+        "location": "object",
+        "industry": "string",
+        "business_type": "string",
+        "search_volume_min": "number",
+        "competition_max": "number",
+        "include_questions": "boolean",
+        "include_near_me": "boolean"
+      }
+    },
+    {
+      "name": "analyze_local_competitors",
+      "description": "Analyze local competitors and their SEO strategies",
+      "parameters": {
+        "business_name": "string",
+        "location": "object",
+        "industry": "string",
+        "competitor_count": "number",
+        "analysis_depth": "string",
+        "include_gmb_analysis": "boolean"
+      }
+    },
+    {
+      "name": "generate_local_schema",
+      "description": "Generate LocalBusiness schema markup",
+      "parameters": {
+        "business_name": "string",
+        "address": "object",
+        "phone": "string",
+        "website": "string",
+        "business_type": "string",
+        "opening_hours": "object",
+        "geo_coordinates": "object",
+        "images": "array",
+        "reviews": "array"
+      }
+    }
+  ],
+  "dependencies": [
+    "google_my_business_api",
+    "citation_directories",
+    "review_platforms",
+    "local_search_api",
+    "nlp_engine",
+    "fetch_engine",
+    "cache_service"
+  ],
+  "configuration": {
+    "google_my_business": {
+      "enabled": true,
+      "api_key": "${GMB_API_KEY}",
+      "service_account": "${GMB_SERVICE_ACCOUNT}",
+      "scopes": [
+        "https://www.googleapis.com/auth/business.manage"
+      ],
+      "rate_limit": 100,
+      "max_locations": 1000
+    },
+    "citation_directories": {
+      "primary": [
+        "google_my_business",
+        "bing_places",
+        "apple_maps",
+        "youtube",
+        "facebook",
+        "yelp",
+        "tripadvisor",
+        "foursquare",
+        "yellow_pages",
+        "bbb"
+      ],
+      "secondary": [
+        "manta",
+        "hotfrog",
+        "brownbook",
+        "citysearch",
+        "local_com",
+        "merchantcircle",
+        "chamberofcommerce",
+        "superpages",
+        "dexknows",
+        "ezlocal"
+      ],
+      "industry_specific": {
+        "restaurants": ["zomato", "opentable", "grubhub"],
+        "hotels": ["booking_com", "expedia", "hotels_com"],
+        "real_estate": ["zillow", "realtor_com", "trulia"],
+        "healthcare": ["healthgrades", "vitals", "zocdoc"],
+        "legal": ["avvo", "martindale", "justia"]
+      }
+    },
+    "review_platforms": {
+      "google": {
+        "enabled": true,
+        "api_access": true,
+        "auto_respond": true
+      },
+      "facebook": {
+        "enabled": true,
+        "api_access": true,
+        "auto_respond": true
+      },
+      "yelp": {
+        "enabled": true,
+        "api_access": true,
+        "auto_respond": false
+      },
+      "tripadvisor": {
+        "enabled": true,
+        "api_access": false,
+        "auto_respond": false
+      },
+      "industry_specific": {
+        "restaurants": ["zomato", "opentable"],
+        "hotels": ["booking_com", "expedia"],
+        "healthcare": ["healthgrades", "vitals"]
+      }
+    },
+    "local_seo_settings": {
+      "nap_consistency": {
+        "strict_mode": true,
+        "allow_variations": false,
+        "abbreviation_handling": "standard",
+        "phone_format": "international"
+      },
+      "citation_building": {
+        "auto_approval": false,
+        "manual_review": true,
+        "duplicate_check": true,
+        "quality_score_min": 70
+      },
+      "review_management": {
+        "auto_respond_positive": true,
+        "auto_respond_negative": false,
+        "escalate_negative": true,
+        "sentiment_threshold": 3,
+        "response_templates": {
+          "positive": "Thank you for your feedback! We're glad you had a great experience.",
+          "neutral": "Thank you for your review. We appreciate your feedback.",
+          "negative": "We're sorry to hear about your experience. Please contact us so we can make it right."
+        }
+      },
+      "ranking_tracking": {
+        "search_engines": ["google", "bing", "yahoo", "duckduckgo"],
+        "devices": ["desktop", "mobile", "tablet"],
+        "locations": ["user_location", "city_center", "competitor_locations"],
+        "frequency": "daily",
+        "track_map_pack": true,
+        "track_local_finder": true
+      }
+    }
+  },
+  "performance": {
+    "max_concurrent_analyses": 15,
+    "rate_limit": 80,
+    "timeout": 90,
+    "retry_attempts": 3,
+    "batch_size": 25,
+    "gmb_api": {
+      "max_requests_per_minute": 60,
+      "max_requests_per_day": 10000
+    }
+  },
+  "monitoring": {
+    "metrics": [
+      "gmb_listings_optimized",
+      "citations_audited",
+      "citations_built",
+      "reviews_managed",
+      "local_rankings_tracked",
+      "nap_consistency_checks",
+      "local_keywords_researched",
+      "competitors_analyzed"
+    ],
+    "tracing": true,
+    "logging": {
+      "level": "info",
+      "include_business_data": false
+    }
+  },
+  "security": {
+    "api_key_encryption": true,
+    "rate_limiting": {
+      "per_user": 150,
+      "per_minute": 80,
+      "burst_limit": 15
+    },
+    "data_privacy": {
+      "anonymize_business_data": false,
+      "gdpR_compliance": true,
+      "data_retention_days": 365
+    }
+  }
+}
