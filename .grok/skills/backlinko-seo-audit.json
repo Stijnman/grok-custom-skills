@@ -1,0 +1,18 @@
+{
+  "name": "Backlinko SEO Audit",
+  "id": "backlinko-seo-audit",
+  "description": "Comprehensive SEO audit using Backlinko's proven checklist and methodology",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["backlinko", "seo-audit", "website-audit", "brian-dean", "technical-seo"],
+  "capabilities": ["comprehensive_seo_audit", "technical_seo_analysis", "on_page_seo_analysis", "off_page_seo_analysis", "content_audit", "backlink_profile_analysis", "competitive_analysis", "actionable_recommendations"],
+  "tools": [
+    {"name": "perform_full_seo_audit", "description": "Perform comprehensive SEO audit using Backlinko's 200+ point checklist", "parameters": {"url": "string", "include_competitor_analysis": "boolean", "depth": "string", "focus_areas": "array"}},
+    {"name": "analyze_technical_seo", "description": "Analyze technical SEO factors using Backlinko methodology", "parameters": {"url": "string", "check_crawlability": "boolean", "check_indexability": "boolean", "check_site_speed": "boolean", "check_mobile_friendliness": "boolean"}},
+    {"name": "analyze_on_page_seo", "description": "Analyze on-page SEO factors", "parameters": {"url": "string", "target_keywords": "array", "check_content_quality": "boolean", "check_keyword_optimization": "boolean", "check_internal_linking": "boolean"}},
+    {"name": "generate_audit_report", "description": "Generate comprehensive SEO audit report with actionable recommendations", "parameters": {"audit_data": "object", "format": "string", "include_priority_scoring": "boolean", "include_implementation_guide": "boolean"}}
+  ],
+  "dependencies": ["fetch_engine", "seo_database", "browser_automation"],
+  "configuration": {"audit_settings": {"check_all_pages": false, "max_pages_to_audit": 50, "include_screenshots": true, "generate_pdf_report": true}, "scoring_weights": {"technical_seo_weight": 0.3, "on_page_seo_weight": 0.25, "content_quality_weight": 0.2, "backlink_profile_weight": 0.15, "user_experience_weight": 0.1}}
+}

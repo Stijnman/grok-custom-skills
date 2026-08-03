@@ -1,0 +1,17 @@
+{
+  "name": "Technical SEO Auditor",
+  "id": "technical-seo-auditor",
+  "description": "Comprehensive technical SEO auditing for website performance and crawlability",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["technical-seo", "audit", "crawlability", "performance", "website"],
+  "capabilities": ["site_crawling", "indexability_analysis", "page_speed_analysis", "mobile_friendliness", "structured_data_validation", "canonical_tag_analysis", "redirect_chain_analysis", "broken_link_detection"],
+  "tools": [
+    {"name": "crawl_website", "description": "Crawl website to identify technical SEO issues", "parameters": {"url": "string", "max_pages": "number", "depth": "number", "user_agent": "string"}},
+    {"name": "analyze_page_speed", "description": "Analyze page loading speed and performance metrics", "parameters": {"url": "string", "device": "string", "location": "string"}},
+    {"name": "validate_structured_data", "description": "Validate and test structured data markup", "parameters": {"url": "string", "schema_types": "array"}}
+  ],
+  "dependencies": ["fetch_engine", "browser_automation"],
+  "configuration": {"crawl_settings": {"max_concurrent_requests": 5, "request_timeout": 30, "respect_robots_txt": true}, "performance_thresholds": {"lighthouse_score_min": 80, "page_load_time_max": 3.0, "mobile_friendly": true}}
+}

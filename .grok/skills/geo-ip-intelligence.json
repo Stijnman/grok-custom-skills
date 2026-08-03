@@ -1,0 +1,18 @@
+{
+  "name": "GEO IP Intelligence",
+  "id": "geo-ip-intelligence",
+  "description": "IP address geolocation, network analysis, and threat intelligence",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "GEO Intelligence",
+  "tags": ["geo", "ip", "geolocation", "network", "threat-intelligence", "cybersecurity"],
+  "capabilities": ["ip_geolocation", "network_analysis", "threat_intelligence", "proxy_vpn_detection", "asn_lookup", "ip_reputation", "bulk_ip_analysis", "geographic_distribution"],
+  "tools": [
+    {"name": "lookup_ip", "description": "Get comprehensive information about an IP address", "parameters": {"ip_address": "string", "include_threat_data": "boolean", "include_network_data": "boolean"}},
+    {"name": "analyze_ip_batch", "description": "Analyze multiple IP addresses in batch", "parameters": {"ip_addresses": "array", "fields": "array"}},
+    {"name": "detect_proxy_vpn", "description": "Detect if IP address is using proxy, VPN, or Tor", "parameters": {"ip_address": "string", "confidence_threshold": "number"}},
+    {"name": "get_geographic_distribution", "description": "Get geographic distribution of IP addresses", "parameters": {"ip_addresses": "array", "group_by": "string"}}
+  ],
+  "dependencies": ["ip_database", "threat_intelligence_api"],
+  "configuration": {"api_keys": {"ipinfo": "", "ip2location": "", "maxmind": "", "abuseipdb": "", "shodan": ""}, "threat_detection": {"enable_proxy_detection": true, "enable_vpn_detection": true, "enable_tor_detection": true, "risk_threshold": 70}}
+}

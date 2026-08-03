@@ -1,0 +1,17 @@
+{
+  "name": "Backlink Monitor",
+  "id": "backlink-monitor",
+  "description": "Monitor and analyze backlinks for SEO performance and link building opportunities",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["backlinks", "link-building", "seo", "monitoring", "analysis"],
+  "capabilities": ["backlink_discovery", "link_quality_analysis", "toxic_link_detection", "link_building_opportunities", "anchor_text_analysis", "referring_domains_tracking"],
+  "tools": [
+    {"name": "discover_backlinks", "description": "Discover all backlinks pointing to a domain", "parameters": {"domain": "string", "include_subdomains": "boolean", "limit": "number"}},
+    {"name": "analyze_link_quality", "description": "Analyze the quality and authority of backlinks", "parameters": {"backlinks": "array", "metrics": "array"}},
+    {"name": "detect_toxic_links", "description": "Identify potentially harmful or toxic backlinks", "parameters": {"backlinks": "array", "threshold": "number"}}
+  ],
+  "dependencies": ["fetch_engine", "seo_database"],
+  "configuration": {"api_keys": {"ahrefs": "", "majestic": "", "moz": ""}, "quality_thresholds": {"domain_authority_min": 20, "spam_score_max": 5, "trust_flow_min": 10}}
+}

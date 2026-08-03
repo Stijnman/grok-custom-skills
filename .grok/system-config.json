@@ -1,0 +1,39 @@
+{
+  "system": {"name": "Supreme SEO & GEO Intelligence Stack", "version": "1.0.0", "environment": "production", "debug": false, "log_level": "info", "timezone": "UTC", "language": "en-US"},
+  "server": {"host": "0.0.0.0", "port": 3000, "https": false, "ssl_cert": null, "ssl_key": null, "cors_origins": ["*"], "rate_limiting": {"enabled": true, "requests_per_minute": 100, "burst_limit": 10}, "security": {"helmet_enabled": true, "csrf_protection": true, "xss_protection": true, "content_security_policy": "default-src 'self'"}},
+  "database": {"type": "mongodb", "connection_string": "mongodb://localhost:27017/seo_geo_stack", "pool_size": 10, "timeout": 5000, "retry_writes": true, "retry_reads": true},
+  "cache": {"enabled": true, "type": "memory", "ttl": 3600, "max_size": 1000, "redis_url": null},
+  "api_keys": {
+    "google": {"search_console": "", "analytics": "", "maps": "", "custom_search": ""},
+    "seo_tools": {"ahrefs": "", "moz": "", "semrush": "", "majestic": ""},
+    "geo_services": {"ipinfo": "", "ip2location": "", "maxmind": "", "google_maps": "", "openstreetmap": ""},
+    "social_media": {"twitter": "", "facebook": "", "instagram": "", "linkedin": "", "reddit": ""}
+  },
+  "seo_settings": {
+    "default_search_engine": "google", "default_location": "us", "default_language": "en", "user_agent": "Mozilla/5.0 (compatible; SEO-GEO-Bot/1.0)", "request_timeout": 30, "max_retries": 3, "retry_delay": 1.0, "respect_robots_txt": true, "crawl_delay": 1.0, "max_concurrent_requests": 5,
+    "keyword_research": {"min_search_volume": 100, "max_keyword_difficulty": 70, "include_long_tail": true, "include_questions": true},
+    "ranking_tracking": {"check_frequency": "daily", "search_engines": ["google", "bing"], "locations": ["us", "uk", "ca", "au", "de"], "devices": ["desktop", "mobile"]}
+  },
+  "geo_settings": {
+    "default_coordinate_system": "wgs84", "distance_units": "metric", "geocoding_provider": "google", "reverse_geocoding_provider": "google", "ip_geolocation_provider": "ipinfo", "elevation_provider": "google", "timezone_provider": "google",
+    "geofencing": {"enabled": true, "default_radius_km": 10, "max_radius_km": 100},
+    "spatial_analysis": {"buffer_distance_km": 1.0, "cluster_distance_km": 5.0, "min_cluster_size": 3}
+  },
+  "backlinko_settings": {
+    "use_skyscraper_technique": true, "use_step_by_step_guide": true, "use_ultimate_guide": true, "use_case_study_approach": true,
+    "content_standards": {"minimum_word_count": 1500, "target_readability_score": 70, "include_visuals": true, "internal_linking_target": 5, "external_linking_target": 3},
+    "link_building": {"domain_authority_min": 20, "spam_score_max": 5, "relevance_score_min": 70, "personalization_level": "high", "follow_up_count": 3, "response_rate_target": 0.15},
+    "outreach": {"email_template": "professional", "follow_up_sequence": [1, 3, 7], "subject_line_strategy": "curiosity_gap"}
+  },
+  "monitoring": {
+    "health_checks": {"enabled": true, "interval_minutes": 5, "alert_threshold": 3},
+    "logging": {"level": "info", "file": "/var/log/seo-geo-stack.log", "max_size_mb": 100, "rotation_count": 5},
+    "metrics": {"enabled": true, "prometheus_enabled": false, "statsd_enabled": false}
+  },
+  "notifications": {
+    "email": {"enabled": false, "smtp_host": "", "smtp_port": 587, "smtp_user": "", "smtp_pass": "", "from_email": "", "alert_emails": []},
+    "slack": {"enabled": false, "webhook_url": ""},
+    "discord": {"enabled": false, "webhook_url": ""}
+  },
+  "performance": {"max_memory_usage_mb": 2048, "max_cpu_usage_percent": 80, "max_disk_usage_percent": 90, "graceful_shutdown_timeout": 30}
+}

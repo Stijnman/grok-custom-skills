@@ -1,0 +1,18 @@
+{
+  "name": "Backlinko Content Strategy",
+  "id": "backlinko-content-strategy",
+  "description": "Content strategy and creation using Backlinko's proven frameworks and templates",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["backlinko", "content-strategy", "seo", "content-creation", "brian-dean"],
+  "capabilities": ["content_brief_creation", "content_outline_generation", "content_optimization", "content_promotion_strategy", "content_audit", "content_upgrade_recommendations", "content_calendar_creation", "content_performance_tracking"],
+  "tools": [
+    {"name": "create_content_brief", "description": "Create comprehensive content briefs using Backlinko methodology", "parameters": {"topic": "string", "target_keywords": "array", "competitor_urls": "array", "content_type": "string", "target_audience": "string"}},
+    {"name": "generate_content_outline", "description": "Generate SEO-optimized content outlines using Backlinko frameworks", "parameters": {"topic": "string", "content_type": "string", "target_keywords": "array", "include_faq": "boolean", "include_statistics": "boolean"}},
+    {"name": "optimize_existing_content", "description": "Optimize existing content using Backlinko's proven techniques", "parameters": {"content": "string", "url": "string", "target_keywords": "array", "competitor_urls": "array"}},
+    {"name": "create_promotion_strategy", "description": "Create content promotion strategy using Backlinko's outreach methods", "parameters": {"content_url": "string", "target_audience": "string", "promotion_channels": "array", "budget": "number"}}
+  ],
+  "dependencies": ["nlp_engine", "seo_database", "content_analyzer"],
+  "configuration": {"backlinko_frameworks": {"use_skyscraper_technique": true, "use_step_by_step_guide": true, "use_ultimate_guide": true, "use_case_study_approach": true}, "content_standards": {"minimum_word_count": 1500, "target_readability_score": 70, "include_visuals": true, "internal_linking_target": 5}}
+}

@@ -1,0 +1,18 @@
+{
+  "name": "GEO Location Analyzer",
+  "id": "geo-location-analyzer",
+  "description": "Analyze geographic locations, coordinates, and spatial data for intelligence gathering",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "GEO Intelligence",
+  "tags": ["geo", "location", "gps", "spatial", "mapping", "intelligence"],
+  "capabilities": ["coordinate_geocoding", "reverse_geocoding", "distance_calculation", "location_intelligence", "geofencing", "spatial_analysis", "elevation_data", "timezone_lookup"],
+  "tools": [
+    {"name": "geocode_address", "description": "Convert address to geographic coordinates", "parameters": {"address": "string", "country": "string", "precision": "string"}},
+    {"name": "reverse_geocode", "description": "Convert coordinates to human-readable address", "parameters": {"latitude": "number", "longitude": "number", "language": "string"}},
+    {"name": "calculate_distance", "description": "Calculate distance between two geographic points", "parameters": {"point_a": "object", "point_b": "object", "unit": "string"}},
+    {"name": "analyze_location_intelligence", "description": "Gather intelligence about a specific geographic location", "parameters": {"location": "object", "radius_km": "number", "data_types": "array"}}
+  ],
+  "dependencies": ["geo_database", "mapping_service"],
+  "configuration": {"api_keys": {"google_maps": "", "openstreetmap": "", "here_maps": "", "mapbox": ""}, "default_providers": ["google", "openstreetmap"], "distance_units": "metric"}
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Backlinko Link Building",
+  "id": "backlinko-link-building",
+  "description": "Link building strategies and outreach using Backlinko's proven methods",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["backlinko", "link-building", "seo", "outreach", "brian-dean", "white-hat-seo"],
+  "capabilities": ["link_prospect_discovery", "outreach_strategy", "guest_posting_opportunities", "broken_link_building", "skyscraper_technique", "resource_page_link_building", "expert_roundup_creation", "link_reclamation"],
+  "tools": [
+    {"name": "find_link_prospects", "description": "Find high-quality link building prospects using Backlinko methodology", "parameters": {"target_keywords": "array", "industry": "string", "prospect_types": "array", "domain_authority_min": "number", "limit": "number"}},
+    {"name": "create_outreach_strategy", "description": "Create personalized outreach strategy using Backlinko's proven templates", "parameters": {"prospects": "array", "outreach_type": "string", "value_proposition": "string", "follow_up_sequence": "boolean"}},
+    {"name": "execute_skyscraper_technique", "description": "Execute the skyscraper technique for link building", "parameters": {"target_keywords": "array", "competitor_urls": "array", "content_quality": "string", "outreach_scale": "string"}},
+    {"name": "find_broken_link_opportunities", "description": "Find broken link building opportunities", "parameters": {"target_sites": "array", "industry_keywords": "array", "replacement_content": "string"}}
+  ],
+  "dependencies": ["fetch_engine", "email_outreach", "seo_database"],
+  "configuration": {"backlinko_methods": {"skyscraper_technique_enabled": true, "guest_posting_enabled": true, "broken_link_building_enabled": true, "resource_page_building_enabled": true}, "outreach_settings": {"personalization_level": "high", "follow_up_count": 3, "response_rate_target": 0.15}, "quality_thresholds": {"domain_authority_min": 20, "spam_score_max": 5, "relevance_score_min": 70}}
+}

@@ -1,0 +1,17 @@
+{
+  "name": "SEO Analyzer",
+  "id": "seo-analyzer",
+  "description": "Comprehensive SEO analysis with keyword research, competition analysis, and ranking tracking",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["seo", "analysis", "keywords", "ranking", "competition"],
+  "capabilities": ["keyword_research", "competitor_analysis", "ranking_tracking", "backlink_analysis", "technical_seo_audit", "content_optimization"],
+  "tools": [
+    {"name": "analyze_keywords", "description": "Perform comprehensive keyword research and analysis", "parameters": {"keywords": "array", "search_volume_min": "number", "competition_max": "number", "location": "string"}},
+    {"name": "analyze_competitors", "description": "Analyze competitor websites and SEO strategies", "parameters": {"competitors": "array", "depth": "string", "focus_areas": "array"}},
+    {"name": "track_rankings", "description": "Track keyword rankings across search engines", "parameters": {"keywords": "array", "domains": "array", "search_engines": "array", "frequency": "string"}}
+  ],
+  "dependencies": ["fetch_engine", "seo_database"],
+  "configuration": {"api_keys": {"google_search_console": "", "ahrefs": "", "moz": "", "semrush": ""}, "search_engines": ["google", "bing", "yahoo"], "default_location": "us"}
+}

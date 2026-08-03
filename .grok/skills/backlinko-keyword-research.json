@@ -1,0 +1,18 @@
+{
+  "name": "Backlinko Keyword Research",
+  "id": "backlinko-keyword-research",
+  "description": "Advanced keyword research using Backlinko methodology and proven SEO strategies",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["backlinko", "keyword-research", "seo", "brian-dean", "advanced-seo"],
+  "capabilities": ["long_tail_keyword_discovery", "competitor_keyword_gap_analysis", "search_intent_analysis", "keyword_difficulty_scoring", "serp_feature_analysis", "content_angle_identification", "keyword_clustering", "seasonal_trend_analysis"],
+  "tools": [
+    {"name": "find_long_tail_keywords", "description": "Discover long-tail keywords with high potential using Backlinko methodology", "parameters": {"seed_keywords": "array", "search_volume_min": "number", "keyword_difficulty_max": "number", "include_questions": "boolean", "include_comparisons": "boolean"}},
+    {"name": "analyze_competitor_keywords", "description": "Analyze competitor keywords using Backlinko's proven strategies", "parameters": {"competitors": "array", "exclude_branded": "boolean", "filter_by_intent": "array", "min_traffic": "number"}},
+    {"name": "identify_content_angles", "description": "Identify winning content angles based on Backlinko's skyscraper technique", "parameters": {"topic": "string", "competitor_urls": "array", "content_types": "array"}},
+    {"name": "score_keyword_difficulty", "description": "Score keyword difficulty using Backlinko's proprietary methodology", "parameters": {"keywords": "array", "include_serp_analysis": "boolean", "competitive_analysis": "boolean"}}
+  ],
+  "dependencies": ["fetch_engine", "seo_database", "backlinko_api"],
+  "configuration": {"backlinko_settings": {"use_skyscraper_technique": true, "prioritize_long_tail": true, "minimum_content_length": 1500, "target_backlinks_per_page": 10}, "difficulty_thresholds": {"easy_max": 30, "medium_max": 60, "hard_min": 61}}
+}

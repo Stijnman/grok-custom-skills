@@ -1,0 +1,12 @@
+{
+  "mcp_servers": [
+    {"name": "SEO Analysis Server", "id": "seo-analysis-server", "description": "MCP server for SEO analysis and keyword research", "command": "python3", "args": ["-m", "mcp_server_seo"], "env": {"GOOGLE_API_KEY": "${GOOGLE_API_KEY}", "AHREFS_API_KEY": "${AHREFS_API_KEY}", "MOZ_API_KEY": "${MOZ_API_KEY}"}, "timeout": 60, "max_connections": 10, "enabled": true},
+    {"name": "GEO Intelligence Server", "id": "geo-intelligence-server", "description": "MCP server for geographic intelligence and location analysis", "command": "python3", "args": ["-m", "mcp_server_geo"], "env": {"GOOGLE_MAPS_API_KEY": "${GOOGLE_MAPS_API_KEY}", "IPINFO_API_KEY": "${IPINFO_API_KEY}", "MAXMIND_API_KEY": "${MAXMIND_API_KEY}"}, "timeout": 60, "max_connections": 10, "enabled": true},
+    {"name": "Backlinko Tools Server", "id": "backlinko-tools-server", "description": "MCP server for Backlinko SEO methodologies and tools", "command": "python3", "args": ["-m", "mcp_server_backlinko"], "env": {"SEMRUSH_API_KEY": "${SEMRUSH_API_KEY}", "AHREFS_API_KEY": "${AHREFS_API_KEY}"}, "timeout": 90, "max_connections": 5, "enabled": true},
+    {"name": "Content Analysis Server", "id": "content-analysis-server", "description": "MCP server for content optimization and analysis", "command": "python3", "args": ["-m", "mcp_server_content"], "env": {"OPENAI_API_KEY": "${OPENAI_API_KEY}", "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}"}, "timeout": 120, "max_connections": 5, "enabled": true},
+    {"name": "Data Fetch Server", "id": "data-fetch-server", "description": "MCP server for web scraping and data fetching", "command": "python3", "args": ["-m", "mcp_server_fetch"], "env": {"PROXY_URL": "${PROXY_URL}", "USER_AGENT": "Mozilla/5.0 (compatible; MCP-Fetch-Bot/1.0)"}, "timeout": 30, "max_connections": 20, "enabled": true}
+  ],
+  "global_settings": {"log_level": "info", "max_log_size_mb": 100, "log_retention_days": 30, "health_check_interval_seconds": 30, "auto_restart_on_failure": true, "max_restart_attempts": 3},
+  "security": {"require_authentication": false, "allowed_origins": ["*"], "rate_limiting": {"enabled": true, "requests_per_minute": 100, "burst_limit": 10}},
+  "monitoring": {"metrics_enabled": true, "prometheus_port": 9090, "health_check_endpoint": "/health", "status_endpoint": "/status"}
+}

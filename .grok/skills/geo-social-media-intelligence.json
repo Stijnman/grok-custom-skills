@@ -1,0 +1,18 @@
+{
+  "name": "GEO Social Media Intelligence",
+  "id": "geo-social-media-intelligence",
+  "description": "Social media analysis by geographic location, trends, and influencer mapping",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "GEO Intelligence",
+  "tags": ["geo", "social-media", "trends", "influencers", "sentiment", "engagement"],
+  "capabilities": ["geographic_social_analysis", "trend_mapping", "influencer_identification", "sentiment_analysis", "engagement_metrics", "hashtag_analysis", "competitive_social_analysis", "crisis_detection"],
+  "tools": [
+    {"name": "analyze_social_by_location", "description": "Analyze social media activity by geographic location", "parameters": {"location": "object", "platforms": "array", "keywords": "array", "time_range": "object", "sentiment_analysis": "boolean"}},
+    {"name": "identify_influencers", "description": "Identify social media influencers in a geographic area", "parameters": {"location": "object", "industry": "string", "min_followers": "number", "engagement_rate_min": "number", "platforms": "array"}},
+    {"name": "track_social_trends", "description": "Track social media trends by geographic region", "parameters": {"regions": "array", "keywords": "array", "platforms": "array", "time_range": "object", "trend_type": "string"}},
+    {"name": "analyze_sentiment_by_location", "description": "Analyze sentiment of social media posts by location", "parameters": {"location": "object", "keywords": "array", "platforms": "array", "time_range": "object", "sentiment_granularity": "string"}}
+  ],
+  "dependencies": ["social_media_api", "nlp_engine"],
+  "configuration": {"api_keys": {"twitter_api": "", "facebook_graph": "", "instagram_basic": "", "linkedin_api": "", "reddit_api": "", "tiktok_api": ""}, "rate_limits": {"requests_per_minute": 100, "requests_per_day": 10000}, "data_retention_days": 90}
+}

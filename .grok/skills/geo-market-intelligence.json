@@ -1,0 +1,18 @@
+{
+  "name": "GEO Market Intelligence",
+  "id": "geo-market-intelligence",
+  "description": "Market analysis by geographic region, demographic insights, and economic data",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "GEO Intelligence",
+  "tags": ["geo", "market", "demographics", "economic", "business-intelligence", "regional-analysis"],
+  "capabilities": ["regional_market_analysis", "demographic_insights", "economic_data", "competitive_landscape", "consumer_behavior", "market_trends", "regulatory_environment", "cultural_analysis"],
+  "tools": [
+    {"name": "analyze_regional_market", "description": "Analyze market potential for a specific geographic region", "parameters": {"region": "object", "industry": "string", "time_period": "string", "metrics": "array"}},
+    {"name": "get_demographic_data", "description": "Get demographic information for a geographic area", "parameters": {"location": "object", "demographic_types": "array", "age_ranges": "array", "income_levels": "array"}},
+    {"name": "analyze_economic_indicators", "description": "Analyze economic indicators for a region", "parameters": {"region": "object", "indicators": "array", "time_range": "object"}},
+    {"name": "compare_regions", "description": "Compare multiple geographic regions across various metrics", "parameters": {"regions": "array", "comparison_metrics": "array", "normalization": "string"}}
+  ],
+  "dependencies": ["market_data_api", "demographic_database"],
+  "configuration": {"api_keys": {"census_bureau": "", "world_bank": "", "statista": "", "nielsen": "", "ibisworld": ""}, "data_sources": ["government", "commercial", "open_data"], "currency": "USD"}
+}

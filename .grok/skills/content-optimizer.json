@@ -1,0 +1,17 @@
+{
+  "name": "Content Optimizer",
+  "id": "content-optimizer",
+  "description": "Optimize content for SEO with keyword density, readability, and semantic analysis",
+  "version": "1.0.0",
+  "author": "Stijnman",
+  "category": "SEO",
+  "tags": ["content", "seo", "optimization", "keywords", "readability"],
+  "capabilities": ["keyword_density_analysis", "content_gap_analysis", "readability_scoring", "semantic_analysis", "content_suggestions", "meta_tag_optimization"],
+  "tools": [
+    {"name": "analyze_content", "description": "Analyze content for SEO optimization opportunities", "parameters": {"content": "string", "target_keywords": "array", "language": "string"}},
+    {"name": "generate_optimized_content", "description": "Generate SEO-optimized content based on analysis", "parameters": {"topic": "string", "target_keywords": "array", "content_type": "string", "length": "number"}},
+    {"name": "optimize_meta_tags", "description": "Generate optimized meta tags for content", "parameters": {"title": "string", "description": "string", "keywords": "array", "url": "string"}}
+  ],
+  "dependencies": ["nlp_engine", "seo_database"],
+  "configuration": {"keyword_density": {"min": 0.5, "max": 3.0}, "readability_targets": {"flesch_reading_ease_min": 60, "grade_level_max": 12}}
+}
