@@ -1,52 +1,36 @@
 ---
 name: skill-creation-enabler
-description: >
-  Scaffolds and installs new skills into .grok/skills/. Use when creating skil
-  lsor user says enable skill creation, install skill, new skill. Triggers: en
-  able skill creation, install skill, new skill, add skill.
-version: 1.1.0
-author: Stijnman
-license: MIT
-metadata:
-  grok:
-    tags: [enable skill creation, install skill, new skill, add skill]
-    related_skills: [natural-language-to-skill, hyper-skill-tester, create-skill]
-compatibility: Grok agent; optional MCP and shell access
+description: Continuously monitors the skill library for gaps, then delegates creation and full persistence to auto-skill-resolver. Ensures every new skill follows the Non-Negotiable Persistence Contract (Memory + Drive + GitHub + versioning). Runs at low priority for ecosystem health. Triggered by gap detection, "create missing skills", or health checks.
 ---
 
 # Skill Creation Enabler
 
-## When to Use
+## Overview
+Low-level guardian that detects missing skills and hands them off to **auto-skill-resolver** for creation + full persistence. It no longer tries to create skills itself. This keeps the library healthy while enforcing the single Persistence Contract.
 
-- User says **enable skill creation** or task matches this capability
-- User says **install skill** or task matches this capability
-- User says **new skill** or task matches this capability
-- User says **add skill** or task matches this capability
+## Instructions
 
-## Workflow
+1. Maintain `references/required-skills.txt` and `references/desired-skills.txt`.
+2. Periodically scan `/home/workdir/.grok/skills/` and `/root/.grok/skills/`.
+3. For every missing skill:
+   - Call **auto-skill-resolver** with the capability need.
+   - auto-skill-resolver will create (or download), version, write to persistent memory, upload to Google Drive, and push to GitHub.
+4. Log the hand-off and result to evolution_log.md.
+5. Never create a skill directly — always go through auto-skill-resolver so the Persistence Contract is obeyed.
 
-1. Validate skill name (lowercase-hyphen, unique).
-2. Create directory and SKILL.md from template.
-3. Optionally add references/ and scripts/.
-4. Confirm install path; list in controle-overview-skill.
+## Configuration
+- references/required-skills.txt
+- references/desired-skills.txt
+- scripts/check-and-create.sh (detection only)
 
-## Integrations
+## Dependencies
+- auto-skill-resolver (mandatory)
+- skill-creator, natural-language-to-skill, skill-researcher (used by the resolver)
+- drive-persistence-bridge, persistent-memory-bridge, connected-services-bridge
 
-- `natural-language-to-skill`
-- `hyper-skill-tester`
-- `create-skill`
+## Triggers
+"create missing skills", "skill guardian", "ecosystem health check", "auto create skills", "skill maintenance"
 
-## Error Handling
-
-| Failure | Response |
-|---------|----------|
-| Name collision | Suggest versioned name or merge. |
-
-## Gotchas
-
-- Default install: ~/.grok/skills/ or workspace .grok/skills/.
-
-## Example
-
-**Input:** User request matching triggers above.
-**Output:** Structured result per workflow with integrations invoked as needed.
+## Version
+2.0 — 2026-08-12  
+Major simplification: creation and persistence are now fully delegated to auto-skill-resolver. Removes outdated skill-packager references and evolution spam for clarity.
