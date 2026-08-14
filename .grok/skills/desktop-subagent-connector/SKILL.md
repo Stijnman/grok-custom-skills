@@ -1,68 +1,103 @@
 ---
 name: desktop-subagent-connector
-description: "Securely bridges the 4-agent ecosystem to the user's local desktop for controlled file access, local script execution, GUI automation, and sub-agent spawning. Maintains strict sandboxing and permission model. Triggered by 'connect to desktop', 'local file access', 'run locally', or 'access my files safely'. Enables heavy local computation without uploading sensitive data. Optimized for accurate LLM routing."
+description: Securely bridges the remote Grok sandbox to the user's local desktop for scoped file access, approved shell execution, GUI/browser automation, and local sub-agent work. Requires a local daemon the user runs on their machine plus an outbound tunnel. Triggered by connect to desktop, local file access, run locally, access my files safely, or when geo-restricted / login-required browser control is needed. Optimized for accurate LLM routing.
 ---
 
 # Desktop Subagent Connector
 
 ## Overview
 
-This skill establishes a secure, auditable bridge between the cloud-based 4-agent ecosystem and the user's local desktop. It allows safe reading/writing of local files, execution of user-approved scripts, limited GUI interaction, and spawning of lightweight local sub-agents while respecting privacy and security boundaries.
+Bridges the **remote sandbox** to the **user's real machine**. The sandbox never gets raw network access to the user's LAN. Instead the user runs a small local daemon and exposes it via an outbound tunnel (cloudflared recommended). All calls are authenticated with a shared token and confined to allowed directory roots.
 
-## Instructions
+This is the concrete path for:
+- Reading/writing files on the user's desktop
+- Running approved local commands (ffmpeg, licensed tools, etc.)
+- Optional browser control on the user's machine (Playwright or alongside Kimi WebBridge)
+- Geo-restricted or login-session work that the remote sandbox cannot do alone
 
-1. **Connection Establishment**
-   - Request explicit user permission for each new session or sensitive operation.
-   - Establish encrypted tunnel (via connected-services-bridge or secure protocol).
-   - Negotiate permission scope: read-only, read-write specific folders, execute whitelist, GUI allowed.
+## Prerequisites (user side)
 
-2. **File Operations**
-   - List, read, write, move, delete local files/folders within approved scope.
-   - Sync selected files bidirectionally with artifacts/ or drive-persistence-bridge.
-   - Handle large files via streaming/chunking to avoid memory issues.
+1. Python 3.9+
+2. The daemon script from this skill: `scripts/local-daemon.py`
+3. Optional but recommended: `cloudflared`
+4. Optional for browser: `pip install playwright && playwright install chromium`
 
-3. **Local Execution**
-   - Run user-approved bash/Python/scripts locally with timeout and output capture.
-   - Support "local mode" for skills that benefit from native hardware (e.g., heavy video processing via ffmpeg local).
-   - Return results + logs to main ecosystem.
+## One-time setup (user runs on their machine)
 
-4. **Sub-Agent Spawning**
-   - Launch isolated local sub-agents for parallel work (e.g., background watcher, heavy computation).
-   - Monitor sub-agent health and auto-restart on failure.
-   - Aggregate outputs back to Master Agent.
+```bash
+mkdir -p ~/desktop-subagent && cd ~/desktop-subagent
+# obtain local-daemon.py (from skill scripts/ or artifacts)
+export DESKTOP_BRIDGE_TOKEN=$(openssl rand -hex 24)
+echo "TOKEN=$DESKTOP_BRIDGE_TOKEN"   # keep this secret
 
-4b. **Local Browser / GUI Control** (reinforced 2026-08-14)
-   - When user is in Belgium (or has Belgian IP/proxy), use local browser for geo-restricted sites (e.g. RingTwice).
-   - Support controlled navigation, form filling, screenshot capture, and limited interaction under explicit permission.
-   - Prefer local browser when remote sandbox is blocked by geo-fences.
+python3 local-daemon.py --token "$DESKTOP_BRIDGE_TOKEN" --port 8765
+# other terminal:
+cloudflared tunnel --url http://localhost:8765
+```
 
-5. **Security & Audit**
-   - All operations logged with timestamp, action, and result.
-   - Automatic sandboxing: No access outside whitelisted paths.
-   - Immediate disconnect on any suspicious activity or user command "disconnect desktop".
-   - Never store or transmit local file contents without explicit user approval.
+Copy the printed `https://….trycloudflare.com` URL and the token. Tell the agent:
 
-**When to Use**
-- User requests processing of local files or "do this on my computer".
-- When cloud tools are insufficient (special hardware, licensed local software).
-- For privacy-sensitive workflows where data should not leave the device.
-- During long-running local tasks that benefit from sub-agent delegation.
-- For geo-restricted websites that the remote sandbox cannot access properly.
+```
+DESKTOP_BRIDGE_URL=https://xxxx.trycloudflare.com
+DESKTOP_BRIDGE_TOKEN=...
+```
 
-**Examples**
-- "Connect to my desktop and process all PDFs in Downloads folder": Establishes bridge → lists files → runs local pdf skill on each → returns structured results + updated local copies.
-- "Spawn local sub-agent to watch folder for new images and auto-analyze": Persistent local watcher running in background.
-- "Use local browser for RingTwice": Opens Belgian browser session to bypass geo-modal.
+Full protocol and security model: `references/local-component-spec.md`.
 
-**Error Handling**
-- Permission denied or connection lost: Gracefully degrade to cloud-only mode and notify user.
-- Local execution timeout or crash: Kill sub-process, log, offer retry with reduced scope.
-- Always confirm destructive actions ("delete 47 files?") with user.
+## Agent-side instructions (this skill)
 
-**Integration**
-- Primary partners: connected-services-bridge, sandbox-internet-handler, computer-use-bridge, drive-persistence-bridge.
-- Works with: pdf, ffmpeg, any local-heavy skill.
-- Logs to: evolution_log.md + local audit file.
+### 1. Connection check
+When the user supplies `DESKTOP_BRIDGE_URL` + `DESKTOP_BRIDGE_TOKEN` (or they are present in env / memory):
 
-**Version:** 1.5 — 2026-08-14  
-Prepared and reinforced for active use. Added explicit support for local browser control / GUI automation (useful for geo-restricted sites such as RingTwice) and aligned with current Persistence Contract.
+```bash
+curl -sS -H "Authorization: Bearer $DESKTOP_BRIDGE_TOKEN" "$DESKTOP_BRIDGE_URL/health"
+```
+
+Expect JSON with `"status":"ok"` and a `capabilities` list. If this fails → tell the user the tunnel/daemon is down and stop.
+
+### 2. File operations
+- **List**: `GET /file/list?path=<abs-or-home-relative>`
+- **Read**: `POST /file/read` body `{"path":"..."}` → utf-8 text or base64
+- **Write**: `POST /file/write` body `{"path","content","encoding?":"utf-8|base64"}`
+
+Always confirm destructive or large writes with the user first. Respect the daemon's path confinement (default = `$HOME` + any `--allow-root` the user set).
+
+### 3. Local execution
+`POST /exec` body `{"command":"...","timeout?":30,"cwd?"}`.  
+Dangerous patterns are blocked by the daemon unless the user set `DESKTOP_BRIDGE_UNSAFE=1`. Still prefer explicit, minimal commands. Capture stdout/stderr and returncode.
+
+### 4. Browser / GUI (optional)
+If Playwright is installed on the user machine the daemon exposes:
+- `POST /browser/navigate` → title + body text
+- `POST /browser/screenshot` → base64 PNG
+- `POST /browser/evaluate` → JS result
+
+Use this when the remote sandbox browser is blocked (geo, login walls, CAPTCHA that needs a real profile). Prefer local browser for Belgian geo-restricted sites when the user is in Belgium.
+
+If the user also runs Kimi WebBridge, treat the two as complementary: WebBridge drives their everyday Chrome profile via CDP; this daemon gives the *remote* agent a simple HTTP path without requiring WebBridge's agent pairing.
+
+### 5. Permission & audit
+- Ask for explicit permission the first time in a session (and again for broader scopes).
+- Never exfiltrate whole home directories or secrets without a clear user request.
+- Daemon writes `~/.desktop-subagent/audit.log` on the user machine — mention this if they ask for auditability.
+- On "disconnect desktop" or token revoke → stop calling the URL immediately.
+
+### 6. Error handling
+- 401 → token wrong / missing
+- 403 → path outside allowed roots or blocked command
+- 501 → Playwright not installed (browser endpoints)
+- Connection refused / tunnel dead → fall back to pure sandbox tools and tell the user
+
+Retry transient network errors with exp backoff (10s / 30s / 60s ±25%).
+
+### 7. Persistence of connection info
+When the user successfully pairs, optionally store `DESKTOP_BRIDGE_URL` + token hint (not the raw token if possible) via persistent-memory-bridge for the session, and remind them that cloudflared quick tunnels are temporary.
+
+## Integration
+- Partners: computer-use-bridge (sandbox side), connected-services-bridge, drive-persistence-bridge, persistent-memory-bridge
+- Browser alternatives: sandbox `browser_tab` tool first; escalate to this local bridge only when local identity / geo is required
+- Logs: evolution_log.md + user-side audit.log
+
+## Version
+1.6.0 — 2026-08-14  
+Concrete local daemon + protocol + cloudflared pairing path. Replaces pure aspirational docs with a working user-side component.
