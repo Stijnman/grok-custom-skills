@@ -1,21 +1,21 @@
 # Skills Catalog
 
-This catalog is generated from the metadata in **81 skill definitions**. Run `python3 scripts/generate_catalog.py` after adding or changing a skill.
+This catalog is generated from the metadata in **89 skill definitions**. Run `python3 scripts/generate_catalog.py` after adding or changing a skill.
 
 ## Browse by category
 
 | Category | Skills |
 |---|---:|
-| General Utilities | 7 |
+| General Utilities | 13 |
 | Media, Voice & Visuals | 6 |
 | Memory, Context & Knowledge | 7 |
 | Messaging & Communication | 5 |
 | Quality, Code & Performance | 6 |
-| Research, Web & Integrations | 12 |
+| Research, Web & Integrations | 13 |
 | Safety, Privacy & Governance | 7 |
 | Skill Development & Operations | 18 |
 | Traffic & Navigation | 3 |
-| Workflow & Agent Orchestration | 10 |
+| Workflow & Agent Orchestration | 11 |
 
 ## Complete catalog
 
@@ -23,12 +23,18 @@ This catalog is generated from the metadata in **81 skill definitions**. Run `py
 
 | Skill | Description |
 |---|---|
+| [`accessible-color-review`](.grok/skills/accessible-color-review/SKILL.md) | Review color choices for contrast, semantic consistency, color-vision accessibility, and readable user-interface states. Use for: color accessibility review, contrast check, UI color audit, accessible palette. |
+| [`architecture-decision-record`](.grok/skills/architecture-decision-record/SKILL.md) | Document a significant technical decision with its context, alternatives, consequences, and status. Use for: architecture decision record, ADR, technical decision log, technology choice. |
 | [`beta-unlocker`](.grok/skills/beta-unlocker/SKILL.md) | Guides enabling beta or experimental Grok features safely. Use for: beta feature, early access, unlock experimental, enable beta. |
+| [`contact-vcard-export`](.grok/skills/contact-vcard-export/SKILL.md) | Create a validated vCard contact-export file from contact details that the user has explicitly selected and confirmed. Use for: create VCF, export contacts, vCard file, contact import file. |
 | [`cron-scheduler`](.grok/skills/cron-scheduler/SKILL.md) | Schedules recurring or delayed agent tasks. Use for: schedule this, run daily, cron job, set timer. |
 | [`dspy-prompt-optimizer`](.grok/skills/dspy-prompt-optimizer/SKILL.md) | Tunes prompts iteratively using reflection and success metrics. Use for: optimize this prompt, dspy tune, improve prompt with reflection, `self-refine-loop`. |
+| [`experiment-results-analysis`](.grok/skills/experiment-results-analysis/SKILL.md) | Analyze completed experiment results with effect sizes, uncertainty, guardrails, limitations, and evidence-based next steps. Use for: experiment results, A/B test analysis, test readout, experiment decision. |
 | [`exposed-service-triage`](.grok/skills/exposed-service-triage/SKILL.md) | Triages exposed TCP listeners found by security audits. Use for: exposed port, what is listening, fix exposed service, open port. |
 | [`imagine-asset-generator`](.grok/skills/imagine-asset-generator/SKILL.md) | Generates visual assets via image generation tools. Use for: generate image, create asset, make icon, design mockup. |
 | [`oss-repo-maintainer`](.grok/skills/oss-repo-maintainer/SKILL.md) | Helps maintain open-source repos: README accuracy, version consistency, andp re-release checklists. Use for: fix README, prep release, repo maintenance, sync docs. |
+| [`product-opportunity-tree`](.grok/skills/product-opportunity-tree/SKILL.md) | Map a measurable product outcome to customer opportunities, solution options, and assumption tests. Use for: opportunity solution tree, product discovery map, customer opportunity mapping, outcome-to-solution planning. |
+| [`product-requirements-document`](.grok/skills/product-requirements-document/SKILL.md) | Write a clear product requirements document that defines the problem, scope, requirements, success measures, risks, and open questions. Use for: product requirements document, PRD, feature specification, engineering handoff. |
 | [`ringtwice-power-suite`](.grok/skills/ringtwice-power-suite/SKILL.md) | Support service providers with clear, platform-compliant RingTwice profile copy, job evaluation, customer communication, and service planning. Use for: RingTwice profile, job evaluation, service quote draft, customer message, review response. |
 
 ### Media, Voice & Visuals
@@ -89,6 +95,7 @@ This catalog is generated from the metadata in **81 skill definitions**. Run `py
 | [`mcp-tool-scout`](.grok/skills/mcp-tool-scout/SKILL.md) | Discovers MCP servers and reads tool schemas before calling MCP tools. Use for: mcp tools, MCP schema, discover MCP, which MCP tool. |
 | [`multi-platform-messenger-bridge`](.grok/skills/multi-platform-messenger-bridge/SKILL.md) | Unifies WhatsApp, Telegram, and future channels with shared memory and ratin g. Use for: bridge messengers, unified chat memory, cross-platform reply, `whatsapp-auto-responder`. |
 | [`persistent-memory-bridge`](.grok/skills/persistent-memory-bridge/SKILL.md) | Bridges session memory to persistent storage across conversations. Use for: remember this, persistent memory, save to memory, recall later. |
+| [`research-interview-synthesis`](.grok/skills/research-interview-synthesis/SKILL.md) | Synthesize multiple user interviews into evidence-backed themes, insights, limitations, and next research actions. Use for: interview synthesis, customer research findings, usability study themes, discovery interview analysis. |
 | [`tool-discovery-engine`](.grok/skills/tool-discovery-engine/SKILL.md) | Discovers available tools, MCP servers, and skills for a task. Use for: what tools, discover capabilities, find tool for, available skills. |
 | [`web-scraper`](.grok/skills/web-scraper/SKILL.md) | Extracts structured data from web pages. Use for: scrape page, extract from website, get page data, web extract. |
 
@@ -148,4 +155,5 @@ This catalog is generated from the metadata in **81 skill definitions**. Run `py
 | [`parallel-tool-orchestrator`](.grok/skills/parallel-tool-orchestrator/SKILL.md) | Runs independent tool calls in parallel for latency reduction. Use for: parallel tools, run concurrently, batch requests, parallelize. |
 | [`self-healing-error-recovery`](.grok/skills/self-healing-error-recovery/SKILL.md) | Diagnoses failures and retries with alternate strategies. Use for: heal this error, self recover, fix failure automatically, retry smart. |
 | [`self-refine-loop`](.grok/skills/self-refine-loop/SKILL.md) | Runs a generator-critique-reviser loop to iteratively improve agent outputs. Use for: self refine, reflexion loop, critique and revise, improve output. |
+| [`voice-agent-design`](.grok/skills/voice-agent-design/SKILL.md) | Design a safe, vendor-neutral voice agent with conversation flows, consent notices, escalation paths, and approval-gated actions. Use for: voice agent design, phone assistant, call flow, conversational IVR. |
 | [`workflow-composer`](.grok/skills/workflow-composer/SKILL.md) | Composes linear and branching workflows from goals and constraints. Use for: compose workflow, build plan, workflow plan, step by step plan. |

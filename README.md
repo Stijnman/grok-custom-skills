@@ -5,13 +5,13 @@
 </p>
 
 <p align="center">
-  <a href="SKILLS_INDEX.md"><img src="https://img.shields.io/badge/skills-81-2563eb?style=flat-square" alt="81 skills"></a>
+  <a href="SKILLS_INDEX.md"><img src="https://img.shields.io/badge/skills-89-2563eb?style=flat-square" alt="89 skills"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a?style=flat-square" alt="MIT license"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/security-policy-7c3aed?style=flat-square" alt="Security policy"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/contributions-welcome-f59e0b?style=flat-square" alt="Contributions welcome"></a>
 </p>
 
-`grok-custom-skills` is a modular library of **81 skill packages** for common agent tasks: workflow orchestration, research, skill operations, privacy, quality assurance, memory, media, messaging, traffic, and integrations. Each package centers on a `SKILL.md` file with clear routing metadata and task-specific instructions.
+`grok-custom-skills` is a modular library of **89 skill packages** for common agent tasks: workflow orchestration, product discovery, research, skill operations, privacy, quality assurance, memory, media, messaging, traffic, and integrations. Each package centers on a `SKILL.md` file with clear routing metadata and task-specific instructions.
 
 > **Design principle:** Skills should make agent behavior more useful, auditable, and safe. They are guidance packages, not permission to bypass controls, disclose private data, or automate high-impact actions without user approval.
 
@@ -57,6 +57,9 @@ The complete, generated catalog is available in [**SKILLS_INDEX.md**](SKILLS_IND
 | Review code changes | [`code-reviewer`](.grok/skills/code-reviewer/SKILL.md) and [`auto-tester`](.grok/skills/auto-tester/SKILL.md) |
 | Research public information responsibly | [`deep-search-enabler`](.grok/skills/deep-search-enabler/SKILL.md) and [`sandbox-internet-handler`](.grok/skills/sandbox-internet-handler/SKILL.md) |
 | Handle high-impact actions | [`hitl-approver`](.grok/skills/hitl-approver/SKILL.md) |
+| Structure product discovery and delivery | [`product-opportunity-tree`](.grok/skills/product-opportunity-tree/SKILL.md), [`product-requirements-document`](.grok/skills/product-requirements-document/SKILL.md), and [`architecture-decision-record`](.grok/skills/architecture-decision-record/SKILL.md) |
+| Prepare a safe contact import file | [`contact-vcard-export`](.grok/skills/contact-vcard-export/SKILL.md) |
+| Review visual accessibility | [`accessible-color-review`](.grok/skills/accessible-color-review/SKILL.md) |
 
 ## Package structure
 
@@ -104,4 +107,4 @@ Contributions are welcome when they make skill behavior more reliable, safer, or
 
 ## License
 
-This project is released under the [MIT License](LICENSE).
+This project is released under the [MIT License](LICENSE), except where a skill package declares another license. The five product-management workflow adaptations are Apache-2.0 and include their required attribution in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
