@@ -1,11 +1,7 @@
 ---
 name: multi-platform-messenger-bridge
-description: >
-  Unifies WhatsApp, Telegram, and future channels with shared memory and ratin
-  g.Use when user says bridge messengers or unified chat memory. One rater, on
-  e auto-responder policy across platforms. Triggers: bridge messengers, unifi
-  ed chat memory, cross-platform reply.
-version: 1.1.0
+description: "Unifies WhatsApp, Telegram, and future channels with shared memory and ratin g. Use for: bridge messengers, unified chat memory, cross-platform reply, `whatsapp-auto-responder`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [whatsapp-auto-responder, whatsapp-message-rater, semantic-memory-manager, hitl-approver]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Multi Platform Messenger Bridge
-
 ## When to Use
 
 - User says **bridge messengers** or task matches this capability

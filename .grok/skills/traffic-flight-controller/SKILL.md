@@ -1,11 +1,7 @@
 ---
 name: traffic-flight-controller
-description: >
-  Coordinates traffic and navigation data sources for optimal routing info. Us
-  efor commute planning or user says traffic route, best route now. Use when t
-  heuser needs this capability. Triggers: traffic route, best route now, commu
-  te plan, drive time.
-version: 1.1.0
+description: "Coordinates traffic and navigation data sources for optimal routing info. Use for: traffic route, best route now, commute plan, drive time."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [waze-live-reports, waze-navigator, telegram-traffic-reports]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Traffic Flight Controller
-
 ## When to Use
 
 - User says **traffic route** or task matches this capability

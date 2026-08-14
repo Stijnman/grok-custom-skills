@@ -1,12 +1,7 @@
 ---
 name: exposed-service-triage
-description: >
-  Triages exposed TCP listeners found by security audits. Identifies processes
-   on risky bindings and recommends safe remediation. Use after mcp audit or w
-  henuser asks what is on port X, fix exposed service. Triggers: exposed port,
-   whatis listening, fix exposed service. Use when the user needs this capabil
-  ity.
-version: 1.0.0
+description: "Triages exposed TCP listeners found by security audits. Use for: exposed port, what is listening, fix exposed service, open port."
+version: 1.1.0
 author: Stijnman
 license: MIT
 metadata:
@@ -16,9 +11,7 @@ metadata:
     publication_reviewed: '2026-06-24'
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Exposed Service Triage
-
 ## When to Use
 
 - User says **exposed port** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: privacy-redactor
-description: >
-  Detects and redacts PII in inputs and outputs before external actions. Use w
-  hen the user says redact PII, privacy check, or sanitize this. Scans emails,
-   phones, names, addresses. Routes high-risk to hitl-approver. Triggers: reda
-  ct PII, privacy check, sanitize this, remove personal data.
-version: 1.1.0
+description: "Detects and redacts PII in inputs and outputs before external actions. Use for: redact PII, privacy check, sanitize this, remove personal data."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [hitl-approver, whatsapp-auto-responder, memory-sanitizer]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Privacy Redactor
-
 ## When to Use
 
 - User says **redact PII** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: semantic-memory-manager
-description: >
-  Stores and retrieves semantic memory with embeddings and tags. Use for long-
-   term recall or user says semantic memory, search memory, recall. Use when t
-  he user needs this capability. Triggers: semantic memory, search memory, rec
-  all, store memory.
-version: 1.1.0
+description: "Stores and retrieves semantic memory with embeddings and tags. Use for: semantic memory, search memory, recall, store memory."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [memory-sanitizer, persistent-memory-bridge, knowledge-graph-builder]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Semantic Memory Manager
-
 ## When to Use
 
 - User says **semantic memory** or task matches this capability

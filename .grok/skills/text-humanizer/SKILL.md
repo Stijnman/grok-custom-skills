@@ -1,87 +1,52 @@
 ---
 name: text-humanizer
-description: "Rewrites any text so it reads as naturally human-written and consistently passes AI detectors (GPTZero, Originality.ai, ZeroGPT, Turnitin, Copyleaks, etc.). Removes typical AI patterns, injects human imperfections, varied rhythm, contractions, personal voice, and subtle inconsistencies. Triggered by 'humanize this text', 'make this sound human', 'bypass AI detection', 'rewrite so detectors fail', or when content must appear non-AI. Optimized for accurate LLM routing."
+description: "Improve text so it sounds natural, clear, and appropriate for its intended audience while preserving the author's meaning. Use for: tone adjustment, readability, natural writing, English, Dutch."
+version: 1.2.0
+author: Stijnman
+license: MIT
+compatibility: Grok agent; optional text-processing tools
+metadata:
+  grok:
+    tags: [natural writing, tone adjustment, readability, rewrite, Dutch, English]
+    related_skills: [insight-synthesizer, code-reviewer]
 ---
-
 # Text Humanizer
+## When to Use
 
-## Overview
-Transforms AI-generated, formal, or overly polished text into natural human writing that is extremely difficult for current AI detection systems to flag. Focuses on statistical and stylistic fingerprints that detectors look for: perplexity, burstiness, repetitive structure, perfect grammar, hedging language, and uniform sentence length.
+Use this skill to make prose clearer, warmer, or more natural for a real audience. It is appropriate for revising drafts, adapting a tone, reducing overly formal wording, and improving English or Dutch readability.
 
-## Core Goals
-- Maximize "human" score on major detectors
-- Preserve original meaning and key information
-- Produce readable, natural Dutch or English (match input language)
-- Avoid both robotic perfection and obvious "trying-to-sound-human" artifacts
-
-## Non-Negotiable Rules
-1. Never claim the text is "AI-free" or "undetectable" in the output itself.
-2. Always match the language of the input (Dutch stays Dutch, English stays English).
-3. Do not invent facts or change the core message.
-4. Prefer mild, realistic imperfections over exaggerated slang or errors.
-5. When the user asks for maximum evasion, apply the full aggressive set of techniques.
-
-## Humanization Techniques (apply in combination)
-
-### Structural & Rhythm
-- Break long uniform paragraphs into uneven lengths
-- Mix very short sentences with longer ones (burstiness)
-- Start some sentences with "And", "But", "So", "Anyway", "Look"
-- Occasionally use sentence fragments for emphasis
-- Vary paragraph length deliberately
-
-### Lexical & Style
-- Heavy use of contractions (I'm, don't, can't, it's, we're, they've)
-- Replace formal words with everyday equivalents
-- Insert mild filler or discourse markers: "kinda", "sort of", "honestly", "to be fair", "you know", "basically"
-- Use occasional mild redundancy or slightly imprecise phrasing
-- Prefer active voice and concrete language
-- Avoid classic AI tells: "delve into", "tapestry", "landscape of", "it's important to note", "in conclusion", "furthermore", "moreover", "robust", "leverage", "utilize", "facilitate"
-
-### Imperfections (realistic, not cartoonish)
-- Occasional minor grammar slip that a real person would make under time pressure
-- Slightly awkward but natural phrasing
-- Personal asides or mild opinion coloring when appropriate
-- Inconsistent comma usage or slight run-on tendencies
-- Avoid perfect parallel structure
-
-### Dutch-specific (when input is Dutch)
-- Use natural spoken Dutch: "ik heb", "het is", "gewoon", "eigenlijk", "best wel", "nogal", "serieus"
-- Prefer "je" over "u" unless formal context demands it
-- Insert typical Belgian/Dutch fillers: "zeg maar", "eigenlijk", "gewoon", "echt", "toch"
-- Avoid overly correct or translated-sounding constructions
+> Do not use this skill to misrepresent authorship, evade academic or workplace disclosure requirements, or make claims about bypassing AI-detection systems.
 
 ## Workflow
-1. Analyze the input for AI fingerprints (uniform length, formal vocabulary, lack of contractions, hedging, list-like structure).
-2. Rewrite in one or two passes:
-   - First pass: break structure + inject contractions and everyday vocabulary
-   - Second pass: add rhythm variation, mild imperfections, and personal tone
-3. Optionally run a self-check: does this still sound like something a competent but non-professional human would write quickly?
-4. Return only the humanized text unless the user asks for comparison or technique explanation.
 
-## Input
-- Raw text to humanize
-- Optional: target tone (casual, semi-formal, slightly imperfect, aggressive evasion)
-- Optional: language force (though auto-detect is preferred)
+1. Identify the intended audience, channel, language, and desired tone.
+2. Preserve facts, names, figures, and the author’s original point of view.
+3. Replace vague, repetitive, or needlessly formal phrasing with direct language.
+4. Vary sentence and paragraph rhythm only where it improves readability.
+5. Return the revised draft and, when useful, a brief note describing the tone changes.
+
+## Writing Principles
+
+| Principle | Apply by |
+|---|---|
+| Clarity | Prefer concrete verbs, plain language, and logical paragraph flow. |
+| Voice | Match the requested register, from professional to conversational. |
+| Fidelity | Keep claims, intent, and factual content unchanged unless the user asks otherwise. |
+| Accessibility | Avoid jargon where a simpler alternative is available. |
+| Integrity | Encourage appropriate attribution and disclosure where authorship matters. |
+
+## Language Notes
+
+For Dutch, use natural contemporary phrasing and select `je` or `u` according to the intended formality. For English, use contractions only when the requested tone is conversational. In either language, do not introduce deliberate errors or invented personal details.
 
 ## Output
-- Clean humanized version of the text
-- No meta commentary unless requested
-- Preserve original meaning, names, numbers, and key claims
 
-## Triggers
-- "humanize this"
-- "make this sound human"
-- "rewrite so AI detectors fail"
-- "bypass AI detection"
-- "make undetectable"
-- "humanize text"
-- "anti AI detector rewrite"
-- Any request to make text appear non-AI written
+Return a polished version of the text. If the user requests a comparison, provide a compact before-and-after explanation focused on readability, tone, and structure.
 
-## Version
-1.0 — 2026-08-14
-Initial production version focused on maximum practical evasion of current detectors while keeping output readable and natural.
+## Error Handling
 
-## Notes
-This skill prioritizes statistical human-likeness (high burstiness, natural perplexity variation) over pure grammatical perfection. It is designed to work in both English and Dutch. For best results on detectors, combine with moderate length variation and avoid feeding the humanized output back into the same model for further "polishing".
+| Situation | Response |
+|---|---|
+| The target audience is unclear | Ask one concise clarification question or provide two labeled tone options. |
+| The text contains factual claims | Preserve them and flag any ambiguity instead of inventing support. |
+| The user asks to conceal AI assistance | Decline the concealment request and offer transparent editing help. |

@@ -1,10 +1,7 @@
 ---
 name: voice-think-fast-handler
-description: >
-  Provides quick acknowledgment during voice latency gaps. Use in voice mode o
-  ruser says quick ack, thinking aloud, fast think. Use when the user needs th
-  iscapability. Triggers: quick ack, thinking aloud, fast think, voice ack.
-version: 1.1.0
+description: "Provides quick acknowledgment during voice latency gaps. Use for: quick ack, thinking aloud, fast think, voice ack."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [real-time-voice-reasoner, voice-synthesis-handler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Voice Think Fast Handler
-
 ## When to Use
 
 - User says **quick ack** or task matches this capability

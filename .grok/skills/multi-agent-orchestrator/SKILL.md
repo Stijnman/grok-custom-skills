@@ -1,11 +1,7 @@
 ---
 name: multi-agent-orchestrator
-description: >
-  Orchestrates complex multi-agent pipelines with DAG execution. Use for large
-   projects or user says orchestrate agents, agent pipeline. Use when the user
-   needs this capability. Triggers: orchestrate agents, agent pipeline, multi 
-  step agents.
-version: 1.1.0
+description: "Orchestrates complex multi-agent pipelines with DAG execution. Use for: orchestrate agents, agent pipeline, multi step agents, `multi-agent-coordinator`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [multi-agent-coordinator, parallel-tool-orchestrator, self-refine-loop]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Multi Agent Orchestrator
-
 ## When to Use
 
 - User says **orchestrate agents** or task matches this capability

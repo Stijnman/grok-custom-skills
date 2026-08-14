@@ -1,11 +1,7 @@
 ---
 name: ollama-localhost-guardian
-description: >
-  Verifies local LLM services (e.g. Ollama) are bound to localhost only. Usewh
-  en checking Ollama security or user says is ollama exposed, secure localLLM.
-   Read-only network and config checks. Triggers: ollama security, localhostLL
-  M, secure ollama.
-version: 1.0.0
+description: "Verifies local LLM services (e.g. Use for: ollama security, is ollama exposed, secure local LLM, ollama localhost."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -15,9 +11,7 @@ metadata:
     related_skills: [defensive-mcp-audit, exposed-service-triage, hitl-approver]
     publication_reviewed: '2026-06-24'
 ---
-
 # Ollama Localhost Guardian
-
 ## When to Use
 
 - User says **ollama security** or task matches this capability

@@ -1,5 +1,11 @@
-# suno
-
+---
+name: suno
+description: "Turn a real-life story into structured, safety-filtered song lyrics and a Suno-ready style prompt. Use for: song lyrics, story to song, Suno prompt."
+version: 1.0.0
+author: Stijnman
+license: MIT
+---
+# Suno
 **Description:** Turns real-life personal stories into high-quality cinematic rap lyrics optimized for Suno.ai. Supports multiple styles (Underground Storytelling, West Coast G-Funk, Dutch straatrap, etc.), enforces Suno explicit content safety rules, structures songs properly (Intro, Verses, Chorus, Interlude, Bridge, Outro), targets 4–4.5 minute length, and provides ready-to-paste output with style prompts and title suggestions.
 
 **Trigger phrases:** 

@@ -1,11 +1,7 @@
 ---
 name: skill-researcher
-description: >
-  Researches existing skills and best practices before creating new ones. Use 
-  before skill authoring or user says research skills, find skill examples. Us
-  e when the user needs this capability. Triggers: research skills, find skill
-   examples, skill best practices.
-version: 1.1.0
+description: "Researches existing skills and best practices before creating new ones. Use for: research skills, find skill examples, skill best practices, `natural-language-to-skill`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [natural-language-to-skill, skill-creation-enabler, tool-discovery-engine]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Skill Researcher
-
 ## When to Use
 
 - User says **research skills** or task matches this capability

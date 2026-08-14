@@ -1,11 +1,7 @@
 ---
 name: voice-synthesis-handler
-description: >
-  Converts agent responses to natural speech output. Use for voice UX or user 
-  says speak response, text to speech, voice output. Use when the user needs t
-  hiscapability. Triggers: speak response, text to speech, voice output, read 
-  aloud.
-version: 1.1.0
+description: "Converts agent responses to natural speech output. Use for: speak response, text to speech, voice output, read aloud."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [real-time-voice-reasoner, voice-think-fast-handler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Voice Synthesis Handler
-
 ## When to Use
 
 - User says **speak response** or task matches this capability

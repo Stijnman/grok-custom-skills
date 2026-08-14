@@ -1,11 +1,7 @@
 ---
 name: self-healing-error-recovery
-description: >
-  Diagnoses failures and retries with alternate strategies. Use when commands 
-  fail, tools error, or the user says heal this error, self recover, fix failu
-  re automatically. Stores lessons for future tasks. Triggers: heal this error
-  , selfrecover, fix failure automatically, retry smart.
-version: 1.1.0
+description: "Diagnoses failures and retries with alternate strategies. Use for: heal this error, self recover, fix failure automatically, retry smart."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [knowledge-graph-builder, semantic-memory-manager, bottleneck-resolver]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Self Healing Error Recovery
-
 ## When to Use
 
 - User says **heal this error** or task matches this capability

@@ -1,10 +1,7 @@
 ---
 name: parallel-tool-orchestrator
-description: >
-  Runs independent tool calls in parallel for latency reduction. Use when mult
-  iple reads/searches needed or user says parallel tools, run concurrently. Tr
-  iggers: parallel tools, run concurrently, batch requests, parallelize.
-version: 1.1.0
+description: "Runs independent tool calls in parallel for latency reduction. Use for: parallel tools, run concurrently, batch requests, parallelize."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [performance-optimizer, bottleneck-resolver, multi-agent-orchestrator]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Parallel Tool Orchestrator
-
 ## When to Use
 
 - User says **parallel tools** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: github-repo-scout
-description: >
-  Investigates a GitHub repository from a URL: README, file tree, local clones
-  tatus, and recommended next steps. Use when the user pastes a github.com URL
-  or says check this repo, what is this project. Read-only; no credentialacces
-  s. Triggers: github URL, check this repo, scout repo.
-version: 1.0.0
+description: "Investigates a GitHub repository from a URL: README, file tree, local clones tatus, and recommended next steps. Use for: github.com, check this repo, scout repo, what is this project."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -15,9 +11,7 @@ metadata:
     related_skills: [oss-repo-maintainer, defensive-mcp-audit, skill-rubric-reviewer]
     publication_reviewed: '2026-06-24'
 ---
-
-# Github Repo Scout
-
+# GitHub Repo Scout
 ## When to Use
 
 - User says **github.com** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: whatsapp-message-rater
-description: >
-  Rates WhatsApp messages for sentiment, urgency, and spam likelihood. Use bef
-  ore auto-reply decisions or when user says rate this WhatsApp, analyze chat 
-  sentiment, score message urgency. Use when the user needs this capability. T
-  riggers: rate this WhatsApp, analyze chat sentiment, score message urgency.
-version: 1.1.0
+description: "Rates WhatsApp messages for sentiment, urgency, and spam likelihood. Use for: rate this WhatsApp, analyze chat sentiment, score message urgency, `whatsapp-auto-responder`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [whatsapp-auto-responder, privacy-redactor, multi-platform-messenger-bridge]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
-# Whatsapp Message Rater
-
+# WhatsApp Message Rater
 ## When to Use
 
 - User says **rate this WhatsApp** or task matches this capability

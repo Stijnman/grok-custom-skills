@@ -1,10 +1,7 @@
 ---
 name: knowledge-graph-builder
-description: >
-  Builds structured knowledge graphs from text and sessions. Use when organizi
-  ngentities and relations or user says knowledge graph, map entities. Trigger
-  s:knowledge graph, map entities, build graph, entity map.
-version: 1.1.0
+description: "Builds structured knowledge graphs from text and sessions. Use for: knowledge graph, map entities, build graph, entity map."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [semantic-memory-manager, insight-synthesizer, self-healing-error-recovery]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Knowledge Graph Builder
-
 ## When to Use
 
 - User says **knowledge graph** or task matches this capability

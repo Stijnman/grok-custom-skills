@@ -1,11 +1,7 @@
 ---
 name: code-reviewer
-description: >
-  Reviews code changes for bugs, style, security, and maintainability. Use aft
-  erwriting code or when user says review code, code review, check my PR. Trig
-  gers: review code, code review, check my changes. Use when the user needs th
-  is capability.
-version: 1.1.0
+description: "Reviews code changes for bugs, style, security, and maintainability. Use for: review code, code review, check my PR, review my changes."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [auto-tester, goal-verifier, self-refine-loop]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Code Reviewer
-
 ## When to Use
 
 - User says **review code** or task matches this capability

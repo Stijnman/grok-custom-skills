@@ -1,10 +1,7 @@
 ---
 name: beta-unlocker
-description: >
-  Guides enabling beta or experimental Grok features safely. Use when user ask
-  sabout beta features, early access, or unlock experimental tools. Triggers: 
-  beta feature, early access, unlock experimental, enable beta.
-version: 1.1.0
+description: "Guides enabling beta or experimental Grok features safely. Use for: beta feature, early access, unlock experimental, enable beta."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [hitl-approver, help]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Beta Unlocker
-
 ## When to Use
 
 - User says **beta feature** or task matches this capability

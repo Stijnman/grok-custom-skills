@@ -1,11 +1,7 @@
 ---
 name: mega-context-manager
-description: >
-  Manages large context windows via chunking, summarization, and retrieval. Us
-  efor long documents or user says manage context, too much context. Use when 
-  theuser needs this capability. Triggers: manage context, too much context, c
-  hunkdocument, context budget.
-version: 1.1.0
+description: "Manages large context windows via chunking, summarization, and retrieval. Use for: manage context, too much context, chunk document, context budget."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [semantic-memory-manager, predictive-cache-manager, persistent-memory-bridge]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Mega Context Manager
-
 ## When to Use
 
 - User says **manage context** or task matches this capability

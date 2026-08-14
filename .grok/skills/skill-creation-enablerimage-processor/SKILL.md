@@ -1,11 +1,7 @@
 ---
 name: skill-creation-enablerimage-processor
-description: >
-  Image processing helper for skill assets: resize, optimize, format convert. 
-  Use when preparing skill images or user says process skill image, optimize a
-  sset. Triggers: process skill image, optimize asset, skill icon, resize skil
-  l image.
-version: 1.1.0
+description: "Image processing helper for skill assets: resize, optimize, format convert. Use for: process skill image, optimize asset, skill icon, resize skill image."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [skill-creation-enabler, imagine-asset-generator, safe-image-editor]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Skill Creation Enablerimage Processor
-
 ## When to Use
 
 - User says **process skill image** or task matches this capability

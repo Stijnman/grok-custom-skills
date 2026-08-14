@@ -1,10 +1,7 @@
 ---
 name: sandbox-internet-handler
-description: >
-  Fetches web content in a sandboxed, read-only manner. Use for untrusted URLs
-   or user says sandbox fetch, safe web access. Use when the user needs this c
-  apability. Triggers: sandbox fetch, safe web access, fetch URL safely.
-version: 1.1.0
+description: "Fetches web content in a sandboxed, read-only manner. Use for: sandbox fetch, safe web access, fetch URL safely, `internet-enabler`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [internet-enabler, web-scraper, privacy-redactor]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Sandbox Internet Handler
-
 ## When to Use
 
 - User says **sandbox fetch** or task matches this capability

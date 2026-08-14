@@ -1,10 +1,7 @@
 ---
 name: web-scraper
-description: >
-  Extracts structured data from web pages. Use when user needs page content or
-   says scrape page, extract from website, get page data. Triggers: scrape pag
-  e, extract from website, get page data, web extract.
-version: 1.1.0
+description: "Extracts structured data from web pages. Use for: scrape page, extract from website, get page data, web extract."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [sandbox-internet-handler, humanization-stealth-browsing, internet-enabler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Web Scraper
-
 ## When to Use
 
 - User says **scrape page** or task matches this capability

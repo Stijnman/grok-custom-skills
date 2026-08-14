@@ -1,10 +1,7 @@
 ---
 name: controle-overview-skill
-description: >
-  Provides control-panel overview of active skills, workflows, and status. Use
-   when user says overview, status dashboard, what skills are active. Triggers
-  : overview, status dashboard, what skills, control panel.
-version: 1.1.0
+description: "Provides control-panel overview of active skills, workflows, and status. Use for: overview, status dashboard, what skills, control panel."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [tool-discovery-engine, cron-scheduler, insight-synthesizer]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Controle Overview Skill
-
 ## When to Use
 
 - User says **overview** or task matches this capability

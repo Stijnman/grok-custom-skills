@@ -1,10 +1,7 @@
 ---
 name: drive-persistence-bridge
-description: >
-  Persists agent artifacts to cloud drive storage. Use when saving reports, ba
-  ckups, or user says save to drive, persist output. Triggers: save to drive, 
-  persist output, upload report, cloud backup.
-version: 1.1.0
+description: "Persists agent artifacts to cloud drive storage. Use for: save to drive, persist output, upload report, cloud backup."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [connected-services-bridge, privacy-redactor, persistent-memory-bridge]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Drive Persistence Bridge
-
 ## When to Use
 
 - User says **save to drive** or task matches this capability

@@ -1,52 +1,46 @@
 ---
 name: humanization-stealth-browsing
-description: >
-  Browses web with human-like patterns to reduce bot detection. Use for scrapi
-  ngfragile sites or user says stealth browse, human-like browsing. Use when t
-  heuser needs this capability. Triggers: stealth browse, human-like browsing,
-   avoid bot detection.
-version: 1.1.0
+description: "Apply respectful, rate-limited browsing practices for public websites while honoring site rules and access controls. Use for: responsible web research, rate limiting, CAPTCHA stop, robots.txt."
+version: 1.2.0
 author: Stijnman
 license: MIT
+compatibility: Grok agent; optional browser and shell access
 metadata:
   grok:
-    tags: [stealth browse, human-like browsing, avoid bot detection]
-    related_skills: [web-scraper, sandbox-internet-handler, humanization-stealth-browsing]
-compatibility: Grok agent; optional MCP and shell access
+    tags: [responsible browsing, rate limiting, public web research, robots.txt, CAPTCHA stop]
+    related_skills: [web-scraper, sandbox-internet-handler]
 ---
 
-# Humanization Stealth Browsing
+# Responsible Web Browsing
 
 ## When to Use
 
-- User says **stealth browse** or task matches this capability
-- User says **human-like browsing** or task matches this capability
-- User says **avoid bot detection** or task matches this capability
+Use this skill when collecting information from public websites requires careful pacing, stable navigation, or respect for fragile endpoints. It supports responsible research, not bypassing protections.
+
+> Do not use this skill to evade bot detection, bypass access controls, defeat CAPTCHAs, circumvent paywalls, or access content that the user is not authorized to view.
 
 ## Workflow
 
-1. Set realistic delays and headers.
-2. Navigate incrementally; avoid burst requests.
-3. Rotate user-agent only when site blocks.
-4. Respect robots.txt; stop on CAPTCHA and ask user.
+1. Confirm that the target is public and that the requested collection is legitimate.
+2. Prefer official APIs, published feeds, or a site’s documented export options.
+3. Review and respect applicable terms, `robots.txt`, rate limits, and access restrictions.
+4. Make requests incrementally, cache results where appropriate, and avoid unnecessary retries.
+5. If a login wall, CAPTCHA, paywall, or block appears, stop and explain the limitation to the user.
 
-## Integrations
+## Operating Principles
 
-- `web-scraper`
-- `sandbox-internet-handler`
-- `humanization-stealth-browsing`
+| Principle | Practice |
+|---|---|
+| Minimize load | Use measured request rates and avoid broad, repetitive crawling. |
+| Preserve provenance | Record source URLs and retrieval dates for material findings. |
+| Respect controls | Do not rotate identities, automate CAPTCHA solving, or bypass authentication. |
+| Fail safely | Stop rather than escalating when a site signals restricted access. |
 
 ## Error Handling
 
-| Failure | Response |
-|---------|----------|
-| CAPTCHA encountered | Stop; ask user to solve manually. |
-
-## Gotchas
-
-- Never bypass paywalls or auth without permission.
-
-## Example
-
-**Input:** User request matching triggers above.
-**Output:** Structured result per workflow with integrations invoked as needed.
+| Situation | Response |
+|---|---|
+| Rate limit or temporary block | Pause activity and offer a slower or official-data-source alternative. |
+| CAPTCHA or login wall | Stop the automated flow; ask the user to provide authorized access if appropriate. |
+| `robots.txt` or terms restrict collection | Do not scrape the restricted path; propose permitted alternatives. |
+| Source data is incomplete | State the limitation and avoid filling gaps with assumptions. |

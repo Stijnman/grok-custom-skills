@@ -1,10 +1,7 @@
 ---
 name: evolution
-description: >
-  Tracks incremental improvements to skills and workflows over time. Use when 
-  iterating on skill quality or user says evolve skill, track evolution. Trigg
-  ers:evolve skill, track evolution, improve over time.
-version: 1.1.0
+description: "Tracks incremental improvements to skills and workflows over time. Use for: evolve skill, track evolution, improve over time, `skill-evolver`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [skill-evolver, skill-evolution-engine, evolver]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Evolution
-
 ## When to Use
 
 - User says **evolve skill** or task matches this capability

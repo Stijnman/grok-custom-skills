@@ -1,11 +1,7 @@
 ---
 name: skill-marketplace-installer
-description: >
-  Safely searches and installs agent skills from public marketplaces (e.g.agen
-  tskill.sh) with user consent and security checks. Use when user says findski
-  ll, install skill from marketplace, /learn. Triggers: find skill, installski
-  ll, skill marketplace, check skill safety.
-version: 1.0.0
+description: "Safely searches and installs agent skills from public marketplaces (e.g.agen tskill.sh) with user consent and security checks. Use for: find skill, install skill, skill marketplace, check skill safety."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -15,9 +11,7 @@ metadata:
     related_skills: [skill-rubric-reviewer, hitl-approver, privacy-redactor]
     publication_reviewed: '2026-06-24'
 ---
-
 # Skill Marketplace Installer
-
 ## When to Use
 
 - User says **find skill** or task matches this capability

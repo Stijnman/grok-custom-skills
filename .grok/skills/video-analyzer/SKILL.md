@@ -1,10 +1,7 @@
 ---
 name: video-analyzer
-description: >
-  Analyzes video content for scenes, text, and summaries. Use when user shares
-   video or says analyze video, what's in this video. Triggers: analyze video,
-   what's in this video, video summary, review video.
-version: 1.1.0
+description: "Analyzes video content for scenes, text, and summaries. Use for: analyze video, what's in this video, video summary, review video."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [insight-synthesizer, compliance-image-guard]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Video Analyzer
-
 ## When to Use
 
 - User says **analyze video** or task matches this capability

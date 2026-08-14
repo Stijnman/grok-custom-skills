@@ -1,11 +1,7 @@
 ---
 name: skill-rubric-reviewer
-description: >
-  Reviews SKILL.md files against a 10-dimension quality rubric inspired by the
-  Agent Skills specification. Use when auditing skills before publish or users
-  ays review skill, score SKILL.md, skill quality audit. Triggers: reviewskill
-  , skill rubric, audit SKILL.md.
-version: 1.0.0
+description: "Reviews SKILL.md files against a 10-dimension quality rubric inspired by the Agent Skills specification. Use for: review skill, skill rubric, audit SKILL.md, score skill quality."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -15,9 +11,7 @@ metadata:
     related_skills: [skill-evolver, hyper-skill-tester, privacy-redactor]
     publication_reviewed: '2026-06-24'
 ---
-
 # Skill Rubric Reviewer
-
 ## When to Use
 
 - User says **review skill** or task matches this capability

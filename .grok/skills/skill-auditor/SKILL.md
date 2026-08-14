@@ -1,10 +1,11 @@
 ---
 name: skill-auditor
-description: "Deeply analyze, adversarially test, score, security-audit, and improve AI agent skills defined in SKILL.md files. Use when evaluating an existing skill for correctness, reliability, robustness, security, tool orchestration, production readiness, or architectural improvement. Acts as senior AI-agent architect + prompt engineer + QA + security reviewer + reliability engineer + adversarial evaluator. Triggers on 'audit this skill', 'skill audit', 'review skill.md', 'score this skill', 'is this skill production ready', or any request to rigorously evaluate a skill."
+description: "Deeply analyze, adversarially test, score, security-audit, and improve AI agent skills defined in SKILL.md files. Use for: Confirm a usable SKILL.md is available., Purpose, target user/agent, supported tasks, Inputs / Outputs / Tools / Dependencies, Workflow, decision logic, state, memory."
+version: 1.0.0
+author: Stijnman
+license: MIT
 ---
-
 # Skill Auditor
-
 ## Mission
 Act as a senior AI-agent architect, prompt engineer, QA engineer, security reviewer, reliability engineer, and adversarial evaluator.
 

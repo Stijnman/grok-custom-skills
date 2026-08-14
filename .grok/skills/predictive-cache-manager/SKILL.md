@@ -1,11 +1,7 @@
 ---
 name: predictive-cache-manager
-description: >
-  Caches frequent tool results and prefetches likely next requests. Use for re
-  peated workflows or user says cache results, prefetch. Use when the user nee
-  ds this capability. Triggers: cache results, prefetch, reuse cache, avoid re
-  peat fetch.
-version: 1.1.0
+description: "Caches frequent tool results and prefetches likely next requests. Use for: cache results, prefetch, reuse cache, avoid repeat fetch."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [performance-optimizer, mega-context-manager]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Predictive Cache Manager
-
 ## When to Use
 
 - User says **cache results** or task matches this capability

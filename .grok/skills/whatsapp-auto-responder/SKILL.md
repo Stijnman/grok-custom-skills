@@ -1,11 +1,7 @@
 ---
 name: whatsapp-auto-responder
-description: >
-  Drafts and optionally sends WhatsApp replies with rater and HITL gates. Use 
-  when user says auto reply WhatsApp or enable WhatsApp assistant. Per-contact
-   toggle; ethical guardrails and rate limits enforced. Triggers: auto reply W
-  hatsApp, enable WhatsApp assistant, reply on WhatsApp.
-version: 1.1.0
+description: "Drafts and optionally sends WhatsApp replies with rater and HITL gates. Use for: auto reply WhatsApp, enable WhatsApp assistant, reply on WhatsApp, `whatsapp-message-rater`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [whatsapp-message-rater, hitl-approver, privacy-redactor, cron-scheduler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
-# Whatsapp Auto Responder
-
+# WhatsApp Auto Responder
 ## When to Use
 
 - User says **auto reply WhatsApp** or task matches this capability

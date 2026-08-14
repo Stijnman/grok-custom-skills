@@ -1,10 +1,11 @@
 ---
 name: desktop-subagent-connector
-description: Securely bridges the remote Grok sandbox to the user's local desktop for scoped file access, approved shell execution, GUI/browser automation, and local sub-agent work. Requires a local daemon the user runs on their machine plus an outbound tunnel. Triggered by connect to desktop, local file access, run locally, access my files safely, or when geo-restricted / login-required browser control is needed. Optimized for accurate LLM routing.
+description: "Securely bridges the remote Grok sandbox to the user's local desktop for scoped file access, approved shell execution, GUI/browser automation, and local sub-agent work. Use for: remote sandbox, user's real machine, List, Read."
+version: 1.0.0
+author: Stijnman
+license: MIT
 ---
-
 # Desktop Subagent Connector
-
 ## Overview
 
 Bridges the **remote sandbox** to the **user's real machine**. The sandbox never gets raw network access to the user's LAN. Instead the user runs a small local daemon and exposes it via an outbound tunnel (cloudflared recommended). All calls are authenticated with a shared token and confined to allowed directory roots.

@@ -1,11 +1,7 @@
 ---
 name: waze-navigator
-description: >
-  Provides navigation guidance using Waze-style routing context. Use for turn-
-   by-turn help or user says navigate, waze navigate, directions. Use when the
-   user needs this capability. Triggers: navigate, waze navigate, directions, 
-  how doI get to.
-version: 1.1.0
+description: "Provides navigation guidance using Waze-style routing context. Use for: navigate, waze navigate, directions, how do I get to."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [waze-live-reports, traffic-flight-controller]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Waze Navigator
-
 ## When to Use
 
 - User says **navigate** or task matches this capability

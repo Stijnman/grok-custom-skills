@@ -1,11 +1,7 @@
 ---
 name: hyper-skill-tester
-description: >
-  Stress-tests skills with edge-case prompts and scoring rubric. Use before pu
-  blishing skills or user says test skill, hyper test. Use when the user needs
-   this capability. Triggers: test skill, hyper test, skill QA, audit skill qu
-  ality.
-version: 1.1.0
+description: "Stress-tests skills with edge-case prompts and scoring rubric. Use for: test skill, hyper test, skill QA, audit skill quality."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [auto-tester, skill-researcher, review-skill]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Hyper Skill Tester
-
 ## When to Use
 
 - User says **test skill** or task matches this capability

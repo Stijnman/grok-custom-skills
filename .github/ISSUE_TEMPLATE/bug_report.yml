@@ -1,0 +1,50 @@
+name: Bug report
+description: Report incorrect, unsafe, or unreliable behavior in a published skill or repository helper.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the collection. Do not include credentials, personal data, or exploit payloads. For sensitive findings, use the private process in SECURITY.md.
+  - type: input
+    id: skill
+    attributes:
+      label: Affected skill or file
+      description: Provide the skill directory and file path, if known.
+      placeholder: .grok/skills/example-skill/SKILL.md
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: Explain what happened and why it is incorrect or unsafe.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Describe the correct or safer outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Safe reproduction steps
+      description: Provide the smallest benign example that demonstrates the issue.
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - Documentation or discoverability
+        - Incorrect task routing
+        - Reliability or validation
+        - Privacy or authorization boundary
+        - Potential security concern
+    validations:
+      required: true

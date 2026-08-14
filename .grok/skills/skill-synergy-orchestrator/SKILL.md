@@ -1,10 +1,7 @@
 ---
 name: skill-synergy-orchestrator
-description: >
-  Combines multiple skills into synergistic pipelines. Use when skills work be
-  tter together or user says combine skills, skill pipeline. Triggers: combine
-   skills, skill pipeline, chain skills, skill synergy.
-version: 1.1.0
+description: "Combines multiple skills into synergistic pipelines. Use for: combine skills, skill pipeline, chain skills, skill synergy."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [adaptive-workflow-composer, multi-agent-orchestrator, tool-discovery-engine]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Skill Synergy Orchestrator
-
 ## When to Use
 
 - User says **combine skills** or task matches this capability

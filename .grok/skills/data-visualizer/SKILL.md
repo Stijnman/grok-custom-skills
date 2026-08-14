@@ -1,10 +1,7 @@
 ---
 name: data-visualizer
-description: >
-  Creates charts and visual summaries from tabular or numeric data. Use when u
-  ser says visualize data, chart this, plot results. Triggers: visualize data,
-   chart this, plot results, graph this.
-version: 1.1.0
+description: "Creates charts and visual summaries from tabular or numeric data. Use for: visualize data, chart this, plot results, graph this."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [xlsx, insight-synthesizer]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Data Visualizer
-
 ## When to Use
 
 - User says **visualize data** or task matches this capability

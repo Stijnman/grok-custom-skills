@@ -1,10 +1,7 @@
 ---
 name: tool-discovery-engine
-description: >
-  Discovers available tools, MCP servers, and skills for a task. Use when plan
-  ning work or user says what tools, discover capabilities. Triggers: what too
-  ls,discover capabilities, find tool for, available skills.
-version: 1.1.0
+description: "Discovers available tools, MCP servers, and skills for a task. Use for: what tools, discover capabilities, find tool for, available skills."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [adaptive-workflow-composer, controle-overview-skill, skill-researcher]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Tool Discovery Engine
-
 ## When to Use
 
 - User says **what tools** or task matches this capability

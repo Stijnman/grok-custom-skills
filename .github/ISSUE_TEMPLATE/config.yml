@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security-sensitive report
+    url: https://github.com/Stijnman/grok-custom-skills/security/policy
+    about: Please follow the private reporting guidance in SECURITY.md rather than opening a public issue.
+  - name: Contribution guidance
+    url: https://github.com/Stijnman/grok-custom-skills/blob/main/CONTRIBUTING.md
+    about: Read the contribution standard before proposing a new or changed skill.

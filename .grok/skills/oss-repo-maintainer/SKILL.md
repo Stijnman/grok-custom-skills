@@ -1,11 +1,7 @@
 ---
 name: oss-repo-maintainer
-description: >
-  Helps maintain open-source repos: README accuracy, version consistency, andp
-  re-release checklists. Use when syncing docs with repo reality or user saysf
-  ix README, prep release, repo maintenance. Triggers: fix README, preprelease
-  , repo maintenance, sync docs.
-version: 1.0.0
+description: "Helps maintain open-source repos: README accuracy, version consistency, andp re-release checklists. Use for: fix README, prep release, repo maintenance, sync docs."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -15,9 +11,7 @@ metadata:
     related_skills: [github-repo-scout, skill-collection-bootstrapper, goal-verifier]
     publication_reviewed: '2026-06-24'
 ---
-
 # Oss Repo Maintainer
-
 ## When to Use
 
 - User says **fix README** or task matches this capability

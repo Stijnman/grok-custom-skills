@@ -1,13 +1,7 @@
 ---
 name: defensive-mcp-audit
-description: >
-  Runs a defensive, read-only security audit of the local machine for MCP and 
-  AIagent risks: risky bindings, MCP config issues, and confused-deputy exposu
-  re.Use before enabling MCP servers or when the user says audit mcp, check lo
-  calhost exposure, mcp security. Outputs text, JSON, SARIF, or HTML. Triggers
-  : audit mcp, mcp security, defensive-mcp-audit. Use when the user needs this
-   capability.
-version: 1.0.0
+description: "Runs a defensive, read-only security audit of the local machine for MCP and AIagent risks: risky bindings, MCP config issues, and confused-deputy exposu re. Use for: audit mcp, mcp security, localhost exposure, defensive-mcp-audit."
+version: 1.1.0
 author: Stijnman
 license: MIT
 metadata:
@@ -17,9 +11,7 @@ metadata:
     publication_reviewed: '2026-06-24'
 compatibility: Grok agent; optional MCP and shell access
 ---
-
-# Defensive Mcp Audit
-
+# Defensive MCP Audit
 ## When to Use
 
 - User says **audit mcp** or task matches this capability

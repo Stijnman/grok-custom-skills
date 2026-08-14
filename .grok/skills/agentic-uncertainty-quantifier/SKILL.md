@@ -1,11 +1,7 @@
 ---
 name: agentic-uncertainty-quantifier
-description: >
-  Scores task uncertainty to calibrate memory depth and iteration count. Use w
-  hen stakes are high, facts are sparse, or user says quantify uncertainty, fa
-  st slow think, uncertainty score. Triggers: quantify uncertainty, fast slow 
-  think,uncertainty score, how sure.
-version: 1.1.0
+description: "Scores task uncertainty to calibrate memory depth and iteration count. Use for: quantify uncertainty, fast slow think, uncertainty score, how sure."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [self-refine-loop, semantic-memory-manager, deep-search-enabler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Agentic Uncertainty Quantifier
-
 ## When to Use
 
 - User says **quantify uncertainty** or task matches this capability

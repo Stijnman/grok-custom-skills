@@ -1,10 +1,7 @@
 ---
 name: ai-share-extractor-v4
-description: >
-  Extracts shareable insights from long agent sessions for export. Use when us
-  erwants a summary to share, export takeaways, or create share card. Triggers
-  :extract shares, shareable summary, export insights.
-version: 1.1.0
+description: "Extracts shareable insights from long agent sessions for export. Use for: extract shares, shareable summary, export insights, `privacy-redactor`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -13,9 +10,7 @@ metadata:
     tags: [extract shares, shareable summary, export insights]
     related_skills: [privacy-redactor, insight-synthesizer, imagine-asset-generator]
 ---
-
-# Ai Share Extractor V4
-
+# AI Share Extractor V4
 ## When to Use
 
 - User says **extract shares** or task matches this capability

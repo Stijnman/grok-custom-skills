@@ -1,10 +1,7 @@
 ---
 name: cron-scheduler
-description: >
-  Schedules recurring or delayed agent tasks. Use when the user says schedulet
-  his, run daily, cron job, or set timer. Parses schedules from SKILL.md orcro
-  n-jobs.md. Triggers: schedule this, run daily, cron job, set timer.
-version: 1.1.0
+description: "Schedules recurring or delayed agent tasks. Use for: schedule this, run daily, cron job, set timer."
+version: 1.2.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -13,9 +10,7 @@ metadata:
     tags: [schedule this, run daily, cron job, set timer, every morning]
     related_skills: [insight-synthesizer, goal-verifier]
 ---
-
 # Cron Scheduler
-
 ## When to Use
 
 - User says **schedule this** or task matches this capability

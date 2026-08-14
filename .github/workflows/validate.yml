@@ -1,0 +1,31 @@
+name: Validate skill collection
+
+on:
+  pull_request:
+    paths:
+      - ".grok/skills/**"
+      - "scripts/**"
+      - "SKILLS_INDEX.md"
+      - ".github/workflows/validate.yml"
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate skill metadata and structure
+        run: python3 scripts/validate_collection.py
+      - name: Regenerate catalog
+        run: python3 scripts/generate_catalog.py
+      - name: Confirm generated catalog is current
+        run: git diff --exit-code -- SKILLS_INDEX.md

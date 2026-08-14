@@ -1,11 +1,7 @@
 ---
 name: self-refine-loop
-description: >
-  Runs a generator-critique-reviser loop to iteratively improve agent outputs.
-  Use when the user asks to refine, critique, or improve a draft, or mentionss
-  elf-refine, reflexion, or iterative revision. Stops at 5 iterations orconfid
-  ence 8/10. Triggers: self refine, reflexion loop, critique and revise.
-version: 1.1.0
+description: "Runs a generator-critique-reviser loop to iteratively improve agent outputs. Use for: self refine, reflexion loop, critique and revise, improve output."
+version: 1.2.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -14,9 +10,7 @@ metadata:
     tags: [self refine, reflexion loop, critique and revise, improve output]
     related_skills: [goal-verifier, agentic-uncertainty-quantifier, dspy-prompt-optimizer]
 ---
-
 # Self Refine Loop
-
 ## When to Use
 
 - User says **self refine** or task matches this capability

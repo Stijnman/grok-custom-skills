@@ -1,10 +1,7 @@
 ---
 name: evolver
-description: >
-  Lightweight skill mutation helper for quick iterations. Use for small skill 
-  tweaks or user says quick evolve, mutate skill. Use when the user needs this
-   capability. Triggers: quick evolve, mutate skill, tweak skill.
-version: 1.1.0
+description: "Lightweight skill mutation helper for quick iterations. Use for: quick evolve, mutate skill, tweak skill, `skill-evolver`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [skill-evolver, evolution, hyper-skill-tester]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Evolver
-
 ## When to Use
 
 - User says **quick evolve** or task matches this capability

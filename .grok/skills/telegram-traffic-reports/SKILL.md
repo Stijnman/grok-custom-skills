@@ -1,11 +1,7 @@
 ---
 name: telegram-traffic-reports
-description: >
-  Fetches and reports traffic conditions via Telegram bot format. Use for comm
-  ute updates or user says telegram traffic, traffic report Telegram. Use when
-   theuser needs this capability. Triggers: telegram traffic, traffic report T
-  elegram, commute alert.
-version: 1.1.0
+description: "Fetches and reports traffic conditions via Telegram bot format. Use for: telegram traffic, traffic report Telegram, commute alert, `waze-live-reports`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [waze-live-reports, traffic-flight-controller, cron-scheduler, multi-platform-messenger-bridge]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Telegram Traffic Reports
-
 ## When to Use
 
 - User says **telegram traffic** or task matches this capability

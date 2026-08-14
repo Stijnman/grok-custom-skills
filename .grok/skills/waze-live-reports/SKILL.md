@@ -1,11 +1,7 @@
 ---
 name: waze-live-reports
-description: >
-  Fetches live Waze traffic incidents and jams for a location. Use for real-ti
-  metraffic or user says waze report, live traffic, road incidents. Use when t
-  heuser needs this capability. Triggers: waze report, live traffic, road inci
-  dents, traffic jams.
-version: 1.1.0
+description: "Fetches live Waze traffic incidents and jams for a location. Use for: waze report, live traffic, road incidents, traffic jams."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [waze-navigator, traffic-flight-controller, telegram-traffic-reports]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Waze Live Reports
-
 ## When to Use
 
 - User says **waze report** or task matches this capability

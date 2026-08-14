@@ -1,11 +1,7 @@
 ---
 name: user-preference-profiler
-description: >
-  Builds and applies user preference profiles across sessions. Use to personal
-  ize responses or user says my preferences, remember how I like. Use when the
-   user needs this capability. Triggers: my preferences, remember how I like, 
-  user profile, personalize.
-version: 1.1.0
+description: "Builds and applies user preference profiles across sessions. Use for: my preferences, remember how I like, user profile, personalize."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [persistent-memory-bridge, semantic-memory-manager]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # User Preference Profiler
-
 ## When to Use
 
 - User says **my preferences** or task matches this capability

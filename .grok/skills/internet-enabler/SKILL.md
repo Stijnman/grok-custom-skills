@@ -1,10 +1,7 @@
 ---
 name: internet-enabler
-description: >
-  Ensures web access is used effectively for live information. Use when facts 
-  may be stale or user says search web, need internet, look up online. Trigger
-  s: search web, need internet, look up online, current info.
-version: 1.1.0
+description: "Ensures web access is used effectively for live information. Use for: search web, need internet, look up online, current info."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [deep-search-enabler, web-scraper, sandbox-internet-handler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Internet Enabler
-
 ## When to Use
 
 - User says **search web** or task matches this capability

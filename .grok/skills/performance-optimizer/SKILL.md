@@ -1,10 +1,7 @@
 ---
 name: performance-optimizer
-description: >
-  Optimizes agent and code performance via profiling and tuning. Use when slow
-   execution or user says optimize performance, make faster. Triggers: optimiz
-  e performance, make faster, performance tune.
-version: 1.1.0
+description: "Optimizes agent and code performance via profiling and tuning. Use for: optimize performance, make faster, performance tune, `bottleneck-resolver`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [bottleneck-resolver, parallel-tool-orchestrator, predictive-cache-manager]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Performance Optimizer
-
 ## When to Use
 
 - User says **optimize performance** or task matches this capability

@@ -1,10 +1,7 @@
 ---
 name: natural-language-to-skill
-description: >
-  Converts natural language descriptions into SKILL.md drafts. Use when user d
-  escribes a new capability or says create skill from description. Triggers: c
-  reate skill from description, NL to skill, skill from prompt.
-version: 1.1.0
+description: "Converts natural language descriptions into SKILL.md drafts. Use for: create skill from description, NL to skill, skill from prompt, `skill-creation-enabler`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [skill-creation-enabler, hyper-skill-tester, skill-researcher]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Natural Language To Skill
-
 ## When to Use
 
 - User says **create skill from description** or task matches this capability

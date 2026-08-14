@@ -1,11 +1,7 @@
 ---
 name: skill-evolver
-description: >
-  Full skill rewrite and improvement with versioned backups and templates. Use
-   for major skill upgrades or user says evolve skill, upgrade SKILL.md. Use w
-  henthe user needs this capability. Triggers: evolve skill, upgrade SKILL.md,
-   improve skill file.
-version: 1.1.0
+description: "Full skill rewrite and improvement with versioned backups and templates. Use for: evolve skill, upgrade SKILL.md, improve skill file, `skill-evolution-engine`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [skill-evolution-engine, hyper-skill-tester, natural-language-to-skill]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Skill Evolver
-
 ## When to Use
 
 - User says **evolve skill** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: goal-verifier
-description: >
-  Verifies task completion against stated goals before marking work done. Usew
-  hen the user asks to verify success, confirm completion, or says 'did Iachie
-  ve this'. Runs checks + optional self-refine pass. Triggers: verify goal,con
-  firm success, did I achieve this.
-version: 1.1.0
+description: "Verifies task completion against stated goals before marking work done. Use for: verify goal, confirm success, did I achieve this, check if done."
+version: 1.2.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -14,9 +10,7 @@ metadata:
     tags: [verify goal, confirm success, did I achieve this, check if done]
     related_skills: [self-refine-loop, auto-tester]
 ---
-
 # Goal Verifier
-
 ## When to Use
 
 - User says **verify goal** or task matches this capability

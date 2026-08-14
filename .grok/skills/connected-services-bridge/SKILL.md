@@ -1,10 +1,7 @@
 ---
 name: connected-services-bridge
-description: >
-  Connects external services (GitHub, Notion, Drive) to agent workflows. Use w
-  hen integrating APIs or user says connect service, bridge API. Triggers: con
-  nectservice, bridge API, integrate GitHub, hook up Notion.
-version: 1.1.0
+description: "Connects external services (GitHub, Notion, Drive) to agent workflows. Use for: connect service, bridge API, integrate GitHub, hook up Notion."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [drive-persistence-bridge, tool-discovery-engine, internet-enabler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Connected Services Bridge
-
 ## When to Use
 
 - User says **connect service** or task matches this capability

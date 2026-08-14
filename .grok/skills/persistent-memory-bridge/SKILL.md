@@ -1,10 +1,7 @@
 ---
 name: persistent-memory-bridge
-description: >
-  Bridges session memory to persistent storage across conversations. Use when 
-  continuity needed or user says remember this, persistent memory. Triggers: r
-  emember this, persistent memory, save to memory, recall later.
-version: 1.1.0
+description: "Bridges session memory to persistent storage across conversations. Use for: remember this, persistent memory, save to memory, recall later."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [semantic-memory-manager, memory-sanitizer, user-preference-profiler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Persistent Memory Bridge
-
 ## When to Use
 
 - User says **remember this** or task matches this capability

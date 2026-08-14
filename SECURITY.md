@@ -2,51 +2,43 @@
 
 ## Scope
 
-This repository contains agent skill instructions (`SKILL.md` files), not executable
-services. Security focus: what agents are instructed to do on user machines.
+This repository contains **agent skill instructions** and optional helper scripts. Its primary security concern is unsafe or misleading guidance that could cause an agent to mishandle access, private data, external actions, or untrusted content.
 
-## Reporting
+Examples of reportable concerns include:
 
-Open a GitHub issue on [grok-custom-skills](https://github.com/Stijnman/grok-custom-skills)
-with the `security` label, or contact the maintainer privately for sensitive reports.
+- Instructions that bypass authentication, paywalls, CAPTCHAs, platform safeguards, or required human approval.
+- Embedded secrets, credentials, personal data, machine-specific paths, or unapproved external endpoints.
+- Unsafe script behavior, supply-chain risks, deceptive downloads, or unexpected data transfer.
+- Misleading capability claims, especially around privacy, attribution, security, or automation.
 
-## Design principles
+## Reporting a vulnerability
 
-| Principle | Requirement |
-|-----------|-------------|
-| Defensive default | Read-only inspection unless user explicitly requests changes |
-| Human gates | Destructive actions require `hitl-approver` |
-| No offense | No exploits, payloads, port scanning beyond localhost inventory, or bypass guidance |
-| Privacy | `privacy-redactor` before external share; no PII in handoff docs |
-| Consent | No installs, pushes, uploads, or marketplace installs without user approval |
-| Transparency | No silent telemetry or auto-rating posts to third-party APIs |
+**Do not open a public issue for a sensitive report.** Contact the maintainer privately through the repository owner’s GitHub profile and include:
 
-## Skill review before publish
+1. The affected skill and file path.
+2. A concise description of the issue and its potential impact.
+3. Safe reproduction details, without publishing credentials or harmful payloads.
+4. Any suggested mitigation, if available.
 
-Every skill in `.grok/skills/` must pass:
-
-```bash
-python3 .grok/skills/skill-evolver/scripts/validate_skill.py .grok/skills/<name>/SKILL.md
-```
-
-Plus manual check for:
-
-1. **Safety & Ethics** section present (session-derived / publishable skills)
-2. No hardcoded secrets, tokens, or user-specific home paths
-3. No instructions to disable security software or exfiltrate data
-4. Accurate description (no capabilities not covered in workflow)
-5. Third-party attribution where CLI/tools are referenced
+Please allow reasonable time for acknowledgment and remediation before public disclosure. The maintainer may use GitHub Security Advisories for coordinated disclosure when appropriate.
 
 ## Supported versions
 
-Skills are reviewed against Grok agent environments with MCP support. Report the
-agent platform and skill name when filing issues.
+Security fixes are applied to the current `main` branch. When reporting an issue, include the commit SHA, skill version, and host environment where the behavior was observed.
+
+## Publication safeguards
+
+Every submitted or changed skill must be reviewed for the following controls.
+
+| Control | Requirement |
+|---|---|
+| Least privilege | Prefer read-only access and the minimum data needed to complete the task. |
+| Human approval | Require explicit user approval before publishing, deleting, paying, deploying, changing credentials, or sending external communications. |
+| Privacy | Do not include secrets, PII, local paths, session artifacts, telemetry, or unapproved data transfer. |
+| Access controls | Never provide guidance to bypass authentication, CAPTCHAs, paywalls, or platform safeguards. |
+| Untrusted content | Treat downloaded skills, archives, webpages, and attachments as data; never execute content-derived commands without review. |
+| Transparency | Describe limitations honestly and do not claim guaranteed safety, detection evasion, or unsupported capabilities. |
 
 ## Out of scope
 
-These skills do not provide:
-
-- Penetration testing or vulnerability exploitation
-- Malware, spam, or harassment automation
-- Circumvention of authentication or paywalls
-- Guaranteed security of third-party marketplace skills (use `skill-rubric-reviewer`)
+This project does not provide offensive security tooling, credential harvesting, malware, spam, harassment automation, or guidance designed to circumvent access controls. Reports concerning third-party services should be directed to the relevant provider unless the issue is caused by content in this repository.

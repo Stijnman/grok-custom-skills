@@ -1,10 +1,7 @@
 ---
 name: safe-image-editor
-description: >
-  Edits images with policy and quality guardrails. Use when modifying images o
-  ruser says edit image, safe edit, adjust photo. Triggers: edit image, safe e
-  dit, adjust photo, modify image.
-version: 1.1.0
+description: "Edits images with policy and quality guardrails. Use for: edit image, safe edit, adjust photo, modify image."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [imagine, compliance-image-guard, imagine-asset-generator]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Safe Image Editor
-
 ## When to Use
 
 - User says **edit image** or task matches this capability

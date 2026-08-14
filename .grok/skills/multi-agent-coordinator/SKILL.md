@@ -1,11 +1,7 @@
 ---
 name: multi-agent-coordinator
-description: >
-  Coordinates multiple agents with role assignment and handoffs. Use for paral
-  lel work or user says coordinate agents, multi agent team. Use when the user
-   needs this capability. Triggers: coordinate agents, multi agent team, agent
-   roles, delegate agents.
-version: 1.1.0
+description: "Coordinates multiple agents with role assignment and handoffs. Use for: coordinate agents, multi agent team, agent roles, delegate agents."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [multi-agent-orchestrator, desktop-subagent-connector, goal-verifier]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Multi Agent Coordinator
-
 ## When to Use
 
 - User says **coordinate agents** or task matches this capability

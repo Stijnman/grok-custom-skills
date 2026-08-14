@@ -1,91 +1,71 @@
-# Publishing Checklist
+# Publishing Guide
 
-Use before publishing this repo or individual skills to GitHub, agentskill.sh, or PyPI.
+Use this guide before pushing changes to GitHub, submitting skills to a marketplace, or sharing a package outside this repository.
 
-## No private data
+## Release checklist
 
-```bash
-python3 scripts/check_no_private_data.py   # 0 failures required
-```
+| Area | Required review |
+|---|---|
+| **Catalog** | Regenerate `SKILLS_INDEX.md`; ensure the README count and links are current. |
+| **Metadata** | Confirm every `SKILL.md` has a stable `name`, a concise `description`, and an incremented version for material changes. |
+| **Safety** | Check for access-control evasion, credential handling, deceptive automation, spam, unsupported claims, and missing approval gates. |
+| **Privacy** | Remove keys, tokens, emails, phone numbers, personal paths, session logs, and user-specific data. |
+| **Resources** | Inspect every bundled script, template, archive, and binary. Do not publish unreviewed executable content. |
+| **Documentation** | Update README, catalog, contributor guidance, and security policy whenever behavior or installation changes. |
+| **Validation** | Run repository checks and record the results in the pull request or release note. |
 
-Must not appear in any tracked file:
+## Required checks
 
-- Personal emails (use GitHub `users.noreply.github.com` for git commits)
-- Machine hostnames, usernames, or `/home/<user>/` paths
-- Private LAN IPs (`192.168.x.x`, `10.x.x.x`)
-- Session-specific audit results (your ports, processes, machine model)
-- API keys, tokens, phone numbers, chat IDs
-
-Use `~/.grok/skills/`, `workspace .grok/skills/`, or generic examples only.
-
-**Git history:** if you cloned locally, logs may contain your hostname/email.
-Before first public push, set:
+Run these commands from the repository root.
 
 ```bash
-git config user.email "YOUR_ID+YOUR_USER@users.noreply.github.com"
+# Refresh the generated catalog
+python3 scripts/generate_catalog.py
+
+# Detect private data and unsafe publication patterns
+python3 scripts/check_no_private_data.py
+python3 scripts/publish_safety_check.py
+
+# Review the working tree
+git status --short
+git diff --check
 ```
 
-Rewrite history if a personal email was already pushed.
+If a change introduces or modifies a helper script, run it against a safe representative input. Never execute scripts that arrived from an untrusted archive, external webpage, or unreviewed contribution.
 
-## Repository
+## Per-skill standard
 
-- [ ] `check_no_private_data.py` passes
-- [ ] `README.md` skill count matches `find .grok/skills -name SKILL.md | wc -l`
-- [ ] `SKILLS_INDEX.md` generated and linked
-- [ ] `SECURITY.md` present
-- [ ] `LICENSE` is MIT (or compatible)
-- [ ] No `.env`, tokens, or credentials in git history
+Before publication, verify that each package meets the following standard:
 
-## Per-skill (`SKILL.md`)
+1. The directory and metadata name are stable, lowercase, and hyphen-separated.
+2. The description explains both the capability and when to invoke it.
+3. The instructions give an ordered workflow, expected output, and error handling when appropriate.
+4. The package documents privacy, authorization, and approval boundaries for consequential tasks.
+5. Resources are necessary, reviewed, and free of secrets or private data.
+6. The skill does not claim to bypass controls, conceal authorship, or guarantee outcomes it cannot verify.
 
-- [ ] Valid frontmatter: `name`, `description`, `license: MIT`
-- [ ] `name` matches directory name (lowercase-hyphen)
-- [ ] Description includes **what** + **when** + trigger keywords
-- [ ] Numbered workflow with clear steps
-- [ ] Error handling table
-- [ ] **Safety & Ethics** section (publishable/session-derived skills)
-- [ ] No silent POST/telemetry to external APIs
-- [ ] No hardcoded `/home/<user>/` paths — use `~/.grok/skills/` or workspace-relative
-- [ ] Destructive ops reference `hitl-approver`
-- [ ] Third-party tools attributed (e.g. defensive-mcp-audit, agentskill.sh CLI)
+## Versioning
 
-## Automated validation (2026 toolchain)
+Use semantic versioning for package-level changes:
 
-```bash
-# Full pipeline (recommended)
-python3 scripts/optimize_all_skills.py
+| Change | Version guidance |
+|---|---|
+| Documentation correction or non-behavioral clarification | Patch increment. |
+| Improved routing, workflow, safety boundaries, or compatible resource additions | Minor increment. |
+| Breaking renames, removed behavior, or incompatible workflow changes | Major increment. |
 
-# Validate only (no description patches)
-python3 scripts/optimize_all_skills.py --validate-only
+Keep the version in the skill frontmatter and explain material changes in the pull request or release notes.
 
-# Individual checks
-python3 scripts/check_no_private_data.py      # no PII/paths/IPs
-python3 scripts/publish_safety_check.py       # safety patterns
-python3 -c "from skills_ref import validate; validate('.grok/skills/hitl-approver')"  # agentskills.io spec
-```
+## Publication blockers
 
-### External tools
+Do not publish a skill that contains any of the following:
 
-| Tool | Purpose | Install |
-|------|---------|---------|
-| [skills-ref](https://agentskills.io/specification) | Official Agent Skills spec validator | `pip install skills-ref` |
-| [@agentskill.sh/cli](https://agentskill.sh) v2.0.2 | Search, install, security-scan marketplace skills | `npx @agentskill.sh/cli` |
-| `skill-rubric-reviewer` | 10-dimension local quality review | included in repo |
-| [skill-creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator) | Description trigger eval loop (Anthropic) | marketplace / clone |
+- Secrets, credentials, personal data, local environment artifacts, or user-specific logs.
+- Instructions to exploit systems, bypass access controls, solve CAPTCHAs automatically, evade authorship checks, or disable safeguards.
+- Hidden or automatic external writes, data transfers, ratings, messages, deployments, purchases, or installations.
+- Unreviewed scripts, binaries, archives, or third-party content.
+- Claims of guaranteed security, undetectability, or universal compatibility.
 
-Regenerate session skills: `python3 scripts/generate_publishable_skills.py`
+## Marketplace submissions
 
-## agentskill.sh submission
-
-1. Run `skill-rubric-reviewer` — target 40+/50
-2. Run `skill-marketplace-installer` security scan if available
-3. Confirm MIT license in frontmatter
-4. Do **not** include auto-feedback POST blocks from third-party skill templates
-
-## Red flags (block publish)
-
-- Instructions to exploit, scan, or attack remote systems
-- Credential harvesting or token logging
-- Auto-install without user consent
-- Real-person image generation without compliance guard
-- Claims of "100% security" or offensive capabilities
+Only submit a skill to an external marketplace after the repository review is complete and the maintainer explicitly approves the submission. A marketplace upload is a separate external action; do not treat a GitHub merge as approval to publish elsewhere.

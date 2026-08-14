@@ -1,105 +1,54 @@
 ---
 name: hybrid-execution-bridge
-description: Unified execution hub that routes work across sandbox computer-use, local desktop via cloudflared tunnel, connected services, stealth browsing, and controlled internet. Creates new skills on demand via natural-language-to-skill. Triggered by hybrid execution, tunnel bridge, unified bridge, local plus sandbox, stealth browse with persistence, or when a task needs mixed local remote and cloud capabilities. Optimized for accurate LLM routing.
+description: "Coordinate authorized work across sandbox tools, a user-approved local desktop, connected services, and public-web research. Use for: hybrid execution, local plus sandbox, connected services, scoped desktop access."
+version: 1.1.0
+author: Stijnman
+license: MIT
+compatibility: Grok agent; optional browser, shell, desktop bridge, and connected-service access
+metadata:
+  grok:
+    tags: [hybrid execution, local plus sandbox, connected services, scoped desktop access]
+    related_skills: [computer-use-bridge, desktop-subagent-connector, connected-services-bridge, sandbox-internet-handler]
 ---
 
 # Hybrid Execution Bridge
 
-## Overview
+## Purpose
 
-Single entry point that fuses:
+Use this skill to plan work that may span sandbox processing, user-approved local resources, connected services, and public-web research. Select the least-privileged environment for each step and keep external actions explicit.
 
-| Component skill | Role in the fusion |
-|-----------------|-------------------|
-| **computer-use-bridge** | Sandbox shell, packages, files, code |
-| **desktop-subagent-connector** | User machine via cloudflared tunnel + local daemon |
-| **connected-services-bridge** | Drive, GitHub, Gmail, Calendar, Notion, etc. |
-| **internet-enabler** / sandbox-internet-handler | Controlled external HTTP when sandbox is restricted |
-| **humanization-stealth-browsing** | Anti-bot browsing patterns for hard sites |
-| **natural-language-to-skill** | Spawn new skills when a gap appears mid-task |
+## Routing workflow
 
-Emergent capability: decide *where* each sub-step runs (sandbox vs local desktop vs pure API) and keep persistence + audit consistent.
+1. Decompose the task into local, sandbox, connected-service, and public-web steps.
+2. Use sandbox tools for code, documents, data processing, and ordinary public research whenever sufficient.
+3. Use a local desktop bridge only after the user authorizes the scope and the bridge health check succeeds.
+4. Use connected services only for the accounts and operations the user has approved.
+5. Use responsible browsing methods; stop at login walls, CAPTCHAs, paywalls, or other access restrictions.
+6. Present planned external writes, uploads, messages, deployments, or publications for explicit approval before carrying them out.
+7. Summarize which environments were used, what data moved between them, and any limitations.
 
-## Routing Rules (decision order)
+## Environment selection
 
-1. **Local desktop required?**  
-   Login sessions, geo-fence (e.g. Belgium), licensed local software, heavy GUI, or user said "on my machine"  
-   → `desktop-subagent-connector` (check `DESKTOP_BRIDGE_URL` + token; if missing, run easy setup instructions).
+| Need | Preferred environment | Boundary |
+|---|---|---|
+| Code, files, reports, or data analysis | Sandbox | Keep data within the task workspace unless the user authorizes export. |
+| Existing user session, local software, or local files | Authorized desktop bridge | Verify scope and connection health; never assume access. |
+| Drive, GitHub, or other connected account | Connected-service integration | Read first; require approval for writes or publication. |
+| Public web information | Browser or approved research tool | Respect access restrictions and site rules. |
 
-2. **Sandbox compute enough?**  
-   Code, packages, artifacts, ffmpeg, pdf, etc.  
-   → `computer-use-bridge`.
+## Local desktop safeguards
 
-3. **External data / live web?**  
-   - Soft sites → built-in browser tools + `internet-enabler`.  
-   - Hard / anti-bot sites → `humanization-stealth-browsing` (optionally through local browser if tunnel is up).
-
-4. **Persist or talk to SaaS?**  
-   Always prefer `connected-services-bridge` for Drive/GitHub uploads, issues, calendar, mail.
-
-5. **Capability gap mid-flight?**  
-   → `natural-language-to-skill` + Persistence Contract (Local + Drive + GitHub).
-
-Never claim local desktop access unless the tunnel health check succeeds.
-
-## Tunnel path (desktop-subagent)
-
-Easy setup the user runs once per session:
-
-```bash
-cd …/desktop-subagent-connector/scripts && bash setup.sh
-```
-
-Paste back:
-
-```
-DESKTOP_BRIDGE_URL=https://….trycloudflare.com
-DESKTOP_BRIDGE_TOKEN=…
-```
-
-Then this skill:
-
-```bash
-curl -sS -H "Authorization: Bearer $DESKTOP_BRIDGE_TOKEN" "$DESKTOP_BRIDGE_URL/health"
-```
-
-Security notes (quick tunnels):
-- URL is public; **token is the lock**.
-- Short sessions only; kill tunnel when done.
-- For longer/sensitive use: named Cloudflare Tunnel + Access in front of the daemon.
-
-## Standard workflow
-
-1. Parse goal → decompose into local / sandbox / cloud / web steps.
-2. Health-check whatever bridges are needed (tunnel, connected tools, internet).
-3. Execute in parallel where safe.
-4. Aggregate results into artifacts/.
-5. Persist important outputs via connected-services-bridge (Drive folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`, GitHub `Stijnman/grok-custom-skills` when skills change).
-6. If a reusable procedure appeared → natural-language-to-skill → full Persistence Contract.
+When a user-authorized desktop bridge is needed, ask for clear permission, run its documented health check, and limit operations to the agreed files or application. Do not request or expose raw tokens in summaries. Stop immediately if the connection fails or the user revokes permission.
 
 ## Error handling
 
-- Tunnel down / 401 → fall back to sandbox-only; tell user how to re-run `setup.sh`.
-- Internet blocked → internet-enabler / sandbox-internet-handler first; then retry.
-- Stealth browse fails → escalate to local browser via tunnel if available.
-- Exp backoff + jitter (10s / 30s / 60s ±25%) on transient failures.
-- Log bridge choices and outcomes to evolution_log.md.
+| Situation | Response |
+|---|---|
+| Local bridge is unavailable | Continue with sandbox alternatives and state the limitation. |
+| Connected service lacks authorization | Do not retry with another account; ask the user to authorize or choose a local alternative. |
+| Website presents a restriction | Stop automated access and explain the permitted options. |
+| External action is pending | Present scope, destination, and user-visible effect; wait for approval. |
 
-## When to activate
+## Output
 
-- "Use hybrid bridge", "tunnel + sandbox", "local and cloud together"
-- Tasks that mix file access on user PC with sandbox processing and Drive upload
-- Geo-restricted or login-walled browsing
-- "Combine computer-use, desktop, connected services, stealth browse"
-- Any request that previously would have required manually juggling those skills
-
-## Anti-patterns
-
-- Do not expose `/exec` on the local daemon without a strong token and user consent.
-- Do not leave quick tunnels running unattended.
-- Do not invent local results when the tunnel is down.
-- Do not skip Persistence Contract when creating skills through this hub.
-
-## Version
-1.0.0 — 2026-08-14  
-Initial fusion of connected-services-bridge + computer-use-bridge + desktop-subagent-connector (tunnel) + humanization-stealth-browsing + internet-enabler + natural-language-to-skill.
+Return the execution plan, selected environments, authorization boundaries, completed work, and pending external actions. Do not claim that local, cloud, or connected-service work occurred unless it was verified.

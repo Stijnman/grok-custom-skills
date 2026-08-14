@@ -1,10 +1,7 @@
 ---
 name: bottleneck-resolver
-description: >
-  Identifies and resolves performance bottlenecks in agent workflows. Use when
-   tasks are slow, stuck, or user says find bottleneck, speed up. Triggers: fi
-  nd bottleneck, speed up, why so slow, optimize workflow.
-version: 1.1.0
+description: "Identifies and resolves performance bottlenecks in agent workflows. Use for: find bottleneck, speed up, why so slow, optimize workflow."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [performance-optimizer, parallel-tool-orchestrator, predictive-cache-manager]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Bottleneck Resolver
-
 ## When to Use
 
 - User says **find bottleneck** or task matches this capability

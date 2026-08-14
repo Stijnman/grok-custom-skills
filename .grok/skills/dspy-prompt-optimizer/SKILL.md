@@ -1,11 +1,7 @@
 ---
 name: dspy-prompt-optimizer
-description: >
-  Tunes prompts iteratively using reflection and success metrics. Use when the
-   user says optimize this prompt, dspy tune, or improve prompt with reflectio
-  n. Integrates self-refine-loop for critique cycles. Triggers: optimize this 
-  prompt, dspy tune, improve prompt with reflection.
-version: 1.1.0
+description: "Tunes prompts iteratively using reflection and success metrics. Use for: optimize this prompt, dspy tune, improve prompt with reflection, `self-refine-loop`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [self-refine-loop, auto-tester, hyper-skill-tester]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
-# Dspy Prompt Optimizer
-
+# DSPy Prompt Optimizer
 ## When to Use
 
 - User says **optimize this prompt** or task matches this capability

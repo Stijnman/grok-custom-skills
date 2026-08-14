@@ -1,11 +1,7 @@
 ---
 name: compliance-image-guard
-description: >
-  Checks images for policy compliance before generation or publish. Use before
-   sharing images or when user says compliance check, safe image. Use when the
-   user needs this capability. Triggers: compliance check, safe image, image p
-  olicy,can I publish this.
-version: 1.1.0
+description: "Checks images for policy compliance before generation or publish. Use for: compliance check, safe image, image policy, can I publish this."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [safe-image-editor, imagine-asset-generator, hitl-approver]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Compliance Image Guard
-
 ## When to Use
 
 - User says **compliance check** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: hitl-approver
-description: >
-  Pauses high-risk actions for explicit human approval. Use before WhatsApp se
-  nds, deployments, deletions, credential changes, or financial actions. Trigg
-  ers:approve this, hitl check, human review needed. Use when the user needs t
-  his capability.
-version: 1.1.0
+description: "Pauses high-risk actions for explicit human approval. Use for: approve this, hitl check, human review needed, confirm before send."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [whatsapp-auto-responder, privacy-redactor, multi-platform-messenger-bridge]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Hitl Approver
-
 ## When to Use
 
 - User says **approve this** or task matches this capability

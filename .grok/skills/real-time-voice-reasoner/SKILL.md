@@ -1,11 +1,7 @@
 ---
 name: real-time-voice-reasoner
-description: >
-  Handles real-time voice input with low-latency reasoning. Use for voice sess
-  ions or user says voice mode, speak and reason. Use when the user needs this
-   capability. Triggers: voice mode, speak and reason, voice assistant, listen
-  .
-version: 1.1.0
+description: "Handles real-time voice input with low-latency reasoning. Use for: voice mode, speak and reason, voice assistant, listen."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [voice-think-fast-handler, voice-synthesis-handler]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Real Time Voice Reasoner
-
 ## When to Use
 
 - User says **voice mode** or task matches this capability

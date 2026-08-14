@@ -1,10 +1,7 @@
 ---
 name: workflow-composer
-description: >
-  Composes linear and branching workflows from goals and constraints. Use when
-   planning multi-step work or user says compose workflow, build plan. Trigger
-  s: compose workflow, build plan, workflow plan, step by step plan.
-version: 1.1.0
+description: "Composes linear and branching workflows from goals and constraints. Use for: compose workflow, build plan, workflow plan, step by step plan."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [adaptive-workflow-composer, goal-verifier, skill-synergy-orchestrator]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Workflow Composer
-
 ## When to Use
 
 - User says **compose workflow** or task matches this capability

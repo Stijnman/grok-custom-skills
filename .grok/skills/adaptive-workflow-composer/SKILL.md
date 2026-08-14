@@ -1,10 +1,7 @@
 ---
 name: adaptive-workflow-composer
-description: >
-  Composes multi-step agent workflows from goals and available skills. Use whe
-  ntasks need orchestration or user says compose workflow, plan steps, adaptiv
-  epipeline. Triggers: compose workflow, plan steps.
-version: 1.1.0
+description: "Composes multi-step agent workflows from goals and available skills. Use for: compose workflow, plan steps, adaptive pipeline, orchestrate task."
+version: 1.2.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -13,9 +10,7 @@ metadata:
     tags: [compose workflow, plan steps, adaptive pipeline, orchestrate task]
     related_skills: [workflow-composer, multi-agent-orchestrator, tool-discovery-engine]
 ---
-
 # Adaptive Workflow Composer
-
 ## When to Use
 
 - User says **compose workflow** or task matches this capability

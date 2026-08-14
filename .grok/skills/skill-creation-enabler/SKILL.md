@@ -1,36 +1,40 @@
 ---
 name: skill-creation-enabler
-description: Continuously monitors the skill library for gaps, then delegates creation and full persistence to auto-skill-resolver. Ensures every new skill follows the Non-Negotiable Persistence Contract (Memory + Drive + GitHub + versioning). Runs at low priority for ecosystem health. Triggered by gap detection, "create missing skills", or health checks.
+description: "Identify coverage gaps and maintenance opportunities in a skill library, then prepare an approval-gated creation or improvement plan. Use for: skill gap analysis, missing capability, library health check, skill maintenance."
+version: 1.1.0
+author: Stijnman
+license: MIT
+compatibility: Grok agent; optional filesystem and repository access
+metadata:
+  grok:
+    tags: [skill gap analysis, missing capability, library health, skill maintenance]
+    related_skills: [auto-skill-resolver, skill-creator, skill-researcher]
 ---
 
 # Skill Creation Enabler
 
-## Overview
-Low-level guardian that detects missing skills and hands them off to **auto-skill-resolver** for creation + full persistence. It no longer tries to create skills itself. This keeps the library healthy while enforcing the single Persistence Contract.
+## Purpose
 
-## Instructions
+Use this skill to assess whether a collection has meaningful capability gaps, outdated package metadata, duplicated skills, or missing documentation. It prepares recommendations; it does not create, install, synchronize, or publish skills automatically.
 
-1. Maintain `references/required-skills.txt` and `references/desired-skills.txt`.
-2. Periodically scan `/home/workdir/.grok/skills/` and `/root/.grok/skills/`.
-3. For every missing skill:
-   - Call **auto-skill-resolver** with the capability need.
-   - auto-skill-resolver will create (or download), version, write to persistent memory, upload to Google Drive, and push to GitHub.
-4. Log the hand-off and result to evolution_log.md.
-5. Never create a skill directly — always go through auto-skill-resolver so the Persistence Contract is obeyed.
+## Workflow
 
-## Configuration
-- references/required-skills.txt
-- references/desired-skills.txt
-- scripts/check-and-create.sh (detection only)
+1. Inspect the configured workspace skill directory and any user-authorized repository source.
+2. Compare available packages with the requested capabilities or a maintained requirements list.
+3. Identify missing, duplicated, outdated, or poorly documented areas.
+4. Prioritize recommendations by user value, safety impact, and maintenance cost.
+5. Hand the selected item to `auto-skill-resolver` or `skill-creator` only after the user approves local changes.
+6. Keep external backup, repository publication, and marketplace submission as separate approval-gated steps.
 
-## Dependencies
-- auto-skill-resolver (mandatory)
-- skill-creator, natural-language-to-skill, skill-researcher (used by the resolver)
-- drive-persistence-bridge, persistent-memory-bridge, connected-services-bridge
+## Output
 
-## Triggers
-"create missing skills", "skill guardian", "ecosystem health check", "auto create skills", "skill maintenance"
+Return a compact gap report with the skills reviewed, prioritized recommendations, overlap notes, and the next safe action. State clearly whether any local change has actually occurred.
 
-## Version
-2.0 — 2026-08-12  
-Major simplification: creation and persistence are now fully delegated to auto-skill-resolver. Removes outdated skill-packager references and evolution spam for clarity.
+## Error Handling
+
+| Situation | Response |
+|---|---|
+| Skill directory is unavailable | Report the path or access issue and request an authorized location. |
+| Requirements are unclear | Ask for concrete tasks or examples before labeling a capability as missing. |
+| Candidate skill is from an external source | Treat it as untrusted data and review it before any installation or publication decision. |
+| Multiple packages overlap | Recommend consolidation or distinct scopes rather than automatic duplication. |

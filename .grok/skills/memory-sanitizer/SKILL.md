@@ -1,11 +1,7 @@
 ---
 name: memory-sanitizer
-description: >
-  Scores and filters retrieved memory against trust and poisoning risk. Use be
-  fore citing prior context, or when user says sanitize memory, trust score re
-  trieval, clean knowledge graph. Use when the user needs this capability. Tri
-  ggers:sanitize memory, trust score retrieval, clean knowledge graph.
-version: 1.1.0
+description: "Scores and filters retrieved memory against trust and poisoning risk. Use for: sanitize memory, trust score retrieval, clean knowledge graph, `semantic-memory-manager`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [semantic-memory-manager, knowledge-graph-builder, agentic-uncertainty-quantifier]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Memory Sanitizer
-
 ## When to Use
 
 - User says **sanitize memory** or task matches this capability

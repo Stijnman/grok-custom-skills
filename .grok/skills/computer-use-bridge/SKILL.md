@@ -1,10 +1,7 @@
 ---
 name: computer-use-bridge
-description: >
-  Bridges desktop automation to agent tool calls. Use when tasks need GUI inte
-  raction, screen control, or user says computer use, desktop control. Trigger
-  s: computer use, desktop control, click on screen, GUI automation.
-version: 1.1.0
+description: "Bridges desktop automation to agent tool calls. Use for: computer use, desktop control, click on screen, GUI automation."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [desktop-subagent-connector, hitl-approver]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Computer Use Bridge
-
 ## When to Use
 
 - User says **computer use** or task matches this capability

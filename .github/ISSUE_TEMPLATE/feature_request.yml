@@ -1,0 +1,43 @@
+name: Skill proposal
+description: Propose a new skill or a focused improvement to an existing package.
+title: "skill: "
+labels: ["skill proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals should solve a concrete user need, avoid duplicating the catalog, and include clear authorization and privacy boundaries.
+  - type: input
+    id: name
+    attributes:
+      label: Proposed skill name
+      description: Use a lowercase, hyphen-separated name.
+      placeholder: example-skill-name
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user request
+      description: Describe the task pattern this skill should handle and when it should trigger.
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Proposed workflow
+      description: Outline the essential steps, expected output, and likely failure modes.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Safety, privacy, and authorization boundaries
+      description: State what the skill must not do, including any actions that require explicit approval.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: Explain how the skill could be tested with safe representative inputs.

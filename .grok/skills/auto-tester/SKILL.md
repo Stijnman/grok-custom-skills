@@ -1,11 +1,7 @@
 ---
 name: auto-tester
-description: >
-  Runs validation tests on code, skills, or outputs after changes. Use after i
-  mplementations or when user says run tests, auto test, validate changes. Tri
-  ggers: run tests, auto test, validate changes. Use when the user needs this 
-  capability.
-version: 1.1.0
+description: "Runs validation tests on code, skills, or outputs after changes. Use for: run tests, auto test, validate changes, check tests."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [goal-verifier, self-healing-error-recovery, hyper-skill-tester]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Auto Tester
-
 ## When to Use
 
 - User says **run tests** or task matches this capability

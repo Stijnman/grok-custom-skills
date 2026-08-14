@@ -1,10 +1,7 @@
 ---
 name: session-handoff-packager
-description: >
-  Packages session work into a local handoff document for continuity. Use when
-  saving progress or user says session summary, handoff, what we did. Triggers
-  :session summary, handoff, save what we did.
-version: 1.0.0
+description: "Packages session work into a local handoff document for continuity. Use for: session summary, handoff, save what we did, continue next time."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -14,9 +11,7 @@ metadata:
     related_skills: [privacy-redactor, ai-share-extractor-v4, goal-verifier]
     publication_reviewed: '2026-06-24'
 ---
-
 # Session Handoff Packager
-
 ## When to Use
 
 - User says **session summary** or task matches this capability

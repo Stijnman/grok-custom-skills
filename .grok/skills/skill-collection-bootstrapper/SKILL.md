@@ -1,11 +1,7 @@
 ---
 name: skill-collection-bootstrapper
-description: >
-  Audits a skills repository, fills gaps, validates SKILL.md files, and instal
-  lsto the user skills directory. Use when completing a skill collection or us
-  ersays bootstrap skills, install skill repo. Triggers: bootstrap skills,comp
-  lete skill collection, install skill repo.
-version: 1.0.0
+description: "Audits a skills repository, fills gaps, validates SKILL.md files, and instal lsto the user skills directory. Use for: bootstrap skills, complete skill collection, install skill repo, `skill-rubric-reviewer`."
+version: 1.1.0
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -15,9 +11,7 @@ metadata:
     related_skills: [skill-rubric-reviewer, skill-evolver, hitl-approver, goal-verifier]
     publication_reviewed: '2026-06-24'
 ---
-
 # Skill Collection Bootstrapper
-
 ## When to Use
 
 - User says **bootstrap skills** or task matches this capability

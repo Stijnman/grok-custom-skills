@@ -1,10 +1,7 @@
 ---
 name: imagine-asset-generator
-description: >
-  Generates visual assets via image generation tools. Use when user needs icon
-  s,mockups, illustrations, or says generate image, create asset. Triggers: ge
-  nerate image, create asset, make icon, design mockup.
-version: 1.1.0
+description: "Generates visual assets via image generation tools. Use for: generate image, create asset, make icon, design mockup."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -13,9 +10,7 @@ metadata:
     related_skills: [imagine, compliance-image-guard, safe-image-editor]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Imagine Asset Generator
-
 ## When to Use
 
 - User says **generate image** or task matches this capability

@@ -1,11 +1,7 @@
 ---
 name: deep-search-enabler
-description: >
-  Enables thorough multi-source research beyond quick answers. Use for complex
-   research or user says deep search, comprehensive research. Use when the use
-  r needs this capability. Triggers: deep search, comprehensive research, rese
-  arch thoroughly.
-version: 1.1.0
+description: "Enables thorough multi-source research beyond quick answers. Use for: deep search, comprehensive research, research thoroughly, `internet-enabler`."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [internet-enabler, web-scraper, insight-synthesizer, agentic-uncertainty-quantifier]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Deep Search Enabler
-
 ## When to Use
 
 - User says **deep search** or task matches this capability

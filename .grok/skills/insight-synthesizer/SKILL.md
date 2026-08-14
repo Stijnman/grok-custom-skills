@@ -1,11 +1,7 @@
 ---
 name: insight-synthesizer
-description: >
-  Synthesizes findings from multiple sources into actionable insights. Use aft
-  erresearch or user says synthesize, key takeaways, summarize findings. Use w
-  henthe user needs this capability. Triggers: synthesize, key takeaways, summ
-  arize findings, insight report.
-version: 1.1.0
+description: "Synthesizes findings from multiple sources into actionable insights. Use for: synthesize, key takeaways, summarize findings, insight report."
+version: 1.2.0
 author: Stijnman
 license: MIT
 metadata:
@@ -14,9 +10,7 @@ metadata:
     related_skills: [deep-search-enabler, knowledge-graph-builder, ai-share-extractor-v4]
 compatibility: Grok agent; optional MCP and shell access
 ---
-
 # Insight Synthesizer
-
 ## When to Use
 
 - User says **synthesize** or task matches this capability

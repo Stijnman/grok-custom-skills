@@ -1,11 +1,7 @@
 ---
 name: mcp-tool-scout
-description: >
-  Discovers MCP servers and reads tool schemas before calling MCP tools. Use b
-  efore MCP invocations or when user says what MCP tools, check MCP schema. Re
-  ad-only filesystem inspection of MCP descriptors. Triggers: mcp tools, MCP s
-  chema,discover MCP. Use when the user needs this capability.
-version: 1.0.0
+description: "Discovers MCP servers and reads tool schemas before calling MCP tools. Use for: mcp tools, MCP schema, discover MCP, which MCP tool."
+version: 1.1.0
 author: Stijnman
 license: MIT
 metadata:
@@ -15,9 +11,7 @@ metadata:
     publication_reviewed: '2026-06-24'
 compatibility: Grok agent; optional MCP and shell access
 ---
-
-# Mcp Tool Scout
-
+# MCP Tool Scout
 ## When to Use
 
 - User says **mcp tools** or task matches this capability
