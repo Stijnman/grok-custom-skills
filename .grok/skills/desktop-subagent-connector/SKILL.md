@@ -17,30 +17,60 @@ This is the concrete path for:
 
 ## Prerequisites (user side)
 
-1. Python 3.9+
-2. The daemon script from this skill: `scripts/local-daemon.py`
-3. Optional but recommended: `cloudflared`
-4. Optional for browser: `pip install playwright && playwright install chromium`
+- Python 3.9+
+- Optional but strongly recommended: `cloudflared` (makes the public URL automatic)
+- Optional for browser control: `pip install playwright && playwright install chromium`
 
-## One-time setup (user runs on their machine)
+## Easy setup (recommended)
+
+### macOS / Linux
+
+1. Get the skill scripts folder (or at least `local-daemon.py` + `setup.sh`) onto your machine.
+2. Run:
 
 ```bash
-mkdir -p ~/desktop-subagent && cd ~/desktop-subagent
-# obtain local-daemon.py (from skill scripts/ or artifacts)
-export DESKTOP_BRIDGE_TOKEN=$(openssl rand -hex 24)
-echo "TOKEN=$DESKTOP_BRIDGE_TOKEN"   # keep this secret
-
-python3 local-daemon.py --token "$DESKTOP_BRIDGE_TOKEN" --port 8765
-# other terminal:
-cloudflared tunnel --url http://localhost:8765
+cd /path/to/desktop-subagent-connector/scripts
+bash setup.sh
 ```
 
-Copy the printed `https://….trycloudflare.com` URL and the token. Tell the agent:
+That single command:
+- creates `~/desktop-subagent`
+- generates a strong token
+- starts the local daemon
+- starts `cloudflared` if installed
+- prints a ready-to-paste block:
 
 ```
 DESKTOP_BRIDGE_URL=https://xxxx.trycloudflare.com
 DESKTOP_BRIDGE_TOKEN=...
 ```
+
+Paste that block back to the agent. Leave the terminal open (Ctrl+C stops everything).
+
+If `cloudflared` is missing:
+```bash
+# macOS
+brew install cloudflared
+# then re-run setup.sh
+```
+
+### Windows (PowerShell)
+
+```powershell
+cd path\to\desktop-subagent-connector\scripts
+powershell -ExecutionPolicy Bypass -File setup.ps1
+```
+
+Install cloudflared if needed: `winget install --id Cloudflare.cloudflared`
+
+### Manual (no setup script)
+
+```bash
+python3 local-daemon.py          # auto-generates token if none given
+cloudflared tunnel --url http://127.0.0.1:8765
+```
+
+Then paste URL + token to the agent.
 
 Full protocol and security model: `references/local-component-spec.md`.
 
@@ -99,5 +129,5 @@ When the user successfully pairs, optionally store `DESKTOP_BRIDGE_URL` + token 
 - Logs: evolution_log.md + user-side audit.log
 
 ## Version
-1.6.0 — 2026-08-14  
-Concrete local daemon + protocol + cloudflared pairing path. Replaces pure aspirational docs with a working user-side component.
+1.7.0 — 2026-08-14  
+Easy setup: `scripts/setup.sh` (macOS/Linux) and `scripts/setup.ps1` (Windows) start daemon + cloudflared and print a ready-to-paste block. Daemon auto-generates token if none provided. Manual path still works.
