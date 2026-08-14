@@ -1,6 +1,6 @@
 ---
 name: oss-repo-maintainer
-description: "Helps maintain open-source repos: README accuracy, version consistency, andp re-release checklists. Use for: fix README, prep release, repo maintenance, sync docs."
+description: "Maintain open-source repositories by checking README accuracy, version consistency, release readiness, and documentation drift. Use for: fix README, prepare release, repository maintenance, sync documentation."
 version: 1.1.0
 author: Stijnman
 license: MIT

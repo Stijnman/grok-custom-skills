@@ -415,7 +415,7 @@ SKILLS: dict[str, dict] = {
         "errors": {"Auth missing": "Guide user through auth; never store tokens in skill files."},
         "gotchas": ["Least-privilege scopes only."],
     },
-    "controle-overview-skill": {
+    "control-overview": {
         "description": (
             "Provides control-panel overview of active skills, workflows, and status. "
             "Use when user says overview, status dashboard, what skills are active."
@@ -824,14 +824,14 @@ SKILLS: dict[str, dict] = {
             "Validate skill name (lowercase-hyphen, unique).",
             "Create directory and SKILL.md from template.",
             "Optionally add references/ and scripts/.",
-            "Confirm install path; list in controle-overview-skill.",
+            "Confirm install path; list in control-overview.",
         ],
         "triggers": ["enable skill creation", "install skill", "new skill", "add skill"],
         "integrations": ["natural-language-to-skill", "hyper-skill-tester", "create-skill"],
         "errors": {"Name collision": "Suggest versioned name or merge."},
         "gotchas": ["Default install: ~/.grok/skills/ or workspace .grok/skills/."],
     },
-    "skill-creation-enablerimage-processor": {
+    "skill-asset-image-processor": {
         "description": (
             "Image processing helper for skill assets: resize, optimize, format convert. "
             "Use when preparing skill images or user says process skill image, optimize asset."
@@ -940,7 +940,7 @@ SKILLS: dict[str, dict] = {
             "Output recommended tool/skill list with paths.",
         ],
         "triggers": ["what tools", "discover capabilities", "find tool for", "available skills"],
-        "integrations": ["adaptive-workflow-composer", "controle-overview-skill", "skill-researcher"],
+        "integrations": ["adaptive-workflow-composer", "control-overview", "skill-researcher"],
         "errors": {"MCP dir missing": "List skills only; note MCP unavailable."},
         "gotchas": ["Always read tool schema before calling MCP tools."],
     },

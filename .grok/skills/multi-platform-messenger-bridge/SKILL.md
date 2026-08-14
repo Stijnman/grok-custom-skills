@@ -1,6 +1,6 @@
 ---
 name: multi-platform-messenger-bridge
-description: "Unifies WhatsApp, Telegram, and future channels with shared memory and ratin g. Use for: bridge messengers, unified chat memory, cross-platform reply, `whatsapp-auto-responder`."
+description: "Unify WhatsApp, Telegram, and future channels with shared conversation context and message-quality assessment. Use for: bridge messengers, unified chat memory, cross-platform reply, WhatsApp responder."
 version: 1.2.0
 author: Stijnman
 license: MIT

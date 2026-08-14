@@ -1,6 +1,6 @@
 ---
 name: github-repo-scout
-description: "Investigates a GitHub repository from a URL: README, file tree, local clones tatus, and recommended next steps. Use for: github.com, check this repo, scout repo, what is this project."
+description: "Investigate a GitHub repository from a URL by reviewing its README, file tree, local clone status, and recommended next steps. Use for: GitHub URL, check this repository, scout repository, understand this project."
 version: 1.1.0
 author: Stijnman
 license: MIT

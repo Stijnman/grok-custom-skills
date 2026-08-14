@@ -1,6 +1,6 @@
 ---
 name: skill-auditor
-description: "Deeply analyze, adversarially test, score, security-audit, and improve AI agent skills defined in SKILL.md files. Use for: Confirm a usable SKILL.md is available., Purpose, target user/agent, supported tasks, Inputs / Outputs / Tools / Dependencies, Workflow, decision logic, state, memory."
+description: "Audit a SKILL.md definition for reliability, security, testability, workflow clarity, and production readiness, then prioritize concrete improvements. Use for: audit this skill, review SKILL.md, score skill quality, adversarial skill test."
 version: 1.0.0
 author: Stijnman
 license: MIT

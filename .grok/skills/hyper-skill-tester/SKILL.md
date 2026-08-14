@@ -7,7 +7,7 @@ license: MIT
 metadata:
   grok:
     tags: [test skill, hyper test, skill QA, audit skill quality]
-    related_skills: [auto-tester, skill-researcher, review-skill]
+    related_skills: [auto-tester, skill-researcher, skill-rubric-reviewer]
 compatibility: Grok agent; optional MCP and shell access
 ---
 # Hyper Skill Tester
@@ -29,7 +29,7 @@ compatibility: Grok agent; optional MCP and shell access
 
 - `auto-tester`
 - `skill-researcher`
-- `review-skill`
+- `skill-rubric-reviewer`
 
 ## Error Handling
 

@@ -1,6 +1,6 @@
 ---
 name: desktop-subagent-connector
-description: "Securely bridges the remote Grok sandbox to the user's local desktop for scoped file access, approved shell execution, GUI/browser automation, and local sub-agent work. Use for: remote sandbox, user's real machine, List, Read."
+description: "Securely coordinate a remote sandbox with a user-approved local desktop through scoped file, shell, browser, and GUI access. Use for: remote sandbox, user-approved desktop, local desktop bridge, scoped desktop access."
 version: 1.0.0
 author: Stijnman
 license: MIT

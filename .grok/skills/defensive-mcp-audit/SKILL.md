@@ -1,6 +1,6 @@
 ---
 name: defensive-mcp-audit
-description: "Runs a defensive, read-only security audit of the local machine for MCP and AIagent risks: risky bindings, MCP config issues, and confused-deputy exposu re. Use for: audit mcp, mcp security, localhost exposure, defensive-mcp-audit."
+description: "Run a defensive, read-only audit of local MCP and AI-agent exposure, including risky bindings, configuration issues, and confused-deputy risks. Use for: audit MCP, MCP security, localhost exposure, defensive MCP audit."
 version: 1.1.0
 author: Stijnman
 license: MIT

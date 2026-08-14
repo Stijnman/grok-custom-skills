@@ -1,6 +1,6 @@
 ---
 name: skill-marketplace-installer
-description: "Safely searches and installs agent skills from public marketplaces (e.g.agen tskill.sh) with user consent and security checks. Use for: find skill, install skill, skill marketplace, check skill safety."
+description: "Safely search and install agent skills from public marketplaces with explicit user consent and security checks. Use for: find skill, install skill, skill marketplace, check skill safety."
 version: 1.1.0
 author: Stijnman
 license: MIT

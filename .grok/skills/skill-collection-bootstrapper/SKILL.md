@@ -1,6 +1,6 @@
 ---
 name: skill-collection-bootstrapper
-description: "Audits a skills repository, fills gaps, validates SKILL.md files, and instal lsto the user skills directory. Use for: bootstrap skills, complete skill collection, install skill repo, `skill-rubric-reviewer`."
+description: "Audit a skills repository, identify coverage gaps, validate SKILL.md files, and prepare an approval-gated installation plan. Use for: bootstrap skills, complete skill collection, install skill repository, validate skill library."
 version: 1.1.0
 author: Stijnman
 license: MIT

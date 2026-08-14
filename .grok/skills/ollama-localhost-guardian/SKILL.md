@@ -1,6 +1,6 @@
 ---
 name: ollama-localhost-guardian
-description: "Verifies local LLM services (e.g. Use for: ollama security, is ollama exposed, secure local LLM, ollama localhost."
+description: "Verify that local LLM services, including Ollama, are bound and configured safely before they are exposed or connected. Use for: Ollama security, check exposed Ollama, secure local LLM, Ollama localhost."
 version: 1.1.0
 author: Stijnman
 license: MIT

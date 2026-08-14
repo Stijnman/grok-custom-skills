@@ -1,6 +1,6 @@
 ---
 name: drive-github-skill-audit
-description: Compare Google Drive skill definitions with a GitHub skills repository and identify Drive skills not yet published. Use when asked to audit Drive for unpublished skills, compare SKILL.md files across Drive and GitHub, find skill publication gaps, or inventory Drive skills against a repository.
+description: "Compare Google Drive skill definitions with a GitHub skills repository and identify Drive skills not yet published. Use for: audit Drive skills, compare Drive and GitHub SKILL.md files, find unpublished skills, skill-library inventory."
 license: MIT
 metadata:
   version: 1.0.0

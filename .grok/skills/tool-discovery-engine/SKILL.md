@@ -7,7 +7,7 @@ license: MIT
 metadata:
   grok:
     tags: [what tools, discover capabilities, find tool for, available skills]
-    related_skills: [adaptive-workflow-composer, controle-overview-skill, skill-researcher]
+    related_skills: [adaptive-workflow-composer, control-overview, skill-researcher]
 compatibility: Grok agent; optional MCP and shell access
 ---
 # Tool Discovery Engine
@@ -28,7 +28,7 @@ compatibility: Grok agent; optional MCP and shell access
 ## Integrations
 
 - `adaptive-workflow-composer`
-- `controle-overview-skill`
+- `control-overview`
 - `skill-researcher`
 
 ## Error Handling

@@ -27,10 +27,10 @@ Run before publishing any skill:
 ```bash
 python3 scripts/check_no_private_data.py
 python3 scripts/publish_safety_check.py
-python3 scripts/optimize_all_skills.py --validate-only
+python3 scripts/validate_collection.py
 ```
 
-- [ ] `skills-ref` validation passes
+- [ ] `validate_collection.py` completes successfully
 - [ ] Description includes *what*, *when*, and *Triggers*
 - [ ] No private emails, paths, or LAN IPs
 - [ ] `hitl-approver` referenced for destructive ops
