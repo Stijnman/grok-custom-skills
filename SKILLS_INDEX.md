@@ -1,6 +1,6 @@
 # Skills Catalog
 
-This catalog is generated from the metadata in **89 skill definitions**. Run `python3 scripts/generate_catalog.py` after adding or changing a skill.
+This catalog is generated from the metadata in **90 skill definitions**. Run `python3 scripts/generate_catalog.py` after adding or changing a skill.
 
 ## Browse by category
 
@@ -15,7 +15,7 @@ This catalog is generated from the metadata in **89 skill definitions**. Run `py
 | Safety, Privacy & Governance | 7 |
 | Skill Development & Operations | 17 |
 | Traffic & Navigation | 3 |
-| Workflow & Agent Orchestration | 11 |
+| Workflow & Agent Orchestration | 12 |
 
 ## Complete catalog
 
@@ -147,6 +147,7 @@ This catalog is generated from the metadata in **89 skill definitions**. Run `py
 | Skill | Description |
 |---|---|
 | [`adaptive-workflow-composer`](.grok/skills/adaptive-workflow-composer/SKILL.md) | Composes multi-step agent workflows from goals and available skills. Use for: compose workflow, plan steps, adaptive pipeline, orchestrate task. |
+| [`agent-red-team`](.grok/skills/agent-red-team/SKILL.md) | > |
 | [`agentic-uncertainty-quantifier`](.grok/skills/agentic-uncertainty-quantifier/SKILL.md) | Scores task uncertainty to calibrate memory depth and iteration count. Use for: quantify uncertainty, fast slow think, uncertainty score, how sure. |
 | [`bottleneck-resolver`](.grok/skills/bottleneck-resolver/SKILL.md) | Identifies and resolves performance bottlenecks in agent workflows. Use for: find bottleneck, speed up, why so slow, optimize workflow. |
 | [`desktop-subagent-connector`](.grok/skills/desktop-subagent-connector/SKILL.md) | Securely coordinate a remote sandbox with a user-approved local desktop through scoped file, shell, browser, and GUI access. Use for: remote sandbox, user-approved desktop, local desktop bridge, scoped desktop access. |
