@@ -1,12 +1,7 @@
 ---
 name: agent-red-team
 description: >
-  Defensive adversarial testing for AI agents, tools, MCP servers, and skills.
-  Finds prompt-injection, jailbreak leakage, tool-abuse, confused-deputy, and
-  data-exfil paths — then reports severity and remediations. Never writes
-  exploit PoCs or attacks third-party systems. Use when the user says red team,
-  red-teaming, agent red team, adversarial test, prompt injection test,
-  jailbreak test, MCP abuse test, or /agent-red-team.
+  Defensive adversarial testing for AI agents, tools, MCP servers, and skills. Finds prompt-injection, jailbreak leakage, tool-abuse, confused-deputy, and data-exfil paths — then reports severity and remediations. Never writes exploit PoCs or attacks third-party systems. Triggers: red team, red-teaming, agent red team, adversarial test, prompt injection test, jailbreak test, MCP abuse test, /agent-red-team.
 version: 1.0.0
 author: Stijnman
 license: MIT
