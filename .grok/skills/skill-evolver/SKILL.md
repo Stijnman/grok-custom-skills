@@ -1,7 +1,7 @@
 ---
 name: skill-evolver
 description: "Full skill rewrite and improvement with versioned backups and templates. Use for: evolve skill, upgrade SKILL.md, improve skill file, `skill-evolution-engine`."
-version: 1.2.0
+version: 1.2.1
 author: Stijnman
 license: MIT
 metadata:
@@ -19,10 +19,10 @@ compatibility: Grok agent; optional MCP and shell access
 
 ## Workflow
 
-1. Backup to versions/<timestamp>/SKILL.md.
-2. Read references/evolution-guide.md for rubric.
-3. Rewrite weak sections per 10-dimension review.
-4. Validate; run hyper-skill-tester; save or rollback.
+1. Create a local versioned backup of the target SKILL.md and read references/evolution-guide.md for the rubric.
+2. Prepare a reviewable rewrite diff that identifies the affected sections, expected benefits, and rollback path.
+3. Obtain explicit user approval before applying, saving, committing, publishing, or otherwise persisting the rewrite.
+4. After approval, apply the rewrite and validate it with hyper-skill-tester. Present any rollback option for approval rather than restoring automatically.
 
 ## References
 
@@ -38,7 +38,7 @@ Read `references/evolution-guide.md` when setup, backends, or rubric details are
 
 | Failure | Response |
 |---------|----------|
-| Broken frontmatter | Restore from versions/ immediately. |
+| Broken frontmatter | Preserve the draft, show the local backup and rollback diff, and wait for user approval before restoring. |
 
 ## Gotchas
 

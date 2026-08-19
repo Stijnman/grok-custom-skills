@@ -1,7 +1,7 @@
 ---
 name: skill-evolution-engine
 description: "Manages skill version history and automated improvement cycles. Use for: evolve skills, version skills, skill maintenance, `skill-evolver`."
-version: 1.2.0
+version: 1.2.1
 author: Stijnman
 license: MIT
 metadata:
@@ -19,10 +19,10 @@ compatibility: Grok agent; optional MCP and shell access
 
 ## Workflow
 
-1. Snapshot current SKILL.md to versions/.
-2. Run hyper-skill-tester baseline.
-3. Apply evolution proposal from evolution skill.
-4. Compare scores; commit or rollback.
+1. Snapshot the current SKILL.md to a local versioned backup and run the hyper-skill-tester baseline.
+2. Prepare the proposed evolution as a reviewable diff with expected benefits, risks, and rollback path.
+3. Obtain explicit user approval before applying, committing, publishing, or otherwise persisting the proposed change.
+4. After approval, apply the change and compare scores. Present any regression and its rollback option for approval rather than rolling back automatically.
 
 ## Integrations
 
@@ -35,11 +35,11 @@ compatibility: Grok agent; optional MCP and shell access
 
 | Failure | Response |
 |---------|----------|
-| Score regression | Auto-rollback to latest versions/ backup. |
+| Score regression | Preserve the evidence, present the latest backup and rollback diff, and wait for user approval before restoring. |
 
 ## Gotchas
 
-- Keeps last 10 version backups per skill.
+- Keep version backups locally; do not publish, delete, or restore them without explicit user approval.
 
 ## Example
 

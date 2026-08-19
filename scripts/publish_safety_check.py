@@ -36,6 +36,19 @@ REQUIRE_SAFETY = {
 
 REQUIRED_FRONTMATTER = ("name:", "description:", "license:")
 
+# Skills that can configure recurrence, send messages, or mutate published content
+# must retain an explicit approval boundary. This focused allowlist avoids applying a
+# simplistic keyword rule to read-only or draft-only skills.
+REQUIRE_EXPLICIT_APPROVAL = {
+    "cron-scheduler",
+    "telegram-traffic-reports",
+    "whatsapp-auto-responder",
+    "skill-evolution-engine",
+    "skill-evolver",
+    "evolver",
+}
+EXPLICIT_APPROVAL = re.compile(r"\bexplicit(?:ly)?\s+(?:user\s+)?approval\b", re.I)
+
 
 def audit(path: Path) -> list[str]:
     issues: list[str] = []
@@ -63,6 +76,9 @@ def audit(path: Path) -> list[str]:
 
     if "Prohibited actions" not in text and name in REQUIRE_SAFETY:
         issues.append("missing Prohibited actions list")
+
+    if name in REQUIRE_EXPLICIT_APPROVAL and not EXPLICIT_APPROVAL.search(text):
+        issues.append("missing explicit user-approval boundary")
 
     return issues
 

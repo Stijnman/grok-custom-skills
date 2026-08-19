@@ -1,7 +1,7 @@
 ---
 name: cron-scheduler
 description: "Schedules recurring or delayed agent tasks. Use for: schedule this, run daily, cron job, set timer."
-version: 1.2.0
+version: 1.2.1
 author: Stijnman
 license: MIT
 compatibility: Grok agent; optional MCP and shell access
@@ -21,11 +21,11 @@ metadata:
 
 ## Workflow
 
-1. Parse schedule expression (cron, interval, or natural language).
-2. Write entry to workspace cron-jobs.md (default) or document GitHub Action.
-3. Define task: skill to invoke, args, and notification channel.
-4. Confirm next 3 run times with user.
-5. On trigger, execute task and log via insight-synthesizer.
+1. Parse the schedule expression (cron, interval, or natural language).
+2. Present the proposed trigger, task scope, notification channel, and next three run times.
+3. Obtain explicit user approval before writing or enabling any recurring schedule; otherwise provide an inactive copy-paste configuration only.
+4. After approval, save only the named configuration and do not enable background execution, outbound notifications, or external actions beyond the approved scope.
+5. On trigger, execute only the preapproved task. Pause for fresh approval before any consequential external action not explicitly covered by that approval.
 
 ## References
 

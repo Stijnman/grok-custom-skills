@@ -1,7 +1,7 @@
 ---
 name: telegram-traffic-reports
 description: "Fetches and reports traffic conditions via Telegram bot format. Use for: telegram traffic, traffic report Telegram, commute alert, `waze-live-reports`."
-version: 1.2.0
+version: 1.2.1
 author: Stijnman
 license: MIT
 metadata:
@@ -19,10 +19,10 @@ compatibility: Grok agent; optional MCP and shell access
 
 ## Workflow
 
-1. Get user location or route.
+1. Get the user-approved location or route and clarify whether the request is for a draft, a one-time send, or a recurring alert.
 2. Fetch traffic via waze-live-reports or traffic-flight-controller.
-3. Format concise Telegram message with delays and incidents.
-4. Optionally schedule via cron-scheduler.
+3. Format a concise Telegram message with delays and incidents; keep it as a draft by default.
+4. Obtain explicit approval before sending to a named chat or enabling any recurring alert. Route scheduling through cron-scheduler only after its separate approval gate is satisfied.
 
 ## Integrations
 
@@ -39,7 +39,8 @@ compatibility: Grok agent; optional MCP and shell access
 
 ## Gotchas
 
-- Rate limit Telegram sends to 1/min per chat.
+- Rate limit approved Telegram sends to 1/min per chat.
+- Do not infer a recipient, enable a bot, or create a recurring alert from route data alone.
 
 ## Example
 
