@@ -15,9 +15,10 @@ Describe the user need or maintenance goal addressed by this change.
 List the checks performed and their results.
 
 ```text
-- [ ] python3 scripts/generate_catalog.py
-- [ ] python3 scripts/validate_collection.py
+- [ ] python3 scripts/optimize_all_skills.py
+- [ ] python3 -m unittest discover -s tests -p "test_*.py"
 - [ ] git diff --check
+- [ ] git diff --exit-code -- SKILLS_INDEX.md
 - [ ] Relevant helper-script test, if applicable
 ```
 

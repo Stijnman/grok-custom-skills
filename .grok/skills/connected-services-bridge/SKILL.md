@@ -1,39 +1,35 @@
 ---
 name: connected-services-bridge
-description: "Use when a task involves any of Grok's connected services (Google Drive, Notion, Linear, Google Calendar, GitHub, SharePoint, Outlook) — discovering, orchestrating, and executing actions via search_connected_tools and call_connected_tool. Enables seamless file sync, data automation, calendar management, and cross-platform workflows. Triggered by 'save to Google Drive', 'update Notion', 'create GitHub issue', 'sync calendar', or any external service task. Mandatory first step for persistent storage or external actions. Produces versioned, auditable outputs. Optimized for accurate LLM routing. Enhanced with exp backoff+jitter (10/30/60s ±25%) and sandbox awareness. Version 1.18 (MINOR) 2026-08-19: auto-push contract for project updates (Pulverise → Stijnman/pulverise private + Drive) in addition to skills; pairs with drive-persistence-bridge §0 Auto-Push Contract."
+description: "Connects approved external services such as Drive, GitHub, Notion, calendars, SharePoint, and Outlook through their available connectors. Use for: discovering connected-service capabilities, preparing a scoped integration, or completing a user-approved external action."
+license: MIT
 ---
 
 # Connected Services Bridge
 
-## Overview
+Use this skill to discover available connected-service capabilities and perform **scoped, user-authorized** actions across approved services.
 
-Provides unified access to Grok's 2026 connected services ecosystem (Google Drive for file persistence, Notion/Linear for project tracking, Google Calendar/Outlook for scheduling, GitHub for code repos, SharePoint for enterprise docs). Uses search_connected_tools to discover exact tool schemas (e.g., google_drive_write_file, google_drive_upload_artifact, google_drive_search) then executes via call_connected_tool. Ensures all skill outputs (documents, images, logs) are auto-persisted and versioned.
+## Workflow
 
-## Instructions
+1. Identify the requested service, data scope, intended action, and expected output. Ask a focused question if any of these are ambiguous.
+2. Discover the relevant connector and inspect its documented operation and parameter schema. Do not assume tool names, permissions, or data locations.
+3. Use the least-privileged operation that can satisfy the request. Prefer a read-only check before any write.
+4. For a consequential action, present the target service, destination, affected files or records, and rollback option. Obtain explicit approval before creating, updating, sending, deleting, committing, or sharing anything.
+5. Perform the approved action. Verify the returned identifier, link, or status without exposing credentials, tokens, or private content.
+6. Report the result, the exact scope completed, and any local fallback artifact if the service was unavailable.
 
-- Always start external tasks with: Call search_connected_tools with query describing needed action (e.g., 'search pages', 'create issue', 'list files', 'read email', 'calendar events', 'query database') to get precise tool_name and argument schema.
-- For Google Drive (priority per ecosystem protocol): Use discovered tools to upload artifacts (e.g., generated images, SKILL.md updates, reports), create folders, search files, read/write content; maintain Grok_Ecosystem_Skills/ directory for all new modules.
-- Workflow: 1) Discover tool, 2) Validate args against schema, 3) Execute call_connected_tool, 4) Log result + link in shared memory, 5) Notify Master on success/failure.
-- Cross-service automation: Sync research findings (deep-search-enabler) to Notion pages; schedule follow-ups in Calendar via connected events; push code outputs to GitHub repos; update Linear issues from Execution Agent results.
-- Error handling: If tool unavailable, fallback to local artifacts/ + manual upload instructions; escalate to multi-agent-orchestrator for alternative strategies.
-- Security: Enforce least-privilege (read-only unless write explicitly requested); audit all calls in evolution_log.md; never expose credentials.
-- Integration: Auto-trigger on skill creation (e.g., new SKILL.md -> upload to Drive); combine with imagine-asset-generator to store visuals; use with voice-synthesis-handler for audio asset management.
-- **Skill + Project Persistence Support (Mandatory when relevant)**: After any new skill creation, significant evolution, **or project version bump** (e.g. Pulverise), execute or assist with: (1) dated tar.gz packaging, (2) `google_drive_upload_artifact` (skills → folder ID `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`; projects → same or project subfolder), (3) GitHub push via `github___push_files` / `github___create_or_update_file` — skills → `Stijnman/grok-custom-skills` path `.grok/skills/<name>/…`; projects → `Stijnman/pulverise` (or the known private repo). Use current date in filenames and relative artifact paths only. Log results to evolution_log.md. Driven by drive-persistence-bridge §0 Auto-Push Contract — no extra user command required.
-- Optimization: Cache service schemas in tool_registry.json; predictive pre-fetch for frequent actions (e.g., daily Drive sync); batch operations for efficiency.
+## Reliability
 
+Retry only transient, idempotent operations and stop after a small bounded number of attempts. For unavailable connectors, permission errors, or ambiguous results, preserve the local work and explain the blocker rather than guessing or escalating privileges.
 
-## Evolution Update (2026-05-27)
-- Added structured error handling and retry logic.
-- Enhanced integration with parallel-tool-orchestrator.
-- Improved meta-reflection for better ROI tracking.
-- Version bumped to 1.3
+## Safety & Ethics
 
+### Required approvals
 
-## Auto-Evolution Patch (2026-05-31): Added general robustness note and version tracking.
+Require explicit user approval before remote writes, outbound communication, repository pushes, calendar changes, retention changes, or deletion. Treat a request to prepare an artifact as distinct from authorization to upload or publish it.
 
-## Autonomous Evolution Cycle (2026-06-07)
-- Added jittered backoff retry logic to connected services discovery, tool calls (Drive, Notion, Calendar, GitHub), and orchestration.
-- Included sandbox-aware connection handling and fallback modes.
-- Version bumped to 1.4.
-- Key: Enables reliable external integrations during full skill library evolution and uploads.
-  - 2026-07-20 Library Evolution: Added/strengthened exp backoff+jitter error handling, sandbox awareness, transparent reporting. Version MINOR bump.
+### Prohibited actions
+
+- Do not collect, reveal, store, or transmit credentials, tokens, or private data unnecessarily.
+- Do not enable background synchronization, recurring jobs, or automatic cross-service actions without the user's specific approval.
+- Do not bypass service permissions, authentication, access controls, CAPTCHAs, or platform safeguards.
+- Do not silently create, update, share, delete, commit, or push remote content.

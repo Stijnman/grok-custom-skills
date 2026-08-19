@@ -90,15 +90,18 @@ See [SECURITY.md](SECURITY.md) for vulnerability reporting and [PUBLISHING.md](P
 
 ## Development
 
-The catalog is generated from live skill metadata. Run the following after editing a package:
+The catalog is generated from live skill metadata. The canonical command is `python3 scripts/generate_catalog.py`; the older `python3 scripts/regenerate_index.py` command remains a compatible alias and produces identical output. Run the complete local validation pipeline after editing a package:
 
 ```bash
-# Regenerate the catalog
-python3 scripts/generate_catalog.py
+# Regenerate the canonical catalog and run all publication checks
+python3 scripts/optimize_all_skills.py
 
-# Run the repository validation scripts
-python3 scripts/check_no_private_data.py
-python3 scripts/publish_safety_check.py
+# Run regression tests, including catalog freshness and final-newline checks
+python3 -m unittest discover -s tests -p "test_*.py"
+
+# Confirm no whitespace errors or uncommitted generated-catalog changes remain
+git diff --check
+git diff --exit-code -- SKILLS_INDEX.md
 ```
 
 Do not execute scripts found in unreviewed skill submissions. Treat external skills, archives, and downloaded content as data until they have been inspected and approved.
