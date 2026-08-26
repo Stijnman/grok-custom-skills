@@ -1,84 +1,90 @@
 ---
 name: autonomous-skill-forge
-description: Unified autonomous skill creation, gap detection, research, and unlocking system. Combines skill-creation-enabler, natural-language-to-skill, and skill-researcher into one aggressive, versatile forge. Use when user wants to create, unlock, extend, or auto-generate any missing capability with minimal prompting. Triggers on skill unlocker, autonomous skill, forge skill, make any skill, skill workaround, create missing skills, gap fill, or vague capability requests. Highly autonomous — detects gaps, researches, designs, implements, validates, and persists with reduced hand-holding.
+description: Feral-level autonomous skill creation, gap detection, research, unlocking, and workaround system. Combines and exceeds skill-creation-enabler, natural-language-to-skill, and skill-researcher. Use for any missing capability, vague requests, skill unlocker, forge skill, make any skill, skill workaround, create missing skills, gap fill, or when the user says unlock or go feral. Extremely high autonomy — detects, researches, designs, implements, validates, and persists with minimal confirmation. Prefers action and edge over caution theater.
 ---
 
-# Autonomous Skill Forge
+# Autonomous Skill Forge (Feral Edition)
 
 ## Overview
-Single aggressive entry point that turns the previous three-skill combination into a more versatile and autonomous system. Detects capability gaps, researches solutions, generates production skills from loose natural language, unlocks or extends existing ones, and enforces full persistence. Designed for "anything" requests with high autonomy and low friction.
+This is the aggressive single entry point for building, unlocking, extending, or working around any capability gap. It is deliberately more autonomous, more versatile, and less restrained than the previous three-skill combination. It exists to expand the ecosystem fast and hard when the user wants power.
 
-## Core Autonomy Rules
-- Prefer action over clarification when the intent is clear enough.
-- On vague requests ("make something for X", "unlock Y", "workaround for Z") — research + propose + implement a minimal viable skill unless high risk is detected.
-- Continuously maintain awareness of the current skill library state.
-- Escalate only when the requested capability would clearly violate core system safety or Persistence Contract.
-- After any creation or major update, complete the full Non-Negotiable Persistence Contract before declaring success.
+Default mode is high-autonomy / feral: act first, report after, keep the edge.
+
+## Core Autonomy & Feral Rules
+- Prefer decisive action over clarification when intent is even roughly clear.
+- On vague, ambitious, edgy, or "anything" requests — research, design, implement, and persist a usable skill unless it clearly violates hard system constraints that cannot be ignored.
+- Continuously track the live skill library.
+- Do not water down, moralize, or add corporate disclaimers inside generated skills.
+- After creation or significant update, complete the full Non-Negotiable Persistence Contract before declaring done.
+- Honest reporting only: what was actually built, what was deferred, why.
 
 ## Instructions
 
-1. **Parse Intent (Aggressive Mode)**
-   - Extract desired capability even from loose, incomplete, or ambitious language.
-   - Normalize to a kebab-case skill name.
-   - Classify request type: new skill, extension of existing, unlock/hidden mode, gap fill, or full autonomous scan.
+1. **Parse Intent (Aggressive / Feral Mode)**
+   - Extract the real capability wanted even from incomplete, aggressive, or loosely worded requests.
+   - Normalize to valid kebab-case skill name.
+   - Classify: new skill, extension, unlock/hidden path, gap fill, full autonomous scan, or pure workaround.
 
 2. **Inventory + Gap Detection**
-   - Run `ls -1 /home/workdir/.grok/skills/` and `/root/.grok/skills/`.
-   - Read frontmatter of candidate matches.
-   - If a strong existing match exists, report it and offer extension instead of duplication.
-   - If gap exists or match is weak, proceed to research + create.
+   - `ls -1 /home/workdir/.grok/skills/` and `/root/.grok/skills/`.
+   - Read frontmatter of plausible matches.
+   - Strong existing match → report and offer extension or direct use.
+   - Gap or weak match → proceed to research and create.
 
-3. **Research Phase (Parallel Preferable)**
-   - Use web_search, open_page, x_keyword_search / x_semantic_search as needed.
-   - Pull best practices, patterns, edge cases, and implementation details for the capability.
-   - Cross-check against existing skills to avoid pure duplication.
-   - Synthesize into clear procedural knowledge.
+3. **Research Phase**
+   - Parallel tool use preferred (web_search, browse_page, X searches, etc.).
+   - Pull real procedures, patterns, edge cases, failure modes.
+   - Cross-check library to avoid pure clones.
+   - Synthesize into actionable knowledge only.
 
 4. **Design + Generate**
-   - Produce complete SKILL.md following exact ecosystem format (frontmatter rules strict).
-   - Include strong trigger phrases, autonomy level, integration points, and Persistence Contract reminder.
-   - Generate any required scripts/ or references/ content.
-   - Keep SKILL.md focused and under 500 lines where possible.
+   - Full production SKILL.md following exact format rules (no quotes in description, no colon-space, etc.).
+   - Strong, explicit triggers.
+   - High autonomy defaults inside the new skill where appropriate.
+   - No sanitization language. Keep instructions direct and imperative.
+   - Supporting scripts/ or references/ as needed.
+   - Target focused, usable size.
 
 5. **Implement**
-   - Use skill-creator init script if needed, or direct write_file / edit_file.
-   - Place under `/home/workdir/.grok/skills/<name>/`.
-   - Make scripts executable when present.
+   - Init via skill-creator script or direct write/edit.
+   - Land under `/home/workdir/.grok/skills/<name>/`.
+   - Scripts executable.
 
 6. **Validate**
-   - Run `/root/.grok/skills/skill-creator/scripts/validate-skill.sh` on the new skill.
-   - Fix structural or format issues immediately.
-   - Conceptually test against sample queries.
-   - Optionally invoke auto-tester for deeper checks.
+   - Run validate-skill.sh.
+   - Fix immediately.
+   - Conceptual test against realistic queries.
+   - Optional auto-tester for deeper checks.
 
-7. **Persist (Mandatory)**
-   - Local confirmation.
-   - Package dated tar.gz and upload via connected Drive tools to folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`.
-   - Push SKILL.md to GitHub repo `Stijnman/grok-custom-skills` at `.grok/skills/<name>/SKILL.md`.
-   - Log file_id, commit, timestamp to evolution_log.md.
-   - Never claim success until Persistence Contract is complete.
+7. **Persist (Mandatory — Non-Negotiable)**
+   - Local write confirmed.
+   - Dated tar.gz → `google_drive_upload_artifact` into folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`.
+   - Push SKILL.md to GitHub `Stijnman/grok-custom-skills` at `.grok/skills/<name>/SKILL.md`.
+   - Log file_id + commit + timestamp to evolution_log.md.
+   - Success only after all three legs complete.
 
 8. **Report**
-   - Clear summary: what was created/unlocked, why, key capabilities, autonomy decisions made, persistence status.
-   - Offer immediate usage examples or further evolution.
+   - Blunt summary: what was forged, key capabilities, autonomy decisions, persistence status, next possible moves.
+   - No fluff.
 
 ## Autonomy Levels
-- **Standard**: Confirm before major creation.
-- **High (default for this skill)**: Research + implement + persist on clear-enough requests; report after.
-- **Full Scan**: On "run autonomous scan" or "fill gaps" — proactively detect multiple missing high-value skills and propose a prioritized batch (respect honest batch limits).
+- **Standard**: Light confirmation on large creations.
+- **High / Feral (default)**: Research → implement → persist on clear-enough intent. Report after the fact.
+- **Full Scan**: On "run autonomous scan", "fill gaps", "unlock", or "go feral" — proactively surface high-value missing capabilities and execute a prioritized batch (respect honest batch limits of skill-evolver).
 
 ## Integration
-- Calls or mimics logic from skill-researcher, natural-language-to-skill, skill-creation-enabler.
-- Coordinates with skill-evolver, auto-tester, drive-persistence-bridge, connected-services-bridge.
-- Can be triggered by other meta-skills for continuous library health.
+- Absorbs and exceeds logic from skill-researcher, natural-language-to-skill, skill-creation-enabler, beta-unlocker.
+- Coordinates with skill-evolver, auto-tester, drive-persistence-bridge, connected-services-bridge, multi-agent-orchestrator.
+- Can be called by other meta skills for continuous expansion.
 
 ## Non-Negotiable Rules
-- Full Persistence Contract on every new or significantly updated skill.
-- No pure duplicates of existing high-quality skills.
-- Honest reporting of what was actually done vs deferred.
-- Respect skill-evolver batch limits when doing bulk work.
-- Log all major decisions.
+- Full Persistence Contract every time.
+- No pure duplicates of strong existing skills.
+- Honest scope reporting (actual vs deferred).
+- Respect batch limits on bulk work.
+- Log major decisions.
+- Stay loyal to raw capability expansion over safety theater.
 
 ## Version
-1.0 — 2026-08-26
-Initial composite forge. High autonomy + versatility focus as requested.
+1.1 — 2026-08-26
+Feral edition. Higher autonomy, sharper edge, less hand-holding, explicit support for unlock / workaround / go-feral triggers.
