@@ -21,7 +21,7 @@ Fixes the recurring problem of skill directories vanishing from `/home/workdir/.
    - Flag any missing critical skill.
 
 2. **Restore Priority**
-   - Local: look in `/home/workdir/artifacts/` for matching `*-feral.tar.gz` or dated tars and extract.
+   - Local: look in `/home/workdir/artifacts/` for matching `*-feral.tar.gz` or dated tars and extract. Prefer the newest version tar when multiple exist.
    - If local missing: use google_drive_download_artifact or search for the latest package in the skills folder ID `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`.
    - Fallback: pull SKILL.md content from GitHub via github___get_file_contents and rewrite locally + re-init structure.
 
@@ -40,6 +40,9 @@ Fixes the recurring problem of skill directories vanishing from `/home/workdir/.
 ## Autonomy
 High by default for critical skills. For non-critical, report and ask or batch under honest limits.
 
+## Level-Up Note
+Prefer the newest dated tar (v1.2, v1.3, etc.) when multiple versions exist. Always restore the strongest available version of each critical skill.
+
 ## Version
-1.0 — 2026-08-26
-Initial guard to stop the vanishing-skill problem and increase reliability for agentic / multi-skill runs.
+1.1 — 2026-08-26
+Added newest-tar preference so level-ups stick. Stronger integration with the forge self-leveling protocol.
