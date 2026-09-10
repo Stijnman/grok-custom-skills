@@ -1,13 +1,181 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-.venv/
-venv/
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Environments
 .env
-.env.*
-.DS_Store
-*.log
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE specific files
 .idea/
 .vscode/
+*.swp
+*.swo
+*~
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Local environment files
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Python specific
+*.py[cod]
+*$py.class
+__pycache__/
+
+# Virtual environment
+.env
+.venv
+venv/
+
+# Test files and directories
+/test*
+/test*/
+*_test*
+*_test*/
+
+# Coverage reports
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Markdown and documentation
+*.md.bak
+*.md.old
+
+# Build artifacts
 artifacts/
-*.pdf
-!docs/**
+build/
+dist/
+
+# Local configuration files
+*.local
+*.local.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Cache directories
+.cache/
+.caches/
+
+# IDE and editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+.project
+.pydevproject
+.settings/
+
+# Node.js (for markdown linting)
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Pre-commit cache
+.pre-commit-config.yaml.bak
+
+# Secrets baseline (keep the file, ignore local changes)
+!.secrets.baseline
+
+# GitHub Actions workflow logs
+# .github/workflows/*.log
+
+# Documentation generation
+docs/
+!docs/README.md
+
+# Third party licenses (tracked)
+!THIRD_PARTY_LICENSES/
+!THIRD_PARTY_NOTICES.md
+
+# Script outputs
+*.sh.log
+*.py.log
+
+# Skill package temporary files
+.grok/skills/*/temp/
+.grok/skills/*/.temp/
+
+# Test data
+/test-data/
+*.test.json
+*.test.yaml
+
+# Local overrides
+*.local.yaml
+*.local.yml
+*.local.json

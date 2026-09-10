@@ -1,0 +1,112 @@
+# Pre-commit hooks configuration for grok-custom-skills
+# See https://pre-commit.com for more information
+# Install with: pip install pre-commit && pre-commit install
+
+repos:
+  # General hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      # Remove trailing whitespace
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        
+      # Ensure files end with a newline
+      - id: end-of-file-fixer
+        
+      # Check for added large files
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+        
+      # Check YAML validity
+      - id: check-yaml
+        
+      # Check for merge conflict markers
+      - id: check-merge-conflict
+        
+      # Check for debug statements
+      - id: debug-statements
+        language: python
+        
+      # Detect private keys
+      - id: detect-private-key
+        
+      # Check JSON validity
+      - id: check-json
+        
+      # Pretty format JSON
+      - id: pretty-format-json
+        args: ['--autofix', '--indent=2', '--no-ensure-ascii']
+
+  # Markdown linting
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.8.1
+    hooks:
+      - id: markdownlint-cli2
+        args: [--config, .markdownlint.json, --fix]
+        exclude: CHANGELOG.md
+
+  # Code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+        types: [markdown, yaml, json]
+        args: [--write]
+
+  # Spell checking
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: 
+          - --skip .git,*.json,*.yml,*.yaml,*.min.js,CHANGELOG.md,SKILLS_INDEX.md
+          - --ignore-words-list grok,skills,agent,mcp,AI,orignal,workflow,metadata,frontend,backend
+          - --check-filenames
+          - --check-hidden
+
+  # Security checks
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: .git/
+
+  # Shell script linting
+  - repo: https://github.com/segmentio/pre-commit-hooks
+    rev: v1.0.0
+    hooks:
+      - id: shellcheck
+        files: \.(sh|bash)$
+
+  # Python code quality (if Python files exist)
+  - repo: https://github.com/psf/black
+    rev: 23.12.0
+    hooks:
+      - id: black
+        language_version: python3
+        types: [python]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        types: [python]
+        args: [--max-line-length=100]
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        types: [python]
+        args: [--profile=black]
+
+  # Python imports sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+        types: [python]
+        args: [--profile=black, --filter-files]
