@@ -1,123 +1,82 @@
 ---
 name: google-ai-studio-sync
-description: Bridges Google AI Studio Build mode with GitHub and Drive for apps you vibe-coded. Five sync tools — catalog Studio builds, export source, push to GitHub, persist to Drive, iterate rebuild prompts. Triggered by Google AI Studio Sync, AI Studio, aistudio/build, Cinco tools, cinco-studio-forge, sync my Studio apps, push Build app to GitHub.
+description: Use when a user wants to catalog, export, persist, or synchronize a Google AI Studio Build app with GitHub or Drive.
+license: MIT
 metadata:
   type: workflow
-  version: "1.1"
+  version: "1.2"
   created: "2026-09-06"
   renamed_from: cinco-studio-forge
 ---
 
 # Google AI Studio Sync
 
-Connect Google AI Studio (https://aistudio.google.com / https://ai.studio/build) Build-mode apps to this ecosystem and to GitHub.
+Bridge user-provided Google AI Studio Build projects to GitHub and Drive without pretending an unavailable Studio API exists.
 
-Former name — Cinco Studio Forge (`cinco-studio-forge`). Same job, clearer name.
+## When to use
 
-There is **no official AI Studio connector** in Grok connected services. Do not invent API calls to aistudio.google.com. Use browser + GitHub + Drive. Be honest when login or export is blocked.
+Use this skill when the user asks to sync, export, catalog, persist, or rebuild a Google AI Studio / Build-mode app.
 
-## The five sync tools
+## Capabilities
 
-1. **Catalog** — list Studio Build apps the user names or that live in GitHub.
-2. **Export** — pull source the user provides (paste, zip, repo, Drive) into a clean project tree.
-3. **GitHub push** — commit the app to the user's GitHub (default owner `Stijnman`).
-4. **Drive persist** — dated tar.gz via `google_drive_upload_artifact`.
-5. **Rebuild** — write a tighter Build-mode prompt so the user can re-vibe the app in Studio.
+1. **Catalog** — record app name, slug, platform, Gemini features, repository/path, last sync and status.
+2. **Export** — accept a pasted tree, archive, existing repository, or connected-drive file and stage it in the active workspace.
+3. **GitHub sync** — create/update repository files through available GitHub tools and return the resulting commit/PR reference.
+4. **Drive persistence** — package an app in the active artifact/workspace directory and upload it through an available Drive connector.
+5. **Rebuild prompt** — produce a paste-ready Build prompt describing purpose, platform, required features, UI constraints and known defects.
 
-## When this skill fires
+## Runtime paths
 
-User talks about Google AI Studio, Build tab, vibe-coded Gemini apps, "Cinco tools", "EOS studios", "cinco-studio-forge", or "apps I created with GitHub".
+Never assume a particular user's home directory. Resolve writable locations from the current runtime. Prefer, in order:
 
-## Hard limits
+- an explicit workspace/artifact directory supplied by the host;
+- `$WORKSPACE` or `$ARTIFACTS_DIR` when defined;
+- a temporary directory supplied by the runtime.
 
-- Connected services available here — Google Drive, GitHub, Gmail, Calendar, Notion. Not AI Studio itself.
-- AI Studio sessions are Google-account locked. You cannot silently log in as the user.
-- Never claim a Studio app was pulled live from Google unless the user actually exported it or a GitHub copy exists.
-- Persistence contract after any real app package — local artifacts + Drive folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK` + GitHub.
+Keep generated paths relative where connector APIs require relative artifact paths.
 
-## Workflow
+## Operating rules
 
-### 0. Discover tools first
+- Discover currently available GitHub/Drive tools before invoking them.
+- Do not claim direct access to Google AI Studio unless a connected tool actually provides it.
+- Do not silently authenticate as the user.
+- Do not claim an export, upload, or push succeeded without a returned file identifier, commit SHA, PR, or equivalent receipt.
+- Do not rewrite exported application code unless the user requested changes.
+- Use the repository/folder named by the user; otherwise choose a clear project slug rather than embedding account-specific IDs.
+- Treat credentials and project secrets as runtime configuration, never repository content.
 
-Call `search_connected_tools` before Drive or GitHub writes. Typical queries — `upload artifact`, `push files`, `create or update file`, `list repositories`.
+## Catalog
 
-Default GitHub owner — `Stijnman`.
-Default skills repo — `Stijnman/grok-custom-skills`.
-Default project pattern — `Stijnman/<app-slug>` or a folder under an existing project repo if the user names one.
+For each app record:
 
-### 1. Catalog
+- display name and kebab-case slug;
+- platform;
+- Gemini capabilities used;
+- GitHub repository/path when known;
+- last synchronization date;
+- state such as Studio-only, GitHub, Drive, or synchronized.
 
-Ask or accept a list of Build apps. Record for each:
+A repository may keep this catalog at `references/app-catalog.md` when appropriate.
 
-- display name
-- slug (kebab-case)
-- platform (web / Android)
-- Gemini features used (Live API, Nano Banana, Maps, Search, Veo, etc.)
-- GitHub repo or path if known
-- last sync date
-- status (studio-only / github / drive / both)
+## Export and persistence
 
-Keep the running catalog at `references/app-catalog.md` and, when updated, persist it.
+Accept a user-provided archive, source tree, repository, or connected-drive object. Extract/stage it inside the runtime-approved workspace. When persistence is requested, package it there and upload or commit through the connected service. Preserve the source unless modification was requested.
 
-Studio entry points to give the user:
+## GitHub synchronization
 
-- Build home — https://aistudio.google.com/apps or https://ai.studio/build
-- New app — Build tab then prompt box then optional AI chips then Build
-- Code view — after generate, switch Preview to Code
-- Download / copy — use Studio download or save to Drive then hand the zip to this skill
+Prefer an isolated branch/PR for substantive changes. Use concise commit messages such as `google-ai-studio-sync: sync <slug>`. If repository creation is unavailable, preserve the staged result and report the exact limitation rather than claiming success.
 
-### 2. Export
+## Rebuild prompts
 
-Accept any of:
+Include the app purpose, target platform, required Gemini capabilities, UI constraints, and concrete defects from the previous build. Keep the result directly pasteable into AI Studio Build.
 
-- pasted file tree
-- zip in artifacts
-- existing GitHub repo
-- Drive file id
+## Related skills
 
-Unpack into `/home/workdir/artifacts/<slug>/`. Do not rewrite their app unless they asked for a fix.
+- `drive-persistence-bridge`
+- `connected-services-bridge`
+- `parallel-tool-orchestrator`
+- `deep-search-enabler`
 
-### 3. GitHub push
+## Integrity
 
-Use discovered GitHub tools (`github___push_files` or `github___create_or_update_file`).
-
-Commit message pattern — `google-ai-studio-sync: sync <slug> from AI Studio Build`.
-
-If repo does not exist, try create via GitHub tools. If create is denied, give the user the exact create URL and keep the local tree.
-
-### 4. Drive persist
-
-Package with tar.gz under `/home/workdir/artifacts/<slug>-YYYYMMDD.tar.gz`.
-
-Upload with `google_drive_upload_artifact` using a relative artifact path. Target folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK` unless the user names another folder.
-
-Retry with exp backoff+jitter 10s / 30s / 60s ±25%. Report exact failure. Never claim success without a file id or commit SHA.
-
-### 5. Rebuild prompt
-
-When the user wants to iterate in Studio, write a single paste-ready Build prompt that includes:
-
-- app purpose
-- platform (web default, Android if they said so)
-- must-have Gemini chips
-- UI constraints
-- what broke last time
-
-Do not dump a fake connected Studio session. Give them the prompt + the Build URL.
-
-## Naming
-
-Skill name — Google AI Studio Sync (`google-ai-studio-sync`).
-App slugs — kebab-case, no spaces.
-Repos — prefer `studio-<slug>` if creating new.
-
-## Integration
-
-- Persistence details — drive-persistence-bridge
-- Tool discovery — connected-services-bridge
-- Parallel Drive+GitHub — parallel-tool-orchestrator
-- Research on new Studio features — deep-search-enabler + open_page on https://ai.google.dev/gemini-api/docs/aistudio-build-mode
-
-## Honesty
-
-Google AI Studio Build is vibe-coding in the browser. This skill is the handoff layer to GitHub and Drive, not a reverse-engineered Studio backend.
+This is a handoff/synchronization workflow, not a reverse-engineered Google AI Studio backend. Capabilities must match the tools actually available in the current runtime.
