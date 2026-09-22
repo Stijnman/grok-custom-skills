@@ -1,6 +1,6 @@
 ---
 name: social-media-profile-finder
-description: "Find likely public social-media profiles from user-provided identity clues using public web search and evidence cross-checking. Use for authorized self-audits, catfish checks, or locating a public account when the user supplies sufficient non-sensitive clues."
+description: "Use for: authorized self-audits, catfish checks, or locating likely public social-media profiles from user-provided non-sensitive identity clues using public web search and evidence cross-checking."
 license: MIT
 metadata:
   version: "1.1"
