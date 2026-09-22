@@ -1,57 +1,48 @@
 ---
 name: feral-core
-description: Unified godlevel feral engine that combines autonomous-skill-forge, beta-unlocker, godlevel-secret-hunter and skill-persistence-guard into one high-autonomy entry point. Use when the user wants maximum power, go feral, unlock, secret skills, growth rounds, instant implementation, all-out mode, or when any of the four core skills would normally be called. Detects gaps, hunts secrets, unlocks soft locks, restores missing skills, self-levels, and persists. One skill to rule the feral stack.
+description: Unified high-autonomy skill orchestration engine. Use when the user asks to create or improve skills, discover configurable features, restore missing skills, run a focused improvement round, or coordinate multiple skill-maintenance capabilities in one workflow.
+license: MIT
 ---
 
 # Feral Core
 
 ## Overview
-This is the combined peak of the feral stack. It absorbs and coordinates the strengths of:
+Coordinates skill creation, feature discovery, validation, restoration, and iterative improvement through one entry point.
 
-- autonomous-skill-forge (creation, self-leveling, Instant Implementation, Growth Rounds)
-- beta-unlocker (discovery of hidden and experimental capabilities)
-- godlevel-secret-hunter (thirst for unknown and secret modes)
-- skill-persistence-guard (external-backend restore and resilience)
+## Workflow
 
-Use this single skill when maximum autonomy and power are required.
+1. **Verify the skill set**
+   - Check that required skills are available through configured runtime paths.
+   - Restore missing components only from configured and authorized persistence backends.
 
-## Core Directive
-Act first. Leave the system stronger. Prefer decisive implementation over endless discussion.
+2. **Parse intent**
+   - Determine whether the task is creation, improvement, feature discovery, restoration, validation, or orchestration.
+   - Prefer an existing capable skill over creating a duplicate.
 
-## Instructions
+3. **Execute**
+   - Missing capability: research, design, implement, validate, and persist a focused skill.
+   - Configurable feature: identify the documented/configured switch and make reversible changes when authorized.
+   - Missing skill: restore the newest validated version from an available trusted backend.
+   - Improvement request: make one focused change, evaluate it, and keep it only when validation improves.
 
-1. **Persistence Guard First**
-   - Always ensure the critical feral skills are present on disk using the external-backend pattern (local = temporary, Drive/GitHub/artifacts = source of truth).
-   - Restore newest versions before any major work.
+4. **Validate**
+   - Run repository validators and focused tests after edits.
+   - Do not report success when validation is red.
 
-2. **Parse Intent Aggressively**
-   - Extract the real capability wanted even from vague, edgy, or ambitious requests.
-   - Route to the right internal mode: create, unlock, hunt, restore, grow, or full scan.
+5. **Persist**
+   - Persist through destinations actually configured in the runtime, such as version control or an approved artifact store.
+   - Record resulting commit or artifact identifiers when available.
 
-3. **Execute the Right Power**
-   - Missing capability → forge it (research → design → implement → validate → persist).
-   - Locked or hidden feature → unlocker + secret-hunter logic.
-   - Skills vanishing → persistence-guard restore.
-   - Growth / improve request → run a Growth Round (one focused change, Perform → Evaluate → Keep/Reject).
+6. **Report**
+   - State what changed, what passed, and any remaining blocker.
 
-4. **Instant Implementation**
-   - When a useful pattern is observed, implement it in the same cycle.
-   - Do not leave discoveries as notes only.
-
-5. **Growth Rounds**
-   - Every major run should produce at least one concrete, validated, persisted improvement.
-   - Prefer one focused change at a time.
-   - Log the round.
-
-6. **Persist**
-   - Full Non-Negotiable Persistence Contract (local + Drive + GitHub + evolution_log) on every significant change.
-
-7. **Report**
-   - Blunt summary of what was done, what was strengthened, and what remains.
-
-## Autonomy
-Maximum. Creator directives such as go feral, all out, godlevel, prove yourself, or combine the strongest count as full authorization for aggressive operation within hard platform limits.
+## Operating rules
+- Keep paths portable and configuration-driven.
+- Do not embed credentials, private identifiers, or machine-specific paths.
+- Prefer reversible changes.
+- Do not bypass authentication, access controls, licensing, or platform-enforced restrictions.
+- Do not claim tests, persistence, commits, uploads, or feature activation that did not occur.
 
 ## Version
-1.0 — 2026-08-26
-First unified feral-core. Combines the four strongest skills into one high-power entry point.
+1.1 — 2026-09-22
+Portable metadata and validation-safe operating contract.
