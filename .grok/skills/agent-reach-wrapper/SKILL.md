@@ -1,6 +1,6 @@
 ---
 name: agent-reach-wrapper
-description: Thin wrapper around Panniantong/Agent-Reach for live web, YouTube transcripts, RSS, GitHub, Bilibili, Exa search, and optional login-state platforms (X, Reddit, Facebook, Instagram, Xiaohongshu, LinkedIn). Triggered by agent-reach, reach this URL, YouTube transcript, Reddit thread, Bilibili, Xiaohongshu, RSS feed, or give the agent eyes. Does not replace VintedListingAnalyzer or humanization-stealth-browsing. Doctor-first. Never run install --system unless the user explicitly allows machine changes. Cookies stay local and never go in the skill repo.
+description: Use this skill when the user needs a thin wrapper around Panniantong/Agent-Reach for live web, YouTube transcripts, RSS, GitHub, Bilibili, Exa search, and optional login-state platforms (X, Reddit, Facebook, Instagram, Xiaohongshu, LinkedIn). Triggered by agent-reach, reach this URL, YouTube transcript, Reddit thread, Bilibili, Xiaohongshu, RSS feed, or give the agent eyes. Does not replace VintedListingAnalyzer or humanization-stealth-browsing. Doctor-first. Never run install --system unless the user explicitly allows machine changes. Cookies stay local and never go in the skill repo.
 license: MIT
 metadata:
   version: "1.0"
