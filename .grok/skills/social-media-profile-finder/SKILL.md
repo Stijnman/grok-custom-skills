@@ -1,82 +1,38 @@
 ---
 name: social-media-profile-finder
-description: Find public Facebook and Instagram profiles from a photo plus a name and location using reverse image search, face search, and name-location dorks. Triggered by find Facebook Instagram from photo, OSINT social profiles, identify account from picture name city, reverse face search socials, or when the user supplies a social photo plus name plus location.
+description: "Use for: authorized self-audits, catfish checks, or locating likely public social-media profiles from user-provided non-sensitive identity clues using public web search and evidence cross-checking."
+license: MIT
 metadata:
-  version: "1.0"
+  version: "1.1"
   type: workflow
-  created: "2026-09-05"
 ---
 
 # Social Media Profile Finder
 
-## Overview
-
-Identify the most likely public Facebook and Instagram profiles that belong to a person when the user supplies (1) a photo from social media, (2) a name, and (3) a location. Combines reverse-image search, face search, and name-location Google dorks. Public data only.
+## Scope
+Use public information only. Do not bypass logins, access private accounts, or use this workflow for stalking, harassment, sensitive-trait inference, or invasive tracking.
 
 ## Inputs
+- A name or public alias.
+- A broad location when relevant.
+- A public photo only when the user is authorized to use it.
 
-- Photo or photo URL / description of a face-forward image
-- Full name or closest known name
-- City, region, or country
-
-If any of the three is missing, ask for it before running the full workflow. A name-only or photo-only search is allowed but must be labeled lower confidence.
+A partial search is allowed, but confidence must reflect missing signals.
 
 ## Workflow
+1. Search public web results for the supplied name/alias and location.
+2. Compare public profile details that the user already supplied or that are openly visible.
+3. Require multiple independent matching signals before calling a candidate high confidence.
+4. Clearly separate confirmed facts, likely matches, and unresolved candidates.
+5. Return public URLs only; do not attempt to reveal private account content.
 
-Run these steps in order. Do not skip the photo step when a photo exists.
+## Confidence
+- High: multiple independent public signals align.
+- Medium: some corroboration exists but identity is not conclusive.
+- Low: common-name or weak-signal candidate.
 
-1. Prepare the image
-   - Prefer the original file over a screenshot.
-   - If multiple faces, crop mentally or describe the target face.
-   - Note lighting, angle, distinctive features, clothing, background landmarks.
-
-2. Reverse image and face search
-   - Exact-file engines first — Google Lens / Google Images, Yandex Images, TinEye.
-   - Face engines second — FaceCheck.ID, PimEyes, similar public face indexes.
-   - Record every URL where the same face or same file appears (profile pics, tagged photos, news, forums).
-   - Pixel match finds copies of a file. Face match finds the same person in different photos. You usually need both.
-
-3. Name + location search
-   Use web_search and open_page with queries such as
-   - `"Full Name" "City"` site:facebook.com
-   - `"Full Name" "City"` site:instagram.com
-   - `"Full Name" instagram` City
-   - `"Full Name" facebook` City
-   - common username stems of the name plus city
-   Also search the name without quotes and with middle initial / nickname variants.
-
-4. Cross-check
-   A candidate only counts if at least two of these align
-   - Face match (same person, not a lookalike)
-   - Name or close alias
-   - Location consistency (current city, hometown, check-ins, language, friends from that area)
-   - Photo reuse across platforms
-   Rank High / Medium / Low. Common names without a face match stay Low.
-
-5. Output (strict)
-   - Highest-confidence Facebook URL + evidence
-   - Highest-confidence Instagram URL + evidence
-   - Other candidates ranked
-   - Confidence per result
-   - What could not be confirmed (private account, common name, no indexed photos)
-   - Exact searches that were run
-
-Do not invent profiles. If nothing solid appears, say so and list the searches.
-
-## Tool use
-
-- web_search and open_page for dorks and result pages
-- search_images only when you need additional public photos of a candidate
-- x_keyword_search / x_user_search if an X handle surfaces as a pivot
-- Do not claim access behind logins. Do not scrape private accounts.
-
-## Limits
-
-- Private Instagram and locked Facebook profiles will not resolve.
-- Face tools have false positives. Require a second signal.
-- Paid face engines (PimEyes, FaceCheck.ID) may only be describable, not callable from this sandbox. Tell the user to run those themselves if needed and then feed results back.
-- This skill is for public OSINT, catfish checks, and self-audit. It is not a stalking kit.
+## Output
+Return the strongest public candidates, supporting evidence, confidence, and what could not be verified. Never invent a profile.
 
 ## Version
-
-1.0 — 2026-09-05. Initial skill from user prompt (photo + name + location → Facebook / Instagram).
+1.1 — tightened public-data and authorization boundaries.

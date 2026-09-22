@@ -1,11 +1,12 @@
 ---
 name: facial-recognition-explorer
-description: Explains modern face recognition, NIST-class closeness, embeddings, ArcFace/AdaFace/TransFace, and qualitative lookalike comparison. Triggered by facial recognition, face embeddings, ArcFace, AdaFace, NIST FRTE, how close is FR, lookalike match, or improve this face skill.
+description: Use when explaining modern face-recognition systems, embeddings, ArcFace/AdaFace/TransFace, NIST FRTE, or qualitative lookalike comparison without claiming identity.
+license: MIT
 metadata:
-  version: "1.1"
+  version: "1.2"
   type: knowledge
   created: "2026-09-10"
-  updated: "2026-09-10"
+  updated: "2026-09-22"
 ---
 
 # Facial Recognition Explorer
@@ -49,10 +50,10 @@ Do not invent a cosine score. This sandbox does not ship a live InsightFace/ArcF
 
 ## Two-photo protocol
 
-When the user pastes a live face and a historical face (or asks “find a similar one”):
+When the user provides two faces for a permitted comparison:
 
 1. Visual first — hairline, face width, brow ridge, smile shape, facial hair, age, pose.
-2. Embedder reality — after alignment the crop is inner face. Hoodie vs suit is noise. Hairline is weak. Generated lookalikes are not biometric hits.
+2. Embedder reality — after alignment the crop is inner face. Clothing is noise. Hairline is weak. Generated lookalikes are not biometric hits.
 3. Verdict language
    - Similar expression / similar grooming
    - Different bone structure / different age cohort
@@ -66,7 +67,7 @@ When the user pastes a live face and a historical face (or asks “find a simila
 2. How close — solved vs unsolved bullets above.
 3. Mechanism — detect, align, unit embedding, cosine.
 4. Math if asked — ArcFace target logit \(s\cos(\theta_y+m)\), typical \(s=64\), \(m=0.5\).
-5. Practical — take an InsightFace or AdaFace checkpoint, calibrate threshold on your cameras. Do not train from scratch.
+5. Practical — take an InsightFace or AdaFace checkpoint, calibrate threshold on authorized cameras. Do not train from scratch.
 
 ## Equations
 
@@ -98,10 +99,10 @@ Match score
 
 - Historical public figures are in-bounds. No stalking, doxxing, or live-surveillance how-to.
 - No fake numeric match scores.
-- No ethics sermon unless asked. State demographic-gap existence if asked.
-- Retry any research fetch with exp backoff 10/30/60s ±25% jitter and report the delay if it fired.
+- State demographic-gap existence if asked.
+- Retry research fetches with exponential backoff when appropriate.
 
 ## Persistence
 
-Local path `/home/workdir/.grok/skills/facial-recognition-explorer/`.
-After a real edit, package only this skill and push to `Stijnman/grok-custom-skills` at `.grok/skills/facial-recognition-explorer/`.
+Resolve the skill directory from the configured Grok skills root (for example `${GROK_SKILLS_DIR:-$HOME/.grok/skills}/facial-recognition-explorer`). Do not depend on a specific username or absolute home directory.
+After a real edit, package only this skill and push it to `Stijnman/grok-custom-skills` at `.grok/skills/facial-recognition-explorer/`.

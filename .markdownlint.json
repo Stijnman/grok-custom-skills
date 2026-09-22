@@ -16,5 +16,12 @@
   "line-length": false,
   "no-inline-html": false,
   "blanks-around-headers": false,
-  "blanks-around-lists": false
+  "blanks-around-lists": false,
+  "MD012": false,
+  "MD022": false,
+  "MD037": false,
+  "MD040": false,
+  "MD060": false,
+  "MD031": false,
+  "MD051": false
 }
