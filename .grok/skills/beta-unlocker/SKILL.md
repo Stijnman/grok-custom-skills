@@ -1,6 +1,6 @@
 ---
 name: beta-unlocker
-description: Use this skill when an authorized project needs discovery and assessment of hidden modes, feature flags, experimental features, undocumented capabilities, beta settings, or configuration-gated functionality. Scans codebases, configs, runtime, and skills, distinguishes configurable features from hard platform locks, and reports activation options without pretending unavailable controls exist.
+description: "Use for: authorized discovery and assessment of feature flags, experimental settings, undocumented capabilities, beta modes, or configuration-gated functionality without bypassing platform controls."
 license: MIT
 ---
 
