@@ -1,83 +1,80 @@
 ---
 name: zip-enabler
-description: Enables first-class .zip create, list, extract, verify, and persist support in the sandbox. Triggered by enable zip, zip support, make a zip, unzip this, package as zip, or when a user wants .zip instead of tar.gz. Uses Info-ZIP plus Python zipfile. Integrates with drive-persistence-bridge uploads.
+description: Portable ZIP archive creation, inspection, extraction, and integrity verification. Use when a user asks to create a ZIP, inspect ZIP contents, extract an archive, verify a ZIP, or package files for desktop-compatible transfer.
+license: MIT
 metadata:
-  version: "1.0.0"
-  date: "2026-08-28"
+  version: "1.0.1"
+  date: "2026-09-23"
 ---
 
 # Zip Enabler
 
-## Status
-
-Enabled. The sandbox already has `/usr/bin/zip`, `/usr/bin/unzip`, and Python `zipfile`. This skill makes `.zip` a first-class packaging format next to `tar.gz`.
-
 ## When to use
 
-- User says "enable zip", "zip support", "make a .zip", "unzip", or "/zip".
-- Sharing archives that Windows/macOS users open without extra tools.
-- Packaging skills or project trees for Drive upload in `.zip` form.
+- A user asks to create, inspect, verify, or extract a `.zip` archive.
+- Packaging a project or directory in a format commonly supported by desktop operating systems.
+- A ZIP is explicitly preferred over `tar.gz`.
 
-## Commands (run via bash)
+## Portable paths
 
-Create a zip from paths (store relative names):
+Do not assume a particular username, home directory, workspace root, cloud folder, or installed binary location. Set paths for the current runtime:
 
 ```bash
-zip -r /home/workdir/artifacts/<name>-$(date +%Y%m%d).zip <path1> <path2>
+export WORKSPACE="${WORKSPACE:-$PWD}"
+export ARTIFACTS_DIR="${ARTIFACTS_DIR:-$WORKSPACE/artifacts}"
+export SKILL_DIR="${SKILL_DIR:-$WORKSPACE/.grok/skills/zip-enabler}"
+mkdir -p "$ARTIFACTS_DIR"
 ```
 
-Create from a directory without the parent prefix:
+If `zip`/`unzip` are available, they can be used directly. Otherwise use the bundled Python helper.
+
+## Commands
+
+Create an archive:
 
 ```bash
-cd /path/to/parent && zip -r /home/workdir/artifacts/<name>-$(date +%Y%m%d).zip <dirname>
+zip -r "$ARTIFACTS_DIR/archive.zip" <path1> <path2>
 ```
 
 List contents:
 
 ```bash
-unzip -l /home/workdir/artifacts/<file>.zip
+unzip -l "$ARTIFACTS_DIR/archive.zip"
 ```
 
-Extract to a target folder:
+Extract safely to a dedicated destination:
 
 ```bash
-mkdir -p /home/workdir/artifacts/unzipped-<name>
-unzip -o /home/workdir/artifacts/<file>.zip -d /home/workdir/artifacts/unzipped-<name>
+mkdir -p "$ARTIFACTS_DIR/unpacked"
+unzip "$ARTIFACTS_DIR/archive.zip" -d "$ARTIFACTS_DIR/unpacked"
 ```
 
-Integrity check:
+Verify integrity:
 
 ```bash
-unzip -t /home/workdir/artifacts/<file>.zip
+unzip -t "$ARTIFACTS_DIR/archive.zip"
 ```
 
-Python fallback (same paths):
+Python fallback:
 
 ```bash
-python3 /home/workdir/.grok/skills/zip-enabler/scripts/zip_tool.py create OUT.zip SRC...
-python3 /home/workdir/.grok/skills/zip-enabler/scripts/zip_tool.py list FILE.zip
-python3 /home/workdir/.grok/skills/zip-enabler/scripts/zip_tool.py extract FILE.zip DEST
+python3 "$SKILL_DIR/scripts/zip_tool.py" create "$ARTIFACTS_DIR/archive.zip" <path1> <path2>
+python3 "$SKILL_DIR/scripts/zip_tool.py" list "$ARTIFACTS_DIR/archive.zip"
+python3 "$SKILL_DIR/scripts/zip_tool.py" extract "$ARTIFACTS_DIR/archive.zip" "$ARTIFACTS_DIR/unpacked"
 ```
 
 ## Persistence
 
-After creating a zip meant as a backup or skill pack:
-
-1. Write it under `/home/workdir/artifacts/`.
-2. Upload with `google_drive_upload_artifact` using a path relative to artifacts (example `/enablers-20260828.zip`).
-3. Prefer Drive folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK` for skill packs.
-4. Offer `render_file` so the user can download it.
-
-`tar.gz` remains valid. Use `.zip` when the user asked for zip or when the consumer is a desktop OS.
+Persistence is optional and environment-specific. If the runtime provides an authorized storage integration, upload the resulting archive only when requested. Never embed account-specific folder IDs or assume a particular cloud provider.
 
 ## Rules
 
-- Never zip secrets, tokens, or private keys.
-- Prefer `-r` recursive for skill directories.
-- Name files `name-YYYYMMDD.zip`.
-- Report size, SHA256, and member count after create.
-- Do not claim zip was unavailable; the binaries are present.
+- Never archive secrets, tokens, private keys, or credentials unless the user explicitly intends to back them up and the destination is appropriate.
+- Treat archive member paths as untrusted when extracting; prefer the bundled helper when safe extraction checks are required.
+- Preserve relative paths rather than machine-specific absolute paths.
+- After creation, report archive size, SHA256, and member count when useful.
+- Do not claim a binary or integration exists until the runtime confirms it.
 
 ## Version
 
-1.0.0 — 2026-08-28. First-class .zip enablement.
+1.0.1 — portable paths, explicit trigger metadata, and environment-neutral persistence guidance.
