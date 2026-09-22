@@ -1,6 +1,6 @@
 ---
 name: autonomous-skill-forge
-description: Use this skill when an agent needs to detect a capability gap, research a solution, create or improve a reusable skill, validate it, and persist the result.
+description: "Use for: detecting a capability gap, researching a solution, creating or improving a reusable skill, validating it, and persisting the result."
 license: MIT
 ---
 
