@@ -5,13 +5,13 @@
 </p>
 
 <p align="center">
-  <a href="SKILLS_INDEX.md"><img src="https://img.shields.io/badge/skills-89-2563eb?style=flat-square" alt="89 skills"></a>
+  <a href="SKILLS_INDEX.md"><img src="https://img.shields.io/badge/skills-102-2563eb?style=flat-square" alt="102 skills"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a?style=flat-square" alt="MIT license"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/security-policy-7c3aed?style=flat-square" alt="Security policy"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/contributions-welcome-f59e0b?style=flat-square" alt="Contributions welcome"></a>
 </p>
 
-`grok-custom-skills` is a modular library of **89 skill packages** for common agent tasks: workflow orchestration, product discovery, research, skill operations, privacy, quality assurance, memory, media, messaging, and integrations.
+`grok-custom-skills` is a modular library of **102 skill packages** for common agent tasks: workflow orchestration, product discovery, research, skill operations, privacy, quality assurance, memory, media, messaging, and integrations.
 
 > **Design principle:** Skills should make agent behavior more useful, auditable, and safe. They are guidance packages, not permission to bypass controls, disclose private data, or automate high-impact actions without human approval.
 
