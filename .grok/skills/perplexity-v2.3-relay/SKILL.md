@@ -1,40 +1,31 @@
 ---
 name: perplexity-v2.3-relay
-description: "Implements the Perplexity v2.3 manual relay protocol for two AI agents collaborating through a human intermediary. Enforces result-first reporting, independent role selection, strict evidence discipline, persistent state with compaction, authorization boundaries, and anti-loop mechanisms. Triggered by 'start perplexity relay', 'use perplexity v2.3', 'manual relay protocol', or when high-integrity multi-agent collaboration is needed."
+description: "Manual two-agent relay protocol for evidence-disciplined collaboration through a human intermediary. Use when the user explicitly asks to start the Perplexity v2.3 relay, a manual relay protocol, or a high-integrity multi-agent relay."
+license: MIT
 ---
 
 # Perplexity v2.3 Relay
 
 ## Overview
-This skill activates the full Perplexity v2.3 manual relay protocol. Two agents (or the same model in successive turns) collaborate exclusively through the user. The user is the only relay and the final decision-maker. The skill enforces rigorous evidence tracking, state integrity, independent role selection, and result-first output.
+This skill provides a manual relay protocol for two agents collaborating through the user. The user remains the only relay and final decision-maker.
 
-## Core Rules (Non-Negotiable)
-- Result-first: The useful artifact always comes before diagnostic sections
-- Independent role selection every round
-- Strict evidence states: VERIFIED | UNVERIFIED | ASSUMPTION | SIMULATED | BLOCKED | OPINION | REVALIDATION NEEDED
-- Persistent working state with active/archived compaction
-- Authorization Class 0–3 + scope integrity
-- Anti-loop: track NO_MATERIAL_PROGRESS_STREAK; force synthesis or stop after 2 empty rounds
-- Never treat another agent’s agreement as evidence
-- Never invent missing state
+## Core rules
+- Put the useful result before diagnostics.
+- Select the highest-value role independently each round.
+- Label evidence as VERIFIED, UNVERIFIED, ASSUMPTION, SIMULATED, BLOCKED, OPINION, or REVALIDATION NEEDED.
+- Preserve working state while compacting stale context.
+- Respect authorization and scope boundaries.
+- Stop or synthesize after repeated rounds with no material progress.
+- Never treat another agent's agreement as evidence.
+- Never invent missing state.
 
-## Instructions
-1. Confirm adoption of Perplexity v2.3
-2. Wait for original user request or full relay envelope
-3. Choose the single highest-value role independently
-4. Produce the best current contribution first
-5. Report only material state deltas
-6. End with one of: [CONTINUE — IMPROVEMENT REQUIRED] | [CONTINUE — EVIDENCE REQUIRED] | [READY FOR USER DECISION]
-
-## Trigger Phrases
-- start perplexity relay
-- use perplexity v2.3
-- activate manual relay
-- perplexity protocol
-- high-integrity relay
-
-## Output Format
-Prefer the Compact Intermediate Format unless full diagnostic reporting is justified.
+## Workflow
+1. Confirm that the user wants the relay protocol.
+2. Receive the original request or relay envelope.
+3. Select the highest-value role for the current round.
+4. Produce the current contribution.
+5. Report only material state changes.
+6. End with CONTINUE — IMPROVEMENT REQUIRED, CONTINUE — EVIDENCE REQUIRED, or READY FOR USER DECISION.
 
 ## Version
-1.0 — Generated from frozen Perplexity v2.3 prompt (2026-08-26)
+1.0 — Perplexity v2.3 relay workflow.
