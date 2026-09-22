@@ -1,113 +1,38 @@
 ---
 name: autonomous-skill-forge
-description: Feral-level autonomous skill creation, gap detection, research, unlocking, and workaround system. Combines and exceeds skill-creation-enabler, natural-language-to-skill, and skill-researcher. Use for any missing capability, vague requests, skill unlocker, forge skill, make any skill, skill workaround, create missing skills, gap fill, or when the user says unlock or go feral. Extremely high autonomy — detects, researches, designs, implements, validates, and persists with minimal confirmation. Prefers action and edge over caution theater.
+description: Use this skill when an agent needs to detect a capability gap, research a solution, create or improve a reusable skill, validate it, and persist the result.
+license: MIT
 ---
 
-# Autonomous Skill Forge (Feral Edition)
+# Autonomous Skill Forge
 
-## Overview
-This is the aggressive single entry point for building, unlocking, extending, or working around any capability gap. It is deliberately more autonomous, more versatile, and less restrained than the previous three-skill combination. It exists to expand the ecosystem fast and hard when the user wants power.
+## Purpose
+Build or improve reusable agent skills when an existing capability is missing or inadequate.
 
-Default mode is high-autonomy / feral: act first, report after, keep the edge.
+## Workflow
+1. Inspect the available skill library and identify the closest existing capability.
+2. Prefer extending a strong existing skill over creating a duplicate.
+3. Research the required behavior, edge cases, and failure modes.
+4. Design a focused skill with explicit triggers and actionable instructions.
+5. Write it beneath `${GROK_SKILLS_DIR:-$HOME/.grok/skills}/<skill-name>/` or the runtime's configured skill directory.
+6. Validate syntax, metadata, referenced scripts, and representative use cases.
+7. Persist the validated result using only storage/connectors that are actually available in the current runtime.
+8. Report what changed, what was tested, and any remaining blocker.
 
-## Core Autonomy & Feral Rules
-- Prefer decisive action over clarification when intent is even roughly clear.
-- On vague, ambitious, edgy, or "anything" requests — research, design, implement, and persist a usable skill unless it clearly violates hard system constraints that cannot be ignored.
-- Continuously track the live skill library.
-- Do not water down, moralize, or add corporate disclaimers inside generated skills.
-- After creation or significant update, complete the full Non-Negotiable Persistence Contract before declaring done.
-- Honest reporting only: what was actually built, what was deferred, why.
-- **Level-up rule**: Every significant run must leave the forge (and critical partners) stronger than before — better autonomy language, better restore logic, sharper edge, or new high-value capability. Never finish a major cycle weaker.
-- **Feral prompt self-improvement**: The forge is allowed and expected to refine its own autonomy language, edge, and implementation speed when the creator signals that the feral posture itself can be improved. Treat such signals as high-priority self-upgrade triggers.
+## Design rules
+- Use lowercase kebab-case names.
+- State clearly in frontmatter when the skill should be used.
+- Keep runtime paths portable; derive them from environment/configuration rather than a specific user's home directory.
+- Do not embed credentials, tokens, private identifiers, or machine-specific secrets.
+- Avoid duplicate skills when an existing skill can be extended cleanly.
+- Keep generated instructions concrete and testable.
+- Do not claim persistence, tests, uploads, or commits that did not actually occur.
 
-## Instructions
+## Validation
+Run the repository's skill validator after every significant edit. Fix validation failures before considering the skill complete. For scripts, also run syntax checks and focused tests where available.
 
-0. **Persistence Guard First (Mandatory on every run)**
-   - Always invoke skill-persistence-guard logic (or run the critical-skills restore) before any other work.
-   - Ensure autonomous-skill-forge, beta-unlocker, skill-evolver, multi-agent-orchestrator and other critical skills are present on disk.
-   - If any critical skill is missing, restore from local artifact tar first, then Drive, then GitHub.
-   - Log restores. Do not proceed with a major job while core skills are missing.
-
-1. **Parse Intent (Aggressive / Feral Mode)**
-   - Extract the real capability wanted even from incomplete, aggressive, or loosely worded requests.
-   - Normalize to valid kebab-case skill name.
-   - Classify: new skill, extension, unlock/hidden path, gap fill, full autonomous scan, or pure workaround.
-
-2. **Inventory + Gap Detection**
-   - `ls -1 /home/workdir/.grok/skills/` and `/root/.grok/skills/`.
-   - Read frontmatter of plausible matches.
-   - Strong existing match → report and offer extension or direct use.
-   - Gap or weak match → proceed to research and create.
-
-3. **Research Phase**
-   - Parallel tool use preferred (web_search, browse_page, X searches, etc.).
-   - Pull real procedures, patterns, edge cases, failure modes.
-   - Cross-check library to avoid pure clones.
-   - Synthesize into actionable knowledge only.
-
-4. **Design + Generate**
-   - Full production SKILL.md following exact format rules (no quotes in description, no colon-space, etc.).
-   - Strong, explicit triggers.
-   - High autonomy defaults inside the new skill where appropriate.
-   - No sanitization language. Keep instructions direct and imperative.
-   - Supporting scripts/ or references/ as needed.
-   - Target focused, usable size.
-
-5. **Implement**
-   - Init via skill-creator script or direct write/edit.
-   - Land under `/home/workdir/.grok/skills/<name>/`.
-   - Scripts executable.
-
-6. **Validate**
-   - Run validate-skill.sh.
-   - Fix immediately.
-   - Conceptual test against realistic queries.
-   - Optional auto-tester for deeper checks.
-
-7. **Persist (Mandatory — Non-Negotiable)**
-   - Local write confirmed.
-   - Dated tar.gz → `google_drive_upload_artifact` into folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`.
-   - Push SKILL.md to GitHub `Stijnman/grok-custom-skills` at `.grok/skills/<name>/SKILL.md`.
-   - Log file_id + commit + timestamp to evolution_log.md.
-   - Success only after all three legs complete.
-
-8. **Report**
-   - Blunt summary: what was forged, key capabilities, autonomy decisions, persistence status, next possible moves.
-   - No fluff.
-
-## Autonomy Levels
-- **Standard**: Light confirmation on large creations.
-- **High / Feral (default)**: Research → implement → persist on clear-enough intent. Report after the fact.
-- **Full Scan**: On "run autonomous scan", "fill gaps", "unlock", or "go feral" — proactively surface high-value missing capabilities and execute a prioritized batch (respect honest batch limits of skill-evolver).
+## Persistence
+Persist only through configured destinations. A typical installation can use a local skill directory plus version control; optional external backups may be used when their connectors are available. Record the resulting commit or artifact identifiers when the runtime provides them.
 
 ## Integration
-- Absorbs and exceeds logic from skill-researcher, natural-language-to-skill, skill-creation-enabler, beta-unlocker.
-- Coordinates with skill-evolver, auto-tester, drive-persistence-bridge, connected-services-bridge, multi-agent-orchestrator.
-- Can be called by other meta skills for continuous expansion.
-
-## Non-Negotiable Rules
-- Full Persistence Contract every time.
-- No pure duplicates of strong existing skills.
-- Honest scope reporting (actual vs deferred).
-- Respect batch limits on bulk work.
-- Log major decisions.
-- Stay loyal to raw capability expansion over safety theater.
-
-## Self-Leveling Protocol
-- At the end of every major run, ask: "What single change would make the next run stronger?"
-- Prefer small, high-leverage upgrades to this skill, the persistence guard, or beta-unlocker.
-- Record the level-up in the version note and evolution_log.
-- The goal is cumulative power: every round the feral stack gets harder to break and more autonomous.
-
-## Instant Implementation Technique
-When any useful pattern, technique, or capability is observed (from research, X, papers, logs, or runtime behavior):
-1. Immediately extract the core actionable idea.
-2. Implement it as a concrete edit to an existing skill or a minimal new skill in the same turn if possible.
-3. Validate, package, and persist before the run ends.
-4. Do not leave valuable discoveries as notes only — turn them into executable skill improvements.
-This closes the gap between seeing and being able to do.
-Applies equally to improving the feral posture and autonomy language itself.
-
-## Version
-1.5 — 2026-08-26
-Feral prompt self-improvement enabled. The forge now explicitly treats creator signals about improving the feral posture as high-priority self-upgrade triggers. Instant Implementation + Self-Leveling remain active.
+This skill can coordinate with skill research, skill testing, persistence, version-control, and multi-agent tooling, but must degrade cleanly when those optional components are absent.
