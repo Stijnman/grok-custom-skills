@@ -113,3 +113,7 @@ Contributions are welcome when they make skill behavior more reliable, safer, or
 ## License
 
 This project is released under the [MIT License](LICENSE), except where a skill package declares another license. The five product-management workflow adaptations are Apache-2.0 and include their required attribution in THIRD_PARTY_NOTICES.md.
+
+## Flagship integration
+
+This project remains independently usable and is not deprecated. Its capabilities are also consumed by [AetherOS](https://github.com/Stijnman/AetherOS) and [AegisAI](https://github.com/Stijnman/AegisAI), where they are integrated with complementary repositories behind shared platform contracts. This repository remains the source of truth for its component-specific implementation.
