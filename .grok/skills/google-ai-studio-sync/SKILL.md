@@ -1,6 +1,7 @@
 ---
 name: google-ai-studio-sync
-description: Bridges Google AI Studio Build mode with GitHub and Drive for apps you vibe-coded. Five sync tools — catalog Studio builds, export source, push to GitHub, persist to Drive, iterate rebuild prompts. Triggered by Google AI Studio Sync, AI Studio, aistudio/build, Cinco tools, cinco-studio-forge, sync my Studio apps, push Build app to GitHub.
+license: MIT
+description: Use when the user's request calls for this capability. Bridges Google AI Studio Build mode with GitHub and Drive for apps you vibe-coded. Five sync tools — catalog Studio builds, export source, push to GitHub, persist to Drive, iterate rebuild prompts. Triggered by Google AI Studio Sync, AI Studio, aistudio/build, Cinco tools, cinco-studio-forge, sync my Studio apps, push Build app to GitHub.
 metadata:
   type: workflow
   version: "1.1"

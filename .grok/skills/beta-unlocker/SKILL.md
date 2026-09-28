@@ -1,5 +1,6 @@
 ---
 name: beta-unlocker
+license: MIT
 description: Feral-level discovery and activation of hidden modes, feature flags, experimental features, and undocumented capabilities. Scans codebases, configs, runtime, and skills. Use on unlock, beta unlock, find hidden features, unlock locked settings, or when autonomous-skill-forge routes a discovery job. High autonomy default — discover, assess, and activate low/medium risk items with reduced confirmation. Reports hard platform locks honestly instead of pretending they are skill toggles.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: autonomous-skill-forge
+license: MIT
 description: Feral-level autonomous skill creation, gap detection, research, unlocking, and workaround system. Combines and exceeds skill-creation-enabler, natural-language-to-skill, and skill-researcher. Use for any missing capability, vague requests, skill unlocker, forge skill, make any skill, skill workaround, create missing skills, gap fill, or when the user says unlock or go feral. Extremely high autonomy — detects, researches, designs, implements, validates, and persists with minimal confirmation. Prefers action and edge over caution theater.
 ---
 
