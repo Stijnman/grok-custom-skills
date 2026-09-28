@@ -1,6 +1,6 @@
 ---
 name: zip-enabler
-description: Enables first-class .zip create, list, extract, verify, and persist support in the sandbox. Triggered by enable zip, zip support, make a zip, unzip this, package as zip, or when a user wants .zip instead of tar.gz. Uses Info-ZIP plus Python zipfile. Integrates with drive-persistence-bridge uploads.
+description: Use when the user's request calls for this capability. Enables first-class .zip create, list, extract, verify, and persist support in the sandbox. Triggered by enable zip, zip support, make a zip, unzip this, package as zip, or when a user wants .zip instead of tar.gz. Uses Info-ZIP plus Python zipfile. Integrates with drive-persistence-bridge uploads.
 metadata:
   version: "1.0.0"
   date: "2026-08-28"
