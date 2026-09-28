@@ -1,6 +1,6 @@
 ---
 name: zip-toolkit
-description: Full zip and archive toolkit for Grok. Unzip, list, create, add, extract, test, convert, and install skill packs from zip or tar.gz. Trigger on unzip this, /zip, extract archive, pack skills, zip slip-safe extract, inspect zip, create zip, install skill pack from zip.
+description: Use when the user's request calls for this capability. Full zip and archive toolkit for Grok. Unzip, list, create, add, extract, test, convert, and install skill packs from zip or tar.gz. Trigger on unzip this, /zip, extract archive, pack skills, zip slip-safe extract, inspect zip, create zip, install skill pack from zip.
 metadata:
   version: "1.0"
   type: toolkit
