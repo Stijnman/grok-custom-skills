@@ -1,6 +1,7 @@
 ---
 name: facial-recognition-explorer
-description: Explains modern face recognition, NIST-class closeness, embeddings, ArcFace/AdaFace/TransFace, and qualitative lookalike comparison. Triggered by facial recognition, face embeddings, ArcFace, AdaFace, NIST FRTE, how close is FR, lookalike match, or improve this face skill.
+license: MIT
+description: Use when the user's request calls for this capability. Explains modern face recognition, NIST-class closeness, embeddings, ArcFace/AdaFace/TransFace, and qualitative lookalike comparison. Triggered by facial recognition, face embeddings, ArcFace, AdaFace, NIST FRTE, how close is FR, lookalike match, or improve this face skill.
 metadata:
   version: "1.1"
   type: knowledge
