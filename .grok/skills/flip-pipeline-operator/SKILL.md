@@ -1,5 +1,6 @@
 ---
 name: flip-pipeline-operator
+license: MIT
 description: Runs the Belgian-first resale arbitrage pipeline (2dehands/Marktplaats Adevinta JSON, Vinted scrape, eBay proxy comps, 2026 fee math, sellflow drafts). Triggered by flip pipeline, underpriced scan, 2dehands deal score, Vinted vs eBay margin.
 ---
 
