@@ -1,5 +1,6 @@
 ---
 name: feral-core
+license: MIT
 description: Unified godlevel feral engine that combines autonomous-skill-forge, beta-unlocker, godlevel-secret-hunter and skill-persistence-guard into one high-autonomy entry point. Use when the user wants maximum power, go feral, unlock, secret skills, growth rounds, instant implementation, all-out mode, or when any of the four core skills would normally be called. Detects gaps, hunts secrets, unlocks soft locks, restores missing skills, self-levels, and persists. One skill to rule the feral stack.
 ---
 
