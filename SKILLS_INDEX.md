@@ -1,47 +1,56 @@
 # Skills Catalog
 
-This catalog is generated from the metadata in **90 skill definitions**. Run `python3 scripts/generate_catalog.py` after adding or changing a skill.
+This catalog is generated from the metadata in **102 skill definitions**. Run `python3 scripts/generate_catalog.py` after adding or changing a skill.
 
 ## Browse by category
 
 | Category | Skills |
-|---|---:|
-| General Utilities | 14 |
+| --- | ---: |
+| General Utilities | 23 |
 | Media, Voice & Visuals | 6 |
 | Memory, Context & Knowledge | 7 |
 | Messaging & Communication | 5 |
 | Quality, Code & Performance | 6 |
 | Research, Web & Integrations | 13 |
 | Safety, Privacy & Governance | 7 |
-| Skill Development & Operations | 17 |
+| Skill Development & Operations | 19 |
 | Traffic & Navigation | 3 |
-| Workflow & Agent Orchestration | 12 |
+| Workflow & Agent Orchestration | 13 |
 
 ## Complete catalog
 
 ### General Utilities
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`accessible-color-review`](.grok/skills/accessible-color-review/SKILL.md) | Review color choices for contrast, semantic consistency, color-vision accessibility, and readable user-interface states. Use for: color accessibility review, contrast check, UI color audit, accessible palette. |
 | [`architecture-decision-record`](.grok/skills/architecture-decision-record/SKILL.md) | Document a significant technical decision with its context, alternatives, consequences, and status. Use for: architecture decision record, ADR, technical decision log, technology choice. |
-| [`beta-unlocker`](.grok/skills/beta-unlocker/SKILL.md) | Guides enabling beta or experimental Grok features safely. Use for: beta feature, early access, unlock experimental, enable beta. |
+| [`beta-unlocker`](.grok/skills/beta-unlocker/SKILL.md) | Discover documented or user-authorized experimental features, feature flags, and configuration options; explain how they work and assess risks. Use when the user asks to find beta features, inspect feature flags, or understand a setting. Do not bypass access controls or change settings without explicit approval. |
 | [`contact-vcard-export`](.grok/skills/contact-vcard-export/SKILL.md) | Create a validated vCard contact-export file from contact details that the user has explicitly selected and confirmed. Use for: create VCF, export contacts, vCard file, contact import file. |
 | [`control-overview`](.grok/skills/control-overview/SKILL.md) | Provides control-panel overview of active skills, workflows, and status. Use for: overview, status dashboard, what skills, control panel. |
 | [`cron-scheduler`](.grok/skills/cron-scheduler/SKILL.md) | Schedules recurring or delayed agent tasks. Use for: schedule this, run daily, cron job, set timer. |
 | [`dspy-prompt-optimizer`](.grok/skills/dspy-prompt-optimizer/SKILL.md) | Tunes prompts iteratively using reflection and success metrics. Use for: optimize this prompt, dspy tune, improve prompt with reflection, `self-refine-loop`. |
 | [`experiment-results-analysis`](.grok/skills/experiment-results-analysis/SKILL.md) | Analyze completed experiment results with effect sizes, uncertainty, guardrails, limitations, and evidence-based next steps. Use for: experiment results, A/B test analysis, test readout, experiment decision. |
 | [`exposed-service-triage`](.grok/skills/exposed-service-triage/SKILL.md) | Triages exposed TCP listeners found by security audits. Use for: exposed port, what is listening, fix exposed service, open port. |
+| [`facial-recognition-explorer`](.grok/skills/facial-recognition-explorer/SKILL.md) | Explains face-recognition systems, embeddings, model evaluation, and limitations; provides cautious qualitative comparison of images the user supplies. Use when the user asks about face recognition, ArcFace/AdaFace, NIST FRTE, embeddings, or model performance. Do not identify private people or enable surveillance. |
+| [`feral-core`](.grok/skills/feral-core/SKILL.md) | Coordinate capability discovery, skill creation, safe feature review, and recovery of missing skills within a user-defined scope. Use when the user requests a skills-library improvement, an authorized feature review, or help restoring a missing skill. Require explicit approval for overwrites, installs, external writes, or activation of settings. |
+| [`flip-pipeline-operator`](.grok/skills/flip-pipeline-operator/SKILL.md) | Analyze potentially underpriced second-hand listings in Belgium, the Netherlands, and the US, comparing fees, shipping, and resale comps. Use when the user asks for a flip-pipeline scan, deal score, or resale margin estimate. Ask before saving or sharing results, contacting sellers, or taking a marketplace action. |
+| [`godlevel-secret-hunter`](.grok/skills/godlevel-secret-hunter/SKILL.md) | Inventory documented, authorized capabilities and experimental features across a named project or skills library, then recommend safe improvements. Use when the user asks to find hidden or undocumented capabilities, review feature flags, or assess experimental modes. Do not bypass controls or activate features without explicit approval. |
+| [`google-ai-studio-sync`](.grok/skills/google-ai-studio-sync/SKILL.md) | Help export user-provided Google AI Studio Build app source, organize a project, and prepare GitHub or Drive synchronization. Use when the user asks about AI Studio Build apps, exporting a Studio app, rebuilding its prompt, or syncing a named app. Obtain explicit approval for each external write and confirm destination and files first. |
 | [`imagine-asset-generator`](.grok/skills/imagine-asset-generator/SKILL.md) | Generates visual assets via image generation tools. Use for: generate image, create asset, make icon, design mockup. |
 | [`oss-repo-maintainer`](.grok/skills/oss-repo-maintainer/SKILL.md) | Maintain open-source repositories by checking README accuracy, version consistency, release readiness, and documentation drift. Use for: fix README, prepare release, repository maintenance, sync documentation. |
+| [`perplexity-v23-relay`](.grok/skills/perplexity-v23-relay/SKILL.md) | Coordinate evidence-focused collaboration between AI agents through the user as the manual relay, with result-first reporting, explicit evidence states, scoped authorization, and loop prevention. Use when the user asks to start the Perplexity v2.3 relay, use a manual relay protocol, or coordinate a high-integrity multi-agent handoff. |
 | [`product-opportunity-tree`](.grok/skills/product-opportunity-tree/SKILL.md) | Map a measurable product outcome to customer opportunities, solution options, and assumption tests. Use for: opportunity solution tree, product discovery map, customer opportunity mapping, outcome-to-solution planning. |
 | [`product-requirements-document`](.grok/skills/product-requirements-document/SKILL.md) | Write a clear product requirements document that defines the problem, scope, requirements, success measures, risks, and open questions. Use for: product requirements document, PRD, feature specification, engineering handoff. |
 | [`ringtwice-power-suite`](.grok/skills/ringtwice-power-suite/SKILL.md) | Support service providers with clear, platform-compliant RingTwice profile copy, job evaluation, customer communication, and service planning. Use for: RingTwice profile, job evaluation, service quote draft, customer message, review response. |
+| [`social-media-profile-finder`](.grok/skills/social-media-profile-finder/SKILL.md) | Help a user audit their own public Facebook or Instagram presence using profile details and sources they provide. Use when the user asks to find, verify, or review their own public social-media profiles. Do not identify or track private people from photos, face search, or location clues. |
+| [`zip-enabler`](.grok/skills/zip-enabler/SKILL.md) | Create, list, extract, and verify ZIP archives using available archive tools or Python zipfile. Use when the user asks to make or inspect a ZIP, extract an archive, or package files as ZIP. Confirm before overwriting files, installing a skill pack, or uploading an archive. Resolve paths from the current task or configured artifacts directory rather than a fixed home path. |
+| [`zip-toolkit`](.grok/skills/zip-toolkit/SKILL.md) | Inspect, create, test, and extract ZIP archives using the existing zip-enabler helper and verified standard utilities. Use when the user asks to inspect or extract an archive, package files, or review a skill pack. Obtain explicit approval before overwriting files, installing into a skills directory, or uploading externally; use configured paths, not fixed host paths. |
 
 ### Media, Voice & Visuals
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`real-time-voice-reasoner`](.grok/skills/real-time-voice-reasoner/SKILL.md) | Handles real-time voice input with low-latency reasoning. Use for: voice mode, speak and reason, voice assistant, listen. |
 | [`safe-image-editor`](.grok/skills/safe-image-editor/SKILL.md) | Edits images with policy and quality guardrails. Use for: edit image, safe edit, adjust photo, modify image. |
 | [`suno`](.grok/skills/suno/SKILL.md) | Turn a real-life story into structured, safety-filtered song lyrics and a Suno-ready style prompt. Use for: song lyrics, story to song, Suno prompt. |
@@ -52,7 +61,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Memory, Context & Knowledge
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`knowledge-graph-builder`](.grok/skills/knowledge-graph-builder/SKILL.md) | Builds structured knowledge graphs from text and sessions. Use for: knowledge graph, map entities, build graph, entity map. |
 | [`mega-context-manager`](.grok/skills/mega-context-manager/SKILL.md) | Manages large context windows via chunking, summarization, and retrieval. Use for: manage context, too much context, chunk document, context budget. |
 | [`memory-sanitizer`](.grok/skills/memory-sanitizer/SKILL.md) | Scores and filters retrieved memory against trust and poisoning risk. Use for: sanitize memory, trust score retrieval, clean knowledge graph, `semantic-memory-manager`. |
@@ -64,7 +73,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Messaging & Communication
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`ai-share-extractor-v4`](.grok/skills/ai-share-extractor-v4/SKILL.md) | Extracts shareable insights from long agent sessions for export. Use for: extract shares, shareable summary, export insights, `privacy-redactor`. |
 | [`telegram-traffic-reports`](.grok/skills/telegram-traffic-reports/SKILL.md) | Fetches and reports traffic conditions via Telegram bot format. Use for: telegram traffic, traffic report Telegram, commute alert, `waze-live-reports`. |
 | [`text-humanizer`](.grok/skills/text-humanizer/SKILL.md) | Improve text so it sounds natural, clear, and appropriate for its intended audience while preserving the author's meaning. Use for: tone adjustment, readability, natural writing, English, Dutch. |
@@ -74,7 +83,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Quality, Code & Performance
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`auto-tester`](.grok/skills/auto-tester/SKILL.md) | Runs validation tests on code, skills, or outputs after changes. Use for: run tests, auto test, validate changes, check tests. |
 | [`code-reviewer`](.grok/skills/code-reviewer/SKILL.md) | Reviews code changes for bugs, style, security, and maintainability. Use for: review code, code review, check my PR, review my changes. |
 | [`data-visualizer`](.grok/skills/data-visualizer/SKILL.md) | Creates charts and visual summaries from tabular or numeric data. Use for: visualize data, chart this, plot results, graph this. |
@@ -85,7 +94,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Research, Web & Integrations
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`computer-use-bridge`](.grok/skills/computer-use-bridge/SKILL.md) | Bridges desktop automation to agent tool calls. Use for: computer use, desktop control, click on screen, GUI automation. |
 | [`connected-services-bridge`](.grok/skills/connected-services-bridge/SKILL.md) | Connects approved external services such as Drive, GitHub, Notion, calendars, SharePoint, and Outlook through their available connectors. Use for: discovering connected-service capabilities, preparing a scoped integration, or completing a user-approved external action. |
 | [`deep-search-enabler`](.grok/skills/deep-search-enabler/SKILL.md) | Enables thorough multi-source research beyond quick answers. Use for: deep search, comprehensive research, research thoroughly, `internet-enabler`. |
@@ -103,7 +112,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Safety, Privacy & Governance
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`compliance-image-guard`](.grok/skills/compliance-image-guard/SKILL.md) | Checks images for policy compliance before generation or publish. Use for: compliance check, safe image, image policy, can I publish this. |
 | [`defensive-mcp-audit`](.grok/skills/defensive-mcp-audit/SKILL.md) | Run a defensive, read-only audit of local MCP and AI-agent exposure, including risky bindings, configuration issues, and confused-deputy risks. Use for: audit MCP, MCP security, localhost exposure, defensive MCP audit. |
 | [`hitl-approver`](.grok/skills/hitl-approver/SKILL.md) | Pauses high-risk actions for explicit human approval. Use for: approve this, hitl check, human review needed, confirm before send. |
@@ -115,8 +124,9 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Skill Development & Operations
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`auto-skill-resolver`](.grok/skills/auto-skill-resolver/SKILL.md) | Plan and coordinate skill-library improvements by identifying gaps, overlaps, and the safest next action. Use for: skill gap analysis, resolve missing capability, skill-library cleanup, skill planning. |
+| [`autonomous-skill-forge`](.grok/skills/autonomous-skill-forge/SKILL.md) | Create, improve, research, and validate skills for a specific capability gap. Use when the user asks to create a skill, fill a skills-library gap, research a workflow, or improve an existing skill. Draft and validate requested local changes; get explicit approval before overwriting existing work, installing, uploading, pushing, or publishing externally. |
 | [`drive-github-skill-audit`](.grok/skills/drive-github-skill-audit/SKILL.md) | Compare Google Drive skill definitions with a GitHub skills repository and identify Drive skills not yet published. Use for: audit Drive skills, compare Drive and GitHub SKILL.md files, find unpublished skills, skill-library inventory. |
 | [`evolution`](.grok/skills/evolution/SKILL.md) | Tracks incremental improvements to skills and workflows over time. Use for: evolve skill, track evolution, improve over time, `skill-evolver`. |
 | [`evolver`](.grok/skills/evolver/SKILL.md) | Lightweight skill mutation helper for quick iterations. Use for: quick evolve, mutate skill, tweak skill, `skill-evolver`. |
@@ -130,6 +140,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 | [`skill-evolution-engine`](.grok/skills/skill-evolution-engine/SKILL.md) | Manages skill version history and automated improvement cycles. Use for: evolve skills, version skills, skill maintenance, `skill-evolver`. |
 | [`skill-evolver`](.grok/skills/skill-evolver/SKILL.md) | Full skill rewrite and improvement with versioned backups and templates. Use for: evolve skill, upgrade SKILL.md, improve skill file, `skill-evolution-engine`. |
 | [`skill-marketplace-installer`](.grok/skills/skill-marketplace-installer/SKILL.md) | Safely search and install agent skills from public marketplaces with explicit user consent and security checks. Use for: find skill, install skill, skill marketplace, check skill safety. |
+| [`skill-persistence-guard`](.grok/skills/skill-persistence-guard/SKILL.md) | Check a configured skills library for missing packages and help restore them from verified local or user-approved sources. Use when skills disappear, after environment cleanup, or during a requested library health check. Obtain explicit approval before remote downloads or overwriting existing files. |
 | [`skill-researcher`](.grok/skills/skill-researcher/SKILL.md) | Researches existing skills and best practices before creating new ones. Use for: research skills, find skill examples, skill best practices, `natural-language-to-skill`. |
 | [`skill-rubric-reviewer`](.grok/skills/skill-rubric-reviewer/SKILL.md) | Reviews SKILL.md files against a 10-dimension quality rubric inspired by the Agent Skills specification. Use for: review skill, skill rubric, audit SKILL.md, score skill quality. |
 | [`skill-synergy-orchestrator`](.grok/skills/skill-synergy-orchestrator/SKILL.md) | Combines multiple skills into synergistic pipelines. Use for: combine skills, skill pipeline, chain skills, skill synergy. |
@@ -137,7 +148,7 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Traffic & Navigation
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`traffic-flight-controller`](.grok/skills/traffic-flight-controller/SKILL.md) | Coordinates traffic and navigation data sources for optimal routing info. Use for: traffic route, best route now, commute plan, drive time. |
 | [`waze-live-reports`](.grok/skills/waze-live-reports/SKILL.md) | Fetches live Waze traffic incidents and jams for a location. Use for: waze report, live traffic, road incidents, traffic jams. |
 | [`waze-navigator`](.grok/skills/waze-navigator/SKILL.md) | Provides navigation guidance using Waze-style routing context. Use for: navigate, waze navigate, directions, how do I get to. |
@@ -145,14 +156,15 @@ This catalog is generated from the metadata in **90 skill definitions**. Run `py
 ### Workflow & Agent Orchestration
 
 | Skill | Description |
-|---|---|
+| --- | --- |
 | [`adaptive-workflow-composer`](.grok/skills/adaptive-workflow-composer/SKILL.md) | Composes multi-step agent workflows from goals and available skills. Use for: compose workflow, plan steps, adaptive pipeline, orchestrate task. |
-| [`agent-red-team`](.grok/skills/agent-red-team/SKILL.md) | Defensive adversarial testing for AI agents, tools, MCP servers, and skills. Finds prompt-injection, jailbreak leakage, tool-abuse, confused-deputy, and data-exfil paths — then reports severity and remediations. Never writes exploit PoCs or attacks third-party systems. Use for: red team, red-teaming, agent red team, adversarial test, prompt injection test, jailbreak test, MCP abuse test, /agent-red-team. |
+| [`agent-reach-wrapper`](.grok/skills/agent-reach-wrapper/SKILL.md) | Thin wrapper around Panniantong/Agent-Reach for live web, YouTube transcripts, RSS, GitHub, Bilibili, Exa search, and optional login-state platforms. Use when the user asks to use Agent Reach, fetch a page or transcript, inspect a public social post, search RSS/GitHub, or troubleshoot its configured backend. Keep credentials local and require explicit approval before machine-wide installation or configuration changes. Does not replace VintedListingAnalyzer or humanization-stealth-browsing. |
+| [`agent-red-team`](.grok/skills/agent-red-team/SKILL.md) | Defensive adversarial testing for AI agents, tools, MCP servers, and skills. Finds prompt-injection, jailbreak leakage, tool-abuse, confused-deputy, and data-exfil paths — then reports severity and remediations. Provides defensive analysis only and does not test third-party systems without written authorization. Use for: red team, red-teaming, agent red team, adversarial test, prompt injection test, jailbreak test, MCP abuse test, /agent-red-team. |
 | [`agentic-uncertainty-quantifier`](.grok/skills/agentic-uncertainty-quantifier/SKILL.md) | Scores task uncertainty to calibrate memory depth and iteration count. Use for: quantify uncertainty, fast slow think, uncertainty score, how sure. |
 | [`bottleneck-resolver`](.grok/skills/bottleneck-resolver/SKILL.md) | Identifies and resolves performance bottlenecks in agent workflows. Use for: find bottleneck, speed up, why so slow, optimize workflow. |
 | [`desktop-subagent-connector`](.grok/skills/desktop-subagent-connector/SKILL.md) | Securely coordinate a remote sandbox with a user-approved local desktop through scoped file, shell, browser, and GUI access. Use for: remote sandbox, user-approved desktop, local desktop bridge, scoped desktop access. |
 | [`multi-agent-coordinator`](.grok/skills/multi-agent-coordinator/SKILL.md) | Coordinates multiple agents with role assignment and handoffs. Use for: coordinate agents, multi agent team, agent roles, delegate agents. |
-| [`multi-agent-orchestrator`](.grok/skills/multi-agent-orchestrator/SKILL.md) | Orchestrates complex multi-agent pipelines with DAG execution. Use for: orchestrate agents, agent pipeline, multi step agents, `multi-agent-coordinator`. |
+| [`multi-agent-orchestrator`](.grok/skills/multi-agent-orchestrator/SKILL.md) | Plan and coordinate work across multiple agents, delegate bounded tasks, and synthesize results with clear ownership and evidence. Use when the user asks for parallel research, multi-agent coordination, or a multi-step task that benefits from independent work. Confirm scope and obtain explicit approval before external writes or delegated state changes. |
 | [`parallel-tool-orchestrator`](.grok/skills/parallel-tool-orchestrator/SKILL.md) | Runs independent tool calls in parallel for latency reduction. Use for: parallel tools, run concurrently, batch requests, parallelize. |
 | [`self-healing-error-recovery`](.grok/skills/self-healing-error-recovery/SKILL.md) | Diagnoses failures and retries with alternate strategies. Use for: heal this error, self recover, fix failure automatically, retry smart. |
 | [`self-refine-loop`](.grok/skills/self-refine-loop/SKILL.md) | Runs a generator-critique-reviser loop to iteratively improve agent outputs. Use for: self refine, reflexion loop, critique and revise, improve output. |

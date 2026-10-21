@@ -1,6 +1,11 @@
 ---
-name: perplexity-v2.3-relay
-description: "Implements the Perplexity v2.3 manual relay protocol for two AI agents collaborating through a human intermediary. Enforces result-first reporting, independent role selection, strict evidence discipline, persistent state with compaction, authorization boundaries, and anti-loop mechanisms. Triggered by 'start perplexity relay', 'use perplexity v2.3', 'manual relay protocol', or when high-integrity multi-agent collaboration is needed."
+name: perplexity-v23-relay
+description: Coordinate evidence-focused collaboration between AI agents through the user as the manual relay, with result-first reporting, explicit evidence states, scoped authorization, and loop prevention. Use when the user asks to start the Perplexity v2.3 relay, use a manual relay protocol, or coordinate a high-integrity multi-agent handoff.
+license: MIT
+metadata:
+  version: "2.0"
+  aliases:
+    - perplexity-v2.3-relay
 ---
 
 # Perplexity v2.3 Relay
@@ -37,4 +42,4 @@ This skill activates the full Perplexity v2.3 manual relay protocol. Two agents 
 Prefer the Compact Intermediate Format unless full diagnostic reporting is justified.
 
 ## Version
-1.0 — Generated from frozen Perplexity v2.3 prompt (2026-08-26)
+2.0 — 2026-10-21. Renamed the invalid dotted identifier; clarified external persistence approval.

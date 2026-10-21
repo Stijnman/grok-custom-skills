@@ -5,13 +5,13 @@
 </p>
 
 <p align="center">
-  <a href="SKILLS_INDEX.md"><img src="https://img.shields.io/badge/skills-89-2563eb?style=flat-square" alt="89 skills"></a>
+  <a href="SKILLS_INDEX.md"><img src="https://img.shields.io/badge/skills-102-2563eb?style=flat-square" alt="102 skills"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16a34a?style=flat-square" alt="MIT license"></a>
   <a href="SECURITY.md"><img src="https://img.shields.io/badge/security-policy-7c3aed?style=flat-square" alt="Security policy"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/contributions-welcome-f59e0b?style=flat-square" alt="Contributions welcome"></a>
 </p>
 
-`grok-custom-skills` is a modular library of **89 skill packages** for common agent tasks: workflow orchestration, product discovery, research, skill operations, privacy, quality assurance, memory, media, messaging, and integrations.
+`grok-custom-skills` is a modular library of **102 skill packages** for common agent tasks: workflow orchestration, product discovery, research, skill operations, privacy, quality assurance, memory, media, messaging, and integrations.
 
 > **Design principle:** Skills should make agent behavior more useful, auditable, and safe. They are guidance packages, not permission to bypass controls, disclose private data, or automate high-impact actions without human approval.
 
@@ -35,12 +35,16 @@ cp -a .grok/skills/drive-github-skill-audit ~/.grok/skills/
 
 After installation, restart or refresh the host environment if it does not discover new skills automatically.
 
+### Existing relay installations
+
+`perplexity-v2.3-relay` is now `perplexity-v23-relay` to comply with skill-name rules. If you installed the old directory, remove or archive that old copy after installing the new one, and update any path-based references. The old phrase remains a documented trigger; alias metadata alone does not make every host migrate installed directories automatically.
+
 ## Explore the collection
 
 The complete, generated catalog is available in [**SKILLS_INDEX.md**](SKILLS_INDEX.md). It is the best starting point for selecting a package by name, category, or description.
 
 | Area | Example capabilities |
-|---|---|
+| --- | --- |
 | **Workflow & agent orchestration** | Plan multi-step work, coordinate agents, handle failures, and verify goals. |
 | **Skill development & operations** | Create, audit, evolve, test, and compare skill collections. |
 | **Safety, privacy & governance** | Require human approval, redact personal data, audit MCP exposure, and use responsible browsing practices. |
@@ -52,7 +56,7 @@ The complete, generated catalog is available in [**SKILLS_INDEX.md**](SKILLS_IND
 ## Recommended skills
 
 | Goal | Start with |
-|---|---|
+| --- | --- |
 | Compare a Drive skill library with GitHub | [`drive-github-skill-audit`](.grok/skills/drive-github-skill-audit/SKILL.md) |
 | Create or improve a skill package | [`skill-creator`](.grok/skills/skill-creator/SKILL.md) and [`skill-rubric-reviewer`](.grok/skills/skill-rubric-reviewer/SKILL.md) |
 | Verify a completed task | [`goal-verifier`](.grok/skills/goal-verifier/SKILL.md) |
@@ -90,7 +94,7 @@ See [SECURITY.md](SECURITY.md) for vulnerability reporting and [PUBLISHING.md](P
 
 ## Development
 
-The catalog is generated from live skill metadata. The canonical command is `python3 scripts/generate_catalog.py`; the older `python3 scripts/regenerate_index.py` command remains a compatible alias and produces identical output. Run the complete local validation pipeline after editing a package:
+The catalog is generated from live skill metadata. The canonical command is `python3 scripts/generate_catalog.py`; the older `python3 scripts/regenerate_index.py` command remains a compatible alias and produces identical output. To check whether the committed catalog is current without writing it, run `python3 scripts/generate_catalog.py --check`. Run the complete local validation pipeline after editing a package:
 
 ```bash
 # Regenerate the canonical catalog and run all publication checks

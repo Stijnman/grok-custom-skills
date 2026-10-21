@@ -29,7 +29,7 @@ jobs:
           pip install pytest pytest-mock pytest-cov
           
       - name: Run repository validation pipeline
-        run: python3 scripts/optimize_all_skills.py
+        run: python3 scripts/optimize_all_skills.py --validate-only
         
       - name: Run catalog regression tests
         run: python3 -m unittest discover -s tests -p "test_*.py"
@@ -61,7 +61,7 @@ jobs:
           
       - name: Run tests with coverage
         run: |
-          pytest tests/ -v --tb=short --cov=tests --cov-report=xml --cov-report=html
+          pytest tests/ -v --tb=short --cov=scripts --cov-report=xml --cov-report=html
           
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

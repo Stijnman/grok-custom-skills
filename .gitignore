@@ -96,11 +96,9 @@ __pycache__/
 .venv
 venv/
 
-# Test files and directories
-/test*
-/test*/
-*_test*
-*_test*/
+# Generated test output (source tests must remain trackable)
+/test-results/
+/test-artifacts/
 
 # Coverage reports
 .coverage
