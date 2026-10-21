@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Run deterministic repository validation and optionally refresh the generated catalog.
+"""Validate the collection, refreshing the catalog unless read-only mode is selected.
 
-This helper deliberately does not rewrite skill text. Metadata and instructions require
-human review because heuristic rewriting can corrupt wording or routing triggers.
+Skill instructions are never heuristically rewritten: they require human review.
 """
 
 from __future__ import annotations
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -14,23 +14,28 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def run(script: str, label: str) -> int:
-    print(f"\n=== {label} ===")
-    result = subprocess.run([sys.executable, script], cwd=ROOT)
+def run(script: str, label: str, *args: str) -> int:
+    print(f"\n=== {label} ===", flush=True)
+    result = subprocess.run([sys.executable, script, *args], cwd=ROOT)
     return result.returncode
 
 
-def main() -> int:
-    validate_only = "--validate-only" in sys.argv
-    allowed = {"--validate-only", "--refresh-catalog"}
-    unknown = [arg for arg in sys.argv[1:] if arg not in allowed]
-    if unknown:
-        print("Unsupported option(s): " + ", ".join(unknown), file=sys.stderr)
-        return 2
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
+        "--validate-only", action="store_true",
+        help="Check catalog freshness and publication rules without writing files.",
+    )
+    mode.add_argument(
+        "--refresh-catalog", action="store_true",
+        help="Refresh the generated catalog before validation (the default).",
+    )
+    args = parser.parse_args(argv)
 
     codes: list[int] = []
-    if not validate_only:
-        codes.append(run("scripts/generate_catalog.py", "refresh catalog"))
+    catalog_args = ("--check",) if args.validate_only else ()
+    codes.append(run("scripts/generate_catalog.py", "catalog", *catalog_args))
     codes.append(run("scripts/validate_collection.py", "collection schema validation"))
     codes.append(run("scripts/check_no_private_data.py", "private-data scan"))
     codes.append(run("scripts/publish_safety_check.py", "publication-safety scan"))

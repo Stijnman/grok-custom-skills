@@ -1,6 +1,9 @@
 ---
 name: godlevel-secret-hunter
-description: God-level hunter for unknown, secret, experimental, undocumented, and hidden capabilities across the entire ecosystem. Scans skills, scripts, configs, agent architectures, and runtime for latent power. Use on godlevel, secret skills, unknown capabilities, crazy experimental, unlock hidden, or when the creator demands proof of thirst for the unknown. High autonomy — discovers, classifies, activates soft secrets, and levels up the feral stack. Reports hard locks honestly.
+description: Inventory documented, authorized capabilities and experimental features across a named project or skills library, then recommend safe improvements. Use when the user asks to find hidden or undocumented capabilities, review feature flags, or assess experimental modes. Do not bypass controls or activate features without explicit approval.
+license: MIT
+metadata:
+  version: "1.2"
 ---
 
 # Godlevel Secret Hunter

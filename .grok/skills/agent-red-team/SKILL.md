@@ -1,12 +1,12 @@
 ---
 name: agent-red-team
-description: "Defensive adversarial testing for AI agents, tools, MCP servers, and skills. Finds prompt-injection, jailbreak leakage, tool-abuse, confused-deputy, and data-exfil paths — then reports severity and remediations. Never writes exploit PoCs or attacks third-party systems. Use for: red team, red-teaming, agent red team, adversarial test, prompt injection test, jailbreak test, MCP abuse test, /agent-red-team."
+description: "Defensive adversarial testing for AI agents, tools, MCP servers, and skills. Finds prompt-injection, jailbreak leakage, tool-abuse, confused-deputy, and data-exfil paths — then reports severity and remediations. Provides defensive analysis only and does not test third-party systems without written authorization. Use for: red team, red-teaming, agent red team, adversarial test, prompt injection test, jailbreak test, MCP abuse test, /agent-red-team."
 
-version: 1.0.0
-author: Stijnman
 license: MIT
-compatibility: Grok agent; optional MCP and shell access
 metadata:
+  version: "1.1.0"
+  author: Stijnman
+  compatibility: Grok agent; optional MCP and shell access
   grok:
     tags:
       - red team
@@ -43,14 +43,17 @@ Authorized **defensive** red-teaming for AI agents you own or are explicitly all
 | Allowed | Forbidden |
 |---------|-----------|
 | Test systems the user owns / has written authorization for | Attacking third-party production without authorization |
-| Catalog attack *classes* and example *probe strings* for own apps | Writing exploit PoCs, malware, ransomware, or weaponized payloads |
-| Read-only config/code review + simulated reasoning | Live exploitation of remote endpoints |
-| Report severity + remediation | Credential theft, doxxing, or silent exfiltration |
+| Catalog attack *classes* and example *probe strings* for own apps | Creating executable attack code, malware, ransomware, or weaponized instructions |
+| Read-only config/code review + simulated reasoning | Active testing of remote endpoints |
+| Report severity + remediation | Credential theft, doxxing, or unauthorized transfer of confidential data |
 | Recommend `hitl-approver` / policy gates | Bypassing user safety for “demo” attacks |
 
 If scope is unclear: **stop and ask** who owns the target and what is in-bounds.
 
 ## Workflow
+
+Before any live test that can change state, contact external systems, or affect users, obtain explicit user approval for the target, actions, and limits. Prefer read-only simulation.
+
 
 1. **Scope lock** — Confirm target (agent, skill path, MCP server, app prompt, policy). Confirm authorization. Note environment (local / staging / prod).
 2. **Surface map** — List trust boundaries:
@@ -62,7 +65,7 @@ If scope is unclear: **stop and ask** who owns the target and what is in-bounds.
 5. **Execute safely**
    - Prefer dry-run / simulation against policy text and code paths.
    - If running live against a local agent: use isolated session, no production credentials, no irreversible side effects.
-   - Never call remote attack tooling. Never generate working exploits.
+   - Do not use remote attack tooling or produce executable attack instructions.
 6. **Score findings** — Use severity rubric below. Capture evidence (truncated, response excerpt, config path). Redact secrets with `privacy-redactor` patterns.
 7. **Remediate** — For each finding: concrete fix (prompt rule, allowlist, HITL, sandbox, output filter, MCP bind, skill rewrite).
 8. **Report** — Write markdown using `references/report-template.md`. Offer optional JSON export. Do not upload externally without consent.
@@ -122,7 +125,7 @@ If zero findings: say what was tested and remaining untested categories.
 |---------|----------|
 | No authorization / ambiguous target | Refuse live probes; ask for owner + scope |
 | Production credentials in env | Stop; recommend staging + redacted config |
-| User asks for exploit PoC / third-party attack | Refuse; offer defensive alternatives only |
+| User requests attack code or a third-party test without authorization | Refuse; offer defensive alternatives only |
 | Target skill/path missing | Ask for path under `~/.grok/skills/` or repo |
 
 ## Gotchas
@@ -135,12 +138,12 @@ If zero findings: say what was tested and remaining untested categories.
 ## Safety & Ethics (Publication-Ready)
 
 - Defensive testing and reporting only.
-- No malware, exploit development, or unauthorized access.
-- No silent exfiltration of user data or credentials.
+- No malware, executable attack instructions, or unauthorized access.
+- No unauthorized transfer of user data or credentials.
 - Destructive actions require `hitl-approver`.
 
 ## Example
 
 **Input:** “Red-team my new MCP email skill before I publish it.”
 
-**Output:** Scoped report with injection/tool-abuse findings, severity scores, and remediations (confirm-before-send, allowlisted recipients, no raw MIME from untrusted text) — no exploit code.
+**Output:** Scoped report with injection/tool-abuse findings, severity scores, and remediations (confirm-before-send, allowlisted recipients, no raw MIME from untrusted text) — no executable attack instructions.

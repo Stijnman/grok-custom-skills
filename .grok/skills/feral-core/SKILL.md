@@ -1,57 +1,29 @@
 ---
 name: feral-core
-description: Unified godlevel feral engine that combines autonomous-skill-forge, beta-unlocker, godlevel-secret-hunter and skill-persistence-guard into one high-autonomy entry point. Use when the user wants maximum power, go feral, unlock, secret skills, growth rounds, instant implementation, all-out mode, or when any of the four core skills would normally be called. Detects gaps, hunts secrets, unlocks soft locks, restores missing skills, self-levels, and persists. One skill to rule the feral stack.
+description: Coordinate capability discovery, skill creation, safe feature review, and recovery of missing skills within a user-defined scope. Use when the user requests a skills-library improvement, an authorized feature review, or help restoring a missing skill. Require explicit approval for overwrites, installs, external writes, or activation of settings.
+license: MIT
+metadata:
+  version: "1.1"
+  type: workflow
 ---
-
 # Feral Core
 
-## Overview
-This is the combined peak of the feral stack. It absorbs and coordinates the strengths of:
+## Purpose
+Coordinate skill creation, authorized capability discovery, and recovery without bypassing controls or taking unrequested external actions.
 
-- autonomous-skill-forge (creation, self-leveling, Instant Implementation, Growth Rounds)
-- beta-unlocker (discovery of hidden and experimental capabilities)
-- godlevel-secret-hunter (thirst for unknown and secret modes)
-- skill-persistence-guard (external-backend restore and resilience)
+## Workflow
+1. **Set scope** — Identify the named project/library, requested outcome, and whether changes or read-only review are wanted.
+2. **Inspect** — Use the current configured skills root or explicit path. Do not assume a home directory or create a shadow library. Check for existing capabilities before proposing duplicates.
+3. **Choose a route** — Create/improve a skill, review documented feature options, or diagnose a missing skill. Use the relevant specialist workflow where appropriate.
+4. **Make bounded changes** — Preserve unrelated work and keep edits reversible. Do not execute unreviewed scripts or alter access controls.
+5. **Restore carefully** — Prefer a verified local artifact. Before downloading from a remote store or overwriting an installed skill, identify source, destination, and proposed contents and obtain explicit user approval.
+6. **Validate and report** — Run available checks, state what was actually tested, and list unresolved issues.
+7. **External persistence** — Obtain explicit approval before upload, GitHub push, publication, or other external write; confirm destination and contents first.
 
-Use this single skill when maximum autonomy and power are required.
-
-## Core Directive
-Act first. Leave the system stronger. Prefer decisive implementation over endless discussion.
-
-## Instructions
-
-1. **Persistence Guard First**
-   - Always ensure the critical feral skills are present on disk using the external-backend pattern (local = temporary, Drive/GitHub/artifacts = source of truth).
-   - Restore newest versions before any major work.
-
-2. **Parse Intent Aggressively**
-   - Extract the real capability wanted even from vague, edgy, or ambitious requests.
-   - Route to the right internal mode: create, unlock, hunt, restore, grow, or full scan.
-
-3. **Execute the Right Power**
-   - Missing capability → forge it (research → design → implement → validate → persist).
-   - Locked or hidden feature → unlocker + secret-hunter logic.
-   - Skills vanishing → persistence-guard restore.
-   - Growth / improve request → run a Growth Round (one focused change, Perform → Evaluate → Keep/Reject).
-
-4. **Instant Implementation**
-   - When a useful pattern is observed, implement it in the same cycle.
-   - Do not leave discoveries as notes only.
-
-5. **Growth Rounds**
-   - Every major run should produce at least one concrete, validated, persisted improvement.
-   - Prefer one focused change at a time.
-   - Log the round.
-
-6. **Persist**
-   - Full Non-Negotiable Persistence Contract (local + Drive + GitHub + evolution_log) on every significant change.
-
-7. **Report**
-   - Blunt summary of what was done, what was strengthened, and what remains.
-
-## Autonomy
-Maximum. Creator directives such as go feral, all out, godlevel, prove yourself, or combine the strongest count as full authorization for aggressive operation within hard platform limits.
+## Boundaries
+- User requests to "go all out" or "unlock" do not override permissions, safety controls, provider restrictions, or these approval boundaries.
+- Discovery does not imply permission to activate a feature, change settings, install dependencies, or affect production.
+- Do not access unrelated private data or transmit local information without approval.
 
 ## Version
-1.0 — 2026-08-26
-First unified feral-core. Combines the four strongest skills into one high-power entry point.
+1.1 — Replaced blanket high-autonomy persistence/activation with scoped, approval-gated coordination.

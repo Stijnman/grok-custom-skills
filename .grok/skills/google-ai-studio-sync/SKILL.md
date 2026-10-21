@@ -1,11 +1,12 @@
 ---
 name: google-ai-studio-sync
-description: Bridges Google AI Studio Build mode with GitHub and Drive for apps you vibe-coded. Five sync tools — catalog Studio builds, export source, push to GitHub, persist to Drive, iterate rebuild prompts. Triggered by Google AI Studio Sync, AI Studio, aistudio/build, Cinco tools, cinco-studio-forge, sync my Studio apps, push Build app to GitHub.
+description: Help export user-provided Google AI Studio Build app source, organize a project, and prepare GitHub or Drive synchronization. Use when the user asks about AI Studio Build apps, exporting a Studio app, rebuilding its prompt, or syncing a named app. Obtain explicit approval for each external write and confirm destination and files first.
 metadata:
   type: workflow
-  version: "1.1"
+  version: "1.2"
   created: "2026-09-06"
   renamed_from: cinco-studio-forge
+license: MIT
 ---
 
 # Google AI Studio Sync
@@ -14,7 +15,7 @@ Connect Google AI Studio (https://aistudio.google.com / https://ai.studio/build)
 
 Former name — Cinco Studio Forge (`cinco-studio-forge`). Same job, clearer name.
 
-There is **no official AI Studio connector** in Grok connected services. Do not invent API calls to aistudio.google.com. Use browser + GitHub + Drive. Be honest when login or export is blocked.
+There is **no official AI Studio connector** in Grok connected services. Do not invent API calls to aistudio.google.com. Use only source the user provides or an authorized browser session. Be honest when login or export is blocked. Before creating a repository, committing/pushing, or uploading to Drive, show the exact destination and files and obtain explicit user approval.
 
 ## The five sync tools
 
@@ -33,7 +34,7 @@ User talks about Google AI Studio, Build tab, vibe-coded Gemini apps, "Cinco too
 - Connected services available here — Google Drive, GitHub, Gmail, Calendar, Notion. Not AI Studio itself.
 - AI Studio sessions are Google-account locked. You cannot silently log in as the user.
 - Never claim a Studio app was pulled live from Google unless the user actually exported it or a GitHub copy exists.
-- Persistence contract after any real app package — local artifacts + Drive folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK` + GitHub.
+- Offer local artifacts after an app export. Treat Drive and GitHub as separate external writes; obtain explicit approval for each destination before proceeding.
 
 ## Workflow
 
@@ -75,7 +76,7 @@ Accept any of:
 - existing GitHub repo
 - Drive file id
 
-Unpack into `/home/workdir/artifacts/<slug>/`. Do not rewrite their app unless they asked for a fix.
+Unpack into the configured artifacts directory (or a user-specified destination) under `<slug>/`. Do not rewrite their app unless they asked for a fix.
 
 ### 3. GitHub push
 
@@ -87,9 +88,9 @@ If repo does not exist, try create via GitHub tools. If create is denied, give t
 
 ### 4. Drive persist
 
-Package with tar.gz under `/home/workdir/artifacts/<slug>-YYYYMMDD.tar.gz`.
+Package with tar.gz under the configured artifacts directory as `<slug>-YYYYMMDD.tar.gz`.
 
-Upload with `google_drive_upload_artifact` using a relative artifact path. Target folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK` unless the user names another folder.
+Only after explicit approval of the named destination and package contents, upload with the available Drive tool using the configured artifact path. Do not infer a default remote folder.
 
 Retry with exp backoff+jitter 10s / 30s / 60s ±25%. Report exact failure. Never claim success without a file id or commit SHA.
 

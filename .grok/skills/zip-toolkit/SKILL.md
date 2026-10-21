@@ -1,89 +1,56 @@
 ---
 name: zip-toolkit
-description: Full zip and archive toolkit for Grok. Unzip, list, create, add, extract, test, convert, and install skill packs from zip or tar.gz. Trigger on unzip this, /zip, extract archive, pack skills, zip slip-safe extract, inspect zip, create zip, install skill pack from zip.
+description: Inspect, create, test, and extract ZIP archives using the existing zip-enabler helper and verified standard utilities. Use when the user asks to inspect or extract an archive, package files, or review a skill pack. Obtain explicit approval before overwriting files, installing into a skills directory, or uploading externally; use configured paths, not fixed host paths.
+license: MIT
 metadata:
-  version: "1.0"
+  version: "1.2"
   type: toolkit
   created: "2026-09-16"
 ---
+# ZIP Toolkit
 
-# Zip Toolkit
-
-Do every practical zip/archive job Grok hits in this sandbox. Default destination is `/home/workdir/artifacts/` unless the user names another path.
+Use the existing `zip-enabler` helper only for operations it actually implements. Resolve the skills root and artifacts directory from runtime configuration or explicit user input; never assume fixed absolute paths.
 
 ## When to use
 
-- User drops a `.zip` / `.tar.gz` / `.tgz` attachment
-- User says `/zip`, unzip, extract, pack, archive, inspect zip
-- Need to install a skill pack from a zip without clobbering the live library blindly
-- Need a dated persistence tarball for Drive/GitHub
+- The user provides a ZIP archive or asks to create, inspect, test, or extract one.
+- The user asks to review an archive that may contain skills.
 
-## Non-negotiable rules
+## Safety rules
 
-- Never extract with zip-slip. All members must stay under the chosen dest.
-- Never write into `/home/workdir/.grok/skills/` unless the user explicitly says install/overwrite.
-- Default extract dest is `/home/workdir/artifacts/<archive-stem>/`
-- Report exact dest path, file count, top-level folders, and bytes.
-- Password zips — try empty password then stop and ask. Do not brute force.
-- Do not dump copyrighted bulk text from extracted files into chat. Summarize.
-- Sandbox IO on hundreds of tiny files is slow. Run extract in background if listing shows more than 200 files.
-- After creating a skill pack zip/tar.gz, offer Drive + GitHub persistence via connected-services-bridge / drive-persistence-bridge. Do not claim upload success unless the connector call returned it.
+- Keep extraction in a new, user-approved destination. Inspect archive member names before extraction; stop if any name is absolute, traverses upward, or cannot be evaluated safely.
+- Do not overwrite existing files without explicit approval for the exact destination and files.
+- Do not install skill packs automatically. The helper does not implement skill-pack installation.
+- Do not upload or push an archive unless the user explicitly approves the destination and contents.
+- Do not publish bulk copyrighted content from an archive; summarize relevant findings.
 
-## Operations (use scripts/zip_tool.py)
+## Locate the helper
 
-```bash
-python3 /home/workdir/.grok/skills/zip-toolkit/scripts/zip_tool.py <command> [args]
+1. Resolve the configured skills root from runtime configuration or an explicit path.
+2. Verify that `<skills-root>/zip-enabler/scripts/zip_tool.py` exists.
+3. If it does not exist, stop and explain that this toolkit depends on the `zip-enabler` package. Do not invent or assume a `zip-toolkit` helper.
+4. Invoke the verified file through Python. Its inspected interface supports only `create`, `list`, and `extract`:
+
+```text
+python3 "<skills-root>/zip-enabler/scripts/zip_tool.py" create <output.zip> <source> [<source> ...]
+python3 "<skills-root>/zip-enabler/scripts/zip_tool.py" list <archive.zip>
+python3 "<skills-root>/zip-enabler/scripts/zip_tool.py" extract <archive.zip> <new-destination>
 ```
 
-Commands
+Before using `extract`, run `list` and review every member path. This helper delegates extraction to Python's ZIP API and does not provide a dedicated archive-safety audit; if a path is suspicious or uncertain, do not extract it.
 
-- `info PATH` — format, size, member count, compressed vs raw, top-level dirs
-- `list PATH [--limit N]` — member list
-- `test PATH` — CRC / integrity
-- `extract PATH [--dest DIR] [--only PREFIX] [--force]` — slip-safe extract
-- `extract-file PATH INNER --dest FILE` — single member
-- `create OUT.zip|OUT.tar.gz INPUT [INPUT...]` — pack files/dirs
-- `add ZIP MEMBER_SRC [--arcname NAME]` — add/replace one member
-- `remove ZIP MEMBER` — drop a member (rewrite zip)
-- `install-skills ZIP [--dest SKILLS_DIR] [--dry-run] [--overwrite]` — copy only folders that contain SKILL.md
-- `preview-skills ZIP` — list skill names + first description line
-- `to-targz ZIP` / `to-zip TAR.GZ` — convert
-- `find-skills DIR` — scan extracted tree for SKILL.md folders
+## Unsupported operations
 
-Always run `info` before a large extract.
+The installed helper has no `info`, `test`, conversion, add/remove, archive preview, or skill-install commands. Do not advertise or invoke those verbs. For CRC testing, use a verified standard `unzip -t` utility if present; otherwise report the limitation. If the user asks to install an archive, explain that a separate reviewed installation workflow is required and obtain explicit approval before any write.
 
-## Workflow for user-attached zips
+## Workflow for user-provided archives
 
-1. `info` + `preview-skills` if it looks like a skill pack.
-2. Extract to `/home/workdir/artifacts/extracted-<stem>/`.
-3. Tell the user what it is (PostHog pack vs Grok custom skills vs random dump).
-4. Ask before installing into `.grok/skills/`.
-5. If they say install — `install-skills` with `--dry-run` first, then live. Log collisions.
+1. Confirm the requested operation and destination.
+2. Verify the helper exists before relying on it.
+3. List and review member names before extraction; stop on unsafe or unclear paths.
+4. Extract only to a new destination, then report the exact destination and available file/member count.
+5. For skill packs, summarize contents. Do not install, overwrite, upload, or push without separate explicit approval.
 
-## Skill-pack install policy
+## Version
 
-- A folder is a skill iff it contains `SKILL.md` at its root (or one level down from archive root).
-- Collision with an existing skill — skip unless `--overwrite`.
-- After install, remind persistence contract (local already done; Drive folder `1jEivRtcNo-x9sd--2l1qe1bVox-TSnYK`; GitHub `Stijnman/grok-custom-skills`).
-- Honest batch — if installing more than 8 new skills as a deep ecosystem change, install files but do not claim a full evolution cycle.
-
-## Create / pack for persistence
-
-Default pack command for one skill
-
-```bash
-tar -czf /home/workdir/artifacts/zip-toolkit-20260916.tar.gz -C /home/workdir/.grok/skills zip-toolkit
-```
-
-Also supported via `zip_tool.py create`.
-
-## Errors
-
-- Missing `unzip`/`zip` binaries — fall back to Python zipfile/tarfile (the script already does).
-- Timeout — background the extract, poll dest file count.
-- Corrupt archive — `test` then stop. Do not partial-install.
-
-## References
-
-- `references/formats.md` — zip vs tar.gz vs slip attacks
-- `scripts/zip_tool.py` — the actual tool
+1.2 — 2026-10-21. Removed nonexistent helper claims and fixed paths; documented real helper limits and approval boundaries.

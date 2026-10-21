@@ -1,11 +1,12 @@
 ---
 name: facial-recognition-explorer
-description: Explains modern face recognition, NIST-class closeness, embeddings, ArcFace/AdaFace/TransFace, and qualitative lookalike comparison. Triggered by facial recognition, face embeddings, ArcFace, AdaFace, NIST FRTE, how close is FR, lookalike match, or improve this face skill.
+description: Explains face-recognition systems, embeddings, model evaluation, and limitations; provides cautious qualitative comparison of images the user supplies. Use when the user asks about face recognition, ArcFace/AdaFace, NIST FRTE, embeddings, or model performance. Do not identify private people or enable surveillance.
 metadata:
-  version: "1.1"
+  version: "1.2"
   type: knowledge
   created: "2026-09-10"
   updated: "2026-09-10"
+license: MIT
 ---
 
 # Facial Recognition Explorer
@@ -101,7 +102,6 @@ Match score
 - No ethics sermon unless asked. State demographic-gap existence if asked.
 - Retry any research fetch with exp backoff 10/30/60s ±25% jitter and report the delay if it fired.
 
-## Persistence
+## Privacy and persistence
 
-Local path `/home/workdir/.grok/skills/facial-recognition-explorer/`.
-After a real edit, package only this skill and push to `Stijnman/grok-custom-skills` at `.grok/skills/facial-recognition-explorer/`.
+Use only images the user is authorized to share. Keep comparisons qualitative; do not identify a private person, track a person across services, or infer sensitive traits. For an authorized skill edit, work relative to the current configured skills root. Obtain explicit approval before packaging for external sharing, uploading, or pushing changes.
